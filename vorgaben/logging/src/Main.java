@@ -1,22 +1,50 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputFilter;
+import java.util.logging.*;
+
 public class Main {
+
     public static void main(String[] args) {
+        Logger zwei = Logger.getLogger(Main.class.getName());
+        ConsoleHandler handlerB = new ConsoleHandler();
+        handlerB.setLevel(Level.ALL);
+        handlerB.setFormatter(new FormatterZwei());
+        zwei.addHandler(handlerB);
+        zwei.setLevel(Level.FINEST);
         Ringbuffer buffer = new Ringbuffer(5);
+
+        FileHandler fileH;
+
+        try{
+            fileH = new FileHandler("speicher.csv");
+            fileH.setLevel(Level.WARNING);
+            zwei.addHandler(fileH);
+            fileH.setFormatter(new FormatterZwei());
+        }
+        catch(SecurityException a){
+            zwei.warning(a.getMessage());
+        }
+        catch (IOException e){
+            zwei.warning(e.getMessage());
+        }
+
         try {
             buffer.remove();
         } catch (IllegalStateException stateException) {
-            System.err.println(stateException.getMessage());
+            zwei.warning(stateException.getMessage());
         }
         buffer.add("First");
-        System.out.println("First element added succesfully");
+        zwei.finest("First element added succesfully");
         buffer.add("Second");
-        System.out.println("Second element added Succesfully");
+        zwei.finest("Second element added Succesfully");
         try {
             buffer.add("Third");
-            System.out.println("Third element added Succesfully");
+            zwei.finer("Third element added Succesfully");
         } catch (IllegalStateException stateException) {
-            System.err.println(stateException.getMessage());
+            zwei.warning(stateException.getMessage());
         }
         String first = buffer.remove();
-        System.out.printf("The removed element is: %s", first);
+        zwei.info("The removed element is: %s"+ first);
     }
 }
