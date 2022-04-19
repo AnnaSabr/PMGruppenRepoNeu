@@ -1,3 +1,6 @@
+/**
+*   Implementierung des Factory-Pattern.
+ */
 public class ComputerFactory {
     private ComputerFactory() {
 
@@ -9,6 +12,12 @@ public class ComputerFactory {
     private static String leistung1 = "leise schnurrend";
     private static String leistung2 = "viel Wumms";
 
+    /**
+    *   Diese Methode liefert abhängig von den Übergabeparameretn ein Oject der Klasse Computer zurueck.
+    *   @param String s1, Dieser Uebergabeparameter gibt den Zweck des Computers an.
+    *   @param String s2, Dieser Uebergabeparameter gibt die Leistung des Computers an.
+    *   @return Computer computer
+     */
     public static Computer buildComputer(String s1, String s2) {
 
         if(s1.compareTo(ComputerFactory.zweck1) == 0) {
