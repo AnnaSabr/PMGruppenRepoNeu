@@ -1,10 +1,23 @@
-public interface Computer {
+public abstract class Computer {
+    private Ram ram;
+    private Drive drive;
+    private Cpu cpu;
 
-    public Ram getRam();
+    public Computer(Ram ram, Drive drive, Cpu cpu) {
+        this.ram = ram;
+        this.drive = drive;
+        this.cpu = cpu;
+    }
 
-    public Drive getDrive();
+    public Ram getRam() {
+        return ram;
+    }
 
-    public Cpu getCpu();
+    public Drive getDrive() {
+        return drive;
+    }
 
-    public boolean equals(Computer c);
+    public Cpu getCpu() {
+        return cpu;
+    }
 }
