@@ -1,3 +1,8 @@
+import java.util.Formatter;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.LogRecord;
 
 /**
  * Simple Ringbuffer for String objects.
@@ -5,6 +10,8 @@
 public class Ringbuffer {
     private final String[] buffer;
     private int start, elements;
+    Logger eins = Logger.getLogger(Ringbuffer.class.getName());
+
 
     /**
      * Constructor for the buffer which creates the String array for the storage.
@@ -13,11 +20,19 @@ public class Ringbuffer {
      * @throws IllegalArgumentException when the size is below or equal to 0
      */
     public Ringbuffer(int size) {
+        Logger eins = Logger.getLogger(Ringbuffer.class.getName());
+        this.eins=eins;
+        ConsoleHandler handlerA = new ConsoleHandler();
+        handlerA.setFormatter(new FormatterEins());
+        eins.addHandler(handlerA);
+        eins.setLevel(Level.SEVERE); //oder je nachdem welchen man eben einstellen moechte
+
+
         if (size <= 0) {
-            System.err.println("The Size of the buffer needs to be at least 1.");
+            eins.warning("The Size of the buffer needs to be at least 1.");
             throw new IllegalArgumentException("The Size of the buffer needs to be at least 1.");
         }
-        System.out.println("Creating array with size of " + size + " for storage.");
+        eins.info("Creating array with size of " + size + " for storage.");
         buffer = new String[size];
     }
 
@@ -28,13 +43,14 @@ public class Ringbuffer {
      * @throws IllegalStateException when the method is called and there is no empty space available.
      */
     public void add(String element) {
+
         if (elements == buffer.length) {
-            System.err.println("The Current Buffer is already full.");
+            eins.warning("The Current Buffer is already full.X");
             throw new IllegalStateException("The Current Buffer is already full.");
         }
-        System.out.println("Adding " + element + " to buffer on position " + (start + elements) % buffer.length);
+        eins.info("Adding " + element + " to buffer on position " + (start + elements) % buffer.length);
         buffer[(start + elements) % buffer.length] = element;
-        System.out.println("Increasing Element count by 1 to " + (elements + 1));
+        eins.info("Increasing Element count by 1 to " + (elements + 1));
         ++elements;
     }
 
@@ -45,16 +61,16 @@ public class Ringbuffer {
      * @return the removed Element.
      */
     public String remove() {
-        System.out.println("Currently the buffer does contain: " + elements + " elements");
+        eins.info("Currently the buffer does contain: " + elements + " elements");
         if (elements == 0) {
-            System.err.println("The Current Buffer does not contain any element.");
+            eins.warning("The Current Buffer does not contain any element.");
             throw new IllegalStateException("The Current Buffer does not contain any element.");
         }
         String s = buffer[start];
-        System.out.println("Moving element from buffer to temporary variable the value: " + s);
-        System.out.println("Moving the start pointer from " + start + " to " + (start + 1) % buffer.length);
+        eins.info("Moving element from buffer to temporary variable the value: " + s);
+        eins.config("Moving the start pointer from " + start + " to " + (start + 1) % buffer.length);
         start = (start + 1) % buffer.length;
-        System.out.println("Decreasing Element count by 1 to " + (elements - 1));
+        eins.info("Decreasing Element count by 1 to " + (elements - 1));
         elements--;
         return s;
     }
@@ -65,7 +81,7 @@ public class Ringbuffer {
      * @return the number of empty Spaces
      */
     public int emptySpace() {
-        System.out.println("Method emptySpace current elementCount is " + elements + " elements and the buffer has a size of " + buffer.length + ".");
+        eins.fine("Method emptySpace current elementCount is " + elements + " elements and the buffer has a size of " + buffer.length + ".");
         return buffer.length - elements;
     }
 
@@ -75,7 +91,7 @@ public class Ringbuffer {
      * @return the amount of elements currently held in the buffer
      */
     public int elementsCount() {
-        System.out.println("Method elementsCount current count is " + elements + " elements.");
+        eins.finer("Method elementsCount current count is " + elements + " elements.");
         return elements;
     }
 }
