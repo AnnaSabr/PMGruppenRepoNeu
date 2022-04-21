@@ -7,6 +7,9 @@ import level.generator.dungeong.graphg.NoSolutionException;
 import tools.Point;
 import com.badlogic.gdx.graphics.Color;
 
+/**
+ * Erzeugt den Game Loop und verwaltet die Helden und Monster
+ */
 public class MyGame extends MainController {
     private MyHero hero;
     private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
