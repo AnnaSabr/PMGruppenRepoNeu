@@ -1,7 +1,5 @@
 package rps.game;
 
-import rps.strategy.IGameStrategy;
-
 public interface IPlayer {
 
     /**

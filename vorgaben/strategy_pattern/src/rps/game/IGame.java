@@ -20,16 +20,17 @@ public interface IGame {
     /**
      * Get the opponents last move.
      *
+     * @param p the current player
      * @return the opponents last move
      */
-    Move getLastMove();
+    Move getLastMove(IPlayer p);
 
     /**
      * Make a move for the current player.
      *
-     * @param m the move to set
+     * 
      */
-    void doMove(Move m);
+    void doMove();
 
     /**
      * Evaluation of the game from the player's point of view.
