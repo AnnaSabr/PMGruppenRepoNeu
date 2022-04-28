@@ -73,11 +73,13 @@ public class MyGame extends MainController {
         }*/
     }
 
+    /**
+     * Erstellt die Level angepasste Anzahl Monster und deren Werte
+     */
     public void monsterGenerieren(){
         Random ran= new Random();
         monster= new ArrayList<>();
         int r=ran.nextInt(2+levelCounter);
-        System.out.println(r);
         for (int a=0; a<r; a++){
             monster.add(MonsterCreator.getMonster(1+levelCounter,0.1f,3+levelCounter,EMonster.SKELET,painter, batch));
             monster.add(MonsterCreator.getMonster(1+levelCounter,0.1f,3+levelCounter,EMonster.NECROMANT,painter, batch));

@@ -6,6 +6,10 @@ import graphic.Painter;
 
 import java.util.List;
 
+/**
+ * Individuelle Klasse zur Anpassung des Necromanten an Monster
+ */
+
 public class Necromant extends Monster{
     private Animation idleAnimation;
     private List<String> animation;

@@ -7,7 +7,9 @@ import graphic.Painter;
 
 import java.util.List;
 
-
+/**
+ * Individuelle Klasse zur Anpassung des Skelet an Monster
+ */
 public class Skelet extends Monster {
 
     private Animation idleAnimation;

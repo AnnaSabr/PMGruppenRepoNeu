@@ -11,7 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * Oberklasse der Monster
+ *
+ * enthaelt alle allgemein gueltigen Funktionen fuer jegliche Art Monster
+ */
 public abstract class Monster extends Animatable {
     private Point position;
     private Level currentLevel;
@@ -37,6 +41,10 @@ public abstract class Monster extends Animatable {
         idleAnimation = new Animation(animation, 5);
     }
 
+    /**
+     *  bestimmt die Position im aktuellen Level
+     * @param level ist das aktuelle Level
+     */
     public void setLevel(Level level) {
         currentLevel = level;
         position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
@@ -85,51 +93,27 @@ public abstract class Monster extends Animatable {
         return position;
     }
 
-    public float getGeschwindigkeit() {
-        return geschwindigkeit;
-    }
-
-    public int getStaerke() {
-        return staerke;
-    }
-
-    public int getLebenspunkte() {
-        return lebenspunkte;
-    }
-
-    public void setGeschwindigkeit(float geschwindigkeit) {
-        this.geschwindigkeit = geschwindigkeit;
-    }
-
-    public void setLebenspunkte(int lebenspunkte) {
-        this.lebenspunkte = lebenspunkte;
-    }
-
-    public void setStaerke(int staerke) {
-        this.staerke = staerke;
-    }
-
+    /**
+     *
+     * @return IDLEAnimation
+     */
     public List<String> getAnimation() {
         return animation;
     }
 
+    /**
+     *
+     * @return Animation bei nach Links laufen
+     */
     public List<String> getLinks() {
         return links;
     }
 
+    /**
+     *
+     * @return Animatin bei nach rechts laufen
+     */
     public List<String> getRechts() {
         return rechts;
-    }
-
-    public void setAnimation(List<String> animation) {
-        this.animation = animation;
-    }
-
-    public void setLinks(List<String> links) {
-        this.links = links;
-    }
-
-    public void setRechts(List<String> rechts) {
-        this.rechts = rechts;
     }
 }
