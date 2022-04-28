@@ -1,9 +1,9 @@
 ---
-title: "Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben XYZ, XYZ, XYZ und XYZ"
+title: "Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben "Dungeon", "Texturen" und Animationen"
 author:
--   "VORNAME NAME (EMAIL)"
--   "VORNAME NAME (EMAIL)"
--   "VORNAME NAME (EMAIL)"
+-   "Anna Heim (anna_sabrina.heim@fh-bielefeld.de)"
+-   "Leonie Terlutter (leonie.terlutter@fh-bielefeld.de)"
+-   "Waldemar Schäfer (waldemar.schaefer@fh-bielefeld.de)"
 hidden: true
 ---
 
@@ -34,12 +34,13 @@ einbetten (etwa UML-Diagramme), denken Sie daran, diese auch abzugeben!
 
 
 # Aufgabe
-
+Dungeon: Der Dungeon sollte lauffahig gemacht werden un der erste Held implementiert werden.
+Texturen: Es sollten weitere Texturen in dem entsprechenden Ordner hinzugefuegt werden, fuer Items, Helden und Monster.
+Animationen: Die Animation des Helden sollte je nach Laufrichtung individuell angepasst werden.
 <!--
 Bitte hier die zu lösende Aufgabe kurz in eigenen Worten beschreiben.
 -->
 
-TODO
 
 
 # Ansatz und Modellierung
@@ -52,7 +53,9 @@ Bitte hier den Lösungsansatz kurz beschreiben:
 -   Worauf müssen Sie konkret achten?
 -->
 
-TODO
+Dungeon: In der Theorie nur Repo clonen und in IDE oeffnen. Anschließend mit Gradle ausfuehren.
+Texturen: Beliebige Texturen aus dem Internet klauen und in den richtigen Ordner packen.
+Animationen: Die idleAnimation anpassen, je nach Laufrichtung ueber die permanent laufende update Funktion.
 
 
 # Umsetzung
@@ -65,8 +68,13 @@ Bitte hier die Umsetzung der Lösung kurz beschreiben:
 -   was war das Ergebnis?
 -->
 
-TODO
-
+Dungeon: es gab zum Teil Probleme mit dem Import in die jeweilige IDE. 
+Probleme durch falsche Javaversionen bei Gradle oder bei der IDE mussten behoben werden.
+Texturen: Bilder wurden gedownloaded, mussten allerdings je nach vorgesehener Animation noch manuell gespiegelt werden.
+Animation: Da sie update Funktion 30 mal die Sekunde ausgefuert wird, war es zu Beginn ein Problem,
+dass die aktuell geforderte Animation nicht bei jedem neuen Aufruf von vorne beginnt.
+So war sie naemlich nicht sichtbar. ein Problem was noch nicht behoben werden konnte ist,
+dass die Animation bei Stillstand nicht zurueck in die IdleAnimation geschaltet wird. 
 
 # Postmortem
 
@@ -78,4 +86,6 @@ kritisch zurück:
 -   Wie haben Sie die Probleme letztlich gelöst?
 -->
 
-TODO
+Insgesamt lief es relativ erfolgreich, die kleinen aufgetretenen Probleme konnten mit Hilfe schnell beseitigt werden.
+Der Fehler, dass die Idle Animation noch nicht wieder abgespielt wird, wurde primaer aufgrund mangelnder Zeit nicht mehr behoben. In dem Fall wäre 
+ein besseres Zeitmanagement und Absprachen von Vorteil.
