@@ -70,7 +70,7 @@ public class MyHero extends Animatable {
     @Override
     public void update() {
         Point newPosition = new Point(this.position);
-        float movementSpeed = 0.1f;
+        float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease;
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             newPosition.y += movementSpeed;
