@@ -107,4 +107,3 @@ public class MyHero extends Animatable {
         return idleAnimation;
     }
 }
-
