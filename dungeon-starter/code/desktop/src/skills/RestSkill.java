@@ -19,8 +19,7 @@ class RestSkill implements ISkill{
 
     @Override
     public void unlock() {
-        this.lock = false;
-        
+        this.lock = false;   
     }
 
     @Override
