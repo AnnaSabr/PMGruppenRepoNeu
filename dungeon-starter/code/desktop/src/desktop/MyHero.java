@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MyHero extends Animatable {
     private Animation idleAnimation;
-    private Point position;
+    public static Point position;
     private Level currentLevel;
     private List<String> animation;
     private List<String> rechts;
@@ -65,12 +65,15 @@ public class MyHero extends Animatable {
     public void setLevel(Level level) {
         currentLevel = level;
         position = level.getStartTile().getCoordinate().toPoint();
+        System.out.println(level.getStartTile().getCoordinate().x);
+        System.out.println(level.getStartTile().getCoordinate().y);
     }
 
     @Override
     public void update() {
         Point newPosition = new Point(this.position);
-        float movementSpeed = 0.1f;
+        float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease;
+
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             newPosition.y += movementSpeed;
@@ -107,4 +110,3 @@ public class MyHero extends Animatable {
         return idleAnimation;
     }
 }
-
