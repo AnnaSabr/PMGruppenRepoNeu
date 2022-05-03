@@ -1,8 +1,15 @@
 package rsvflottespeiche;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.junit.Assert.*;
+
 
 public class MitgliederVerwaltungTest {
 
@@ -198,4 +205,7 @@ public class MitgliederVerwaltungTest {
         MitgliederVerwaltung mV = new MitgliederVerwaltung();
         assertEquals(mV.testBeitritt(21, 7), true);
     }
+
+
+
 }
