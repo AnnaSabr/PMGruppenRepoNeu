@@ -1,0 +1,69 @@
+plugins:
+erweitern Gradle, können auch durch User erstellt werden, spezifische Tasks stehen zur Verfügung
+
+ext:
+fügt dem Projekt weitere Eigenschaften(properties) hinzu
+
+repositories:
+stellt fest woher abhängigkeiten geladen werden sollen
+
+dependencies:
+Verweise auf externe Dateien, die im Projekt verwendet werden, werden aus Repositories geladen
+
+test:
+spezifiziert, wie getestet werden soll
+
+checkstyle:
+kann durch plugin checkstyle genutzt werden, prüft ob in config-Datei spezifizierte Standards eingehalten werden
+
+spotbugs und spotbugsMain:
+kann durch SpotBugs Plugin genutzt werden, Programm, das Bugs in Java Programmen sucht
+spotbugs-Konfiguration/Einstellungen
+spotbugsMain-führt SpotBugs aus
+
+spotless:
+universelles Formatierungsplugin, gibt Format für Code an
+
+java:
+Erweiterungen für Java
+
+signing:
+Signing Plugin, konfiguriert das Plugin, Artefakte werden mit Unterschrift versehen
+
+javadoc:
+Details für Documentation
+
+buildJavadocZip:
+task, speichert Javadoc als .zip, Name und Speicherort werden angegeben
+
+nexusPublishing:
+nexus Plugin, um Artefakte in Maven Central Repository zu speichern
+
+Java Plugin:
+fügt dem Project neue Tasks hinzu:
+
+compileJava, kompiliert Java Dateien mit JDK Compiler, classpath
+processResources, kopiert Dateien
+classes, erstellt Verzeichnis für Java Dateien, compileJava, processResources
+compileTestJava, kompiliert Java-Testdateien, classes, classpath
+processTestResources, kopiert Testdateien in dafür vorgesehenes Verzeichnis
+testClasses, erstellt Verzeichnis für Testklassen, compileTestJava, processTestResources
+jar, JAR Datei, classes
+javadoc, mit Javadoc wird Dokumentation erstellt, classes
+test, führt JUnit/TestNG aus, testClasses
+clean, löscht Verzeichnis
+cleanTaskName, löscht Dateien, die durch eine Task erstellt wurden
+
+BuildNeeded, baut das Projekt und alle benötigten Projekte auf, build
+BuildDependents, baut das Projekt auf und alle Projekte, die es nutzen, build
+
+compileSourceSetJava, kompiliert Java Dateien aus SourceSet, SourceSet Classpath
+processSourceSetResources, kopiert Dateien aus SourceSet
+sourceSetClasses, erstellt Klassenverzeichnis für Klassen des SourceSetcompile, SourceSetJava, processSourceSetResources
+
+Java Plugin verknüpft seine Tasks teilweise mit denen des Base Plugins, welches automatisch durch
+das Java Plugin genutzt wird (zB. assemble, fügt alle Archive des Projekts zusammen)
+
+Source Set -Unterteilung:
+Main: beinhaltet Javacode, der ausgeführt wird
+Test: beinhaltet Testklassen
