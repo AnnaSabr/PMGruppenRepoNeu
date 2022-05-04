@@ -15,7 +15,7 @@ public class SpeedPotion extends Potion{
 
     String texturePath;
     Point position;
-    public static float SpeedIncrease = PotionsTaken*0.5f;
+    public static float SpeedIncrease = 0.0f;
     private Point point ;
 
     /**
@@ -34,14 +34,17 @@ public class SpeedPotion extends Potion{
     public void setLevel(Level level) {
         Level currentLevel = level;
         //position=level.getStartTile().getCoordinate().toPoint();
-        Coordinate c = new Coordinate(-1,0);
-        position=c.toPoint();
+        //Coordinate c = new Coordinate(-1,0);
+        //position=c.toPoint();
+        position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
     @Override
     public void usePotion() {
 
-        PotionsTaken++;
+        if(SpeedIncrease<1){
+            SpeedIncrease=SpeedIncrease+0.1f;
+        }
 
     }
 

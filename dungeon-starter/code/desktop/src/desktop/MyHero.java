@@ -65,14 +65,15 @@ public class MyHero extends Animatable {
     public void setLevel(Level level) {
         currentLevel = level;
         position = level.getStartTile().getCoordinate().toPoint();
-        System.out.println(level.getStartTile().getCoordinate().x);
-        System.out.println(level.getStartTile().getCoordinate().y);
     }
 
     @Override
     public void update() {
         Point newPosition = new Point(this.position);
         float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease;
+        //System.out.println(movementSpeed);
+        System.out.println(SpeedPotion.SpeedIncrease);
+        System.out.println(SpeedPotion.PotionsTaken);
 
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
