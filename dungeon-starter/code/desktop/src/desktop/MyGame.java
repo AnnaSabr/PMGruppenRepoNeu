@@ -15,7 +15,7 @@ import java.util.Random;
  */
 public class MyGame extends MainController {
     private MyHero hero;
-    SpeedPotion sp;
+    Items sp;
     private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
     private int levelCounter=0;
     ArrayList<Monster> monster;

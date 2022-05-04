@@ -3,6 +3,7 @@ package desktop;
 import basiselements.Entity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Painter;
+import level.elements.Level;
 
 public abstract class Items extends Entity {
     /**
@@ -14,5 +15,8 @@ public abstract class Items extends Entity {
      */
     public Items(Painter painter, SpriteBatch batch) {
         super(painter, batch);
+    }
+
+    public void setLevel(Level currentLevel) {
     }
 }

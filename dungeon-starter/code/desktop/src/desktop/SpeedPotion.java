@@ -1,5 +1,7 @@
 package desktop;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Painter;
 import level.elements.Level;
@@ -39,11 +41,14 @@ public class SpeedPotion extends Potion{
         position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
+    /** Item wird verwendet, keine Wirkung, wenn Geschwindigkeit
+     *  des Helden 0.3 beträgt
+     */
     @Override
     public void usePotion() {
 
-        if(SpeedIncrease<1){
-            SpeedIncrease=SpeedIncrease+0.1f;
+        if(SpeedIncrease<0.2){
+            SpeedIncrease=SpeedIncrease+0.02f;
         }
 
     }
@@ -67,8 +72,10 @@ public class SpeedPotion extends Potion{
 
         if(x>coordx-1&&x<coordx+1) {
             if (y > coordy - 1 && y < coordy + 1) {
-                usePotion();
-                return true;
+                if(Gdx.input.isKeyPressed(Input.Keys.E)){
+                    usePotion();
+                    return true;
+                }
             }
         }
         return false;

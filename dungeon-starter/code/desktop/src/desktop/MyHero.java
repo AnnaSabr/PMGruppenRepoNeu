@@ -1,7 +1,6 @@
 package desktop;
 
 import basiselements.Animatable;
-import basiselements.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -70,7 +69,7 @@ public class MyHero extends Animatable {
     @Override
     public void update() {
         Point newPosition = new Point(this.position);
-        float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease;
+        float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease-SpeedDecreasePotion.SpeedDecrease;
         //System.out.println(movementSpeed);
         System.out.println(SpeedPotion.SpeedIncrease);
         System.out.println(SpeedPotion.PotionsTaken);
