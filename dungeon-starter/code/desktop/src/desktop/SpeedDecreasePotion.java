@@ -39,7 +39,13 @@ public class SpeedDecreasePotion extends Potion{
         if(x>coordx-1&&x<coordx+1) {
             if (y > coordy - 1 && y < coordy + 1) {
                 if(Gdx.input.isKeyPressed(Input.Keys.E)){
-                    
+                    if(Inventar.inventar.size()<5){
+                        Inventar.inventar.add(this);
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
                     //usePotion();
                     //return true;
                 }
