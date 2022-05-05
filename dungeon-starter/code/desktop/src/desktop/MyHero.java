@@ -105,6 +105,11 @@ public class MyHero extends Animatable {
                 ((Potion) hand).usePotion();
             }
         }
+        if(Gdx.input.isKeyPressed(Input.Keys.T)){
+            if(hand!=null){
+                hand=null;
+            }
+        }
     }
 
     @Override

@@ -51,6 +51,7 @@ public class SpeedPotion extends Potion{
         if(SpeedIncrease<0.2){
             SpeedIncrease=SpeedIncrease+0.02f;
         }
+        MyHero.hand=null;
 
     }
 
@@ -74,8 +75,7 @@ public class SpeedPotion extends Potion{
         if(x>coordx-1&&x<coordx+1) {
             if (y > coordy - 1 && y < coordy + 1) {
                 if(Gdx.input.isKeyPressed(Input.Keys.E)){
-                    usePotion();
-                    return true;
+                    return Inventar.hinzufuegen(this);
                 }
             }
         }

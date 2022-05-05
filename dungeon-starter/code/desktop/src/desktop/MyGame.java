@@ -96,14 +96,16 @@ public class MyGame extends MainController {
      * erstellt ein zufälliges Item
      */
     public void itemPlatzieren(){
-        //int zufall = (int) (Math.random()*3);
-        int zufall = 1;
+        int zufall = (int) (Math.random()*4);
+        //int zufall = 1;
         if(zufall==0){
             item =new SpeedPotion(painter, batch);
         } else if (zufall==1) {
             item = new SpeedDecreasePotion(painter, batch);
         } else if (zufall==2) {
             item= new Sword(painter, batch);
+        } else if (zufall==3) {
+            item=new Axe(painter, batch);
         }
         entityController.add(item);
         item.setLevel(levelAPI.getCurrentLevel());
