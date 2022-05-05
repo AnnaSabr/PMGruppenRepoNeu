@@ -16,8 +16,8 @@ import java.util.Random;
  *
  * enthaelt alle allgemein gueltigen Funktionen fuer jegliche Art Monster
  */
-public abstract class Monster extends Animatable {
-    private Point position;
+public abstract class Monster extends Figuren {
+
     private Level currentLevel;
     private Animation idleAnimation;
     private float geschwindigkeit;
@@ -29,8 +29,8 @@ public abstract class Monster extends Animatable {
     private int time;
 
 
-    public Monster(int staerke, float geschwindigkeit, int lebenspunkte, Painter painter, SpriteBatch batch) {
-        super(painter, batch);
+    public Monster( int lebenspunkte,int staerke, float geschwindigkeit, Painter painter, SpriteBatch batch) {
+        super(lebenspunkte,staerke,geschwindigkeit,painter, batch);
         this.staerke= staerke;
         this.geschwindigkeit=geschwindigkeit;
         this.lebenspunkte=lebenspunkte;
@@ -41,18 +41,10 @@ public abstract class Monster extends Animatable {
         idleAnimation = new Animation(animation, 5);
     }
 
-    /**
-     *  bestimmt die Position im aktuellen Level
-     * @param level ist das aktuelle Level
-     */
-    public void setLevel(Level level) {
-        currentLevel = level;
-        position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
-    }
 
     @Override
     public void update() {
-        Point newPosition = new Point(this.position);
+        Point newPosition = new Point(getPosition());
         float movementSpeed = 0.3f;
         Random ran = new Random();
         if (time % 10 == 0) {
@@ -70,7 +62,7 @@ public abstract class Monster extends Animatable {
                 newPosition.y -= movementSpeed;
             }
             if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
-                this.position = newPosition;
+                setPosition(newPosition);
                 if (r == 1 | r == 2) {
                     idleAnimation = new Animation(links, 5);
                 }
@@ -82,38 +74,17 @@ public abstract class Monster extends Animatable {
         time++;
     }
 
+    /**
+     *
+     * @param level ist das aktuelle Level
+     */
+    public void setLevel(Level level) {
+        currentLevel = level;
+        setPosition(level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint());
+    }
 
     @Override
     public Animation getActiveAnimation() {
         return idleAnimation;
-    }
-
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    /**
-     *
-     * @return IDLEAnimation
-     */
-    public List<String> getAnimation() {
-        return animation;
-    }
-
-    /**
-     *
-     * @return Animation bei nach Links laufen
-     */
-    public List<String> getLinks() {
-        return links;
-    }
-
-    /**
-     *
-     * @return Animatin bei nach rechts laufen
-     */
-    public List<String> getRechts() {
-        return rechts;
     }
 }

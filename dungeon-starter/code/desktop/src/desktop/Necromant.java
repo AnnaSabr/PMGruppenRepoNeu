@@ -18,7 +18,7 @@ public class Necromant extends Monster{
 
 
     public Necromant(int staerke, float geschwindigkeit, int lebenspunkte, Painter painter, SpriteBatch batch) {
-        super(staerke,geschwindigkeit,lebenspunkte,painter, batch);
+        super(lebenspunkte,staerke,geschwindigkeit,painter, batch);
         animation=getAnimation();
         links= getLinks();
         rechts= getRechts();
