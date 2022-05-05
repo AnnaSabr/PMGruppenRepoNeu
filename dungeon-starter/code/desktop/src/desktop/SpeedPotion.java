@@ -55,7 +55,7 @@ public class SpeedPotion extends Potion{
         return texturePath;
     }
 
-    public boolean removable() {
+    public boolean removable() {/*
         float x = MyHero.position.x;
         float y = MyHero.position.y;
 
@@ -67,7 +67,7 @@ public class SpeedPotion extends Potion{
                 usePotion();
                 return true;
             }
-        }
+        }*/
         return false;
     }
 }

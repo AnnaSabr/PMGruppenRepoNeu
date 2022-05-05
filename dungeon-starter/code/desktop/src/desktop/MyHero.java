@@ -17,14 +17,15 @@ import java.util.List;
  * Steuert die Animation von unserem wunderschoenen Helden
  */
 
-public class MyHero extends Animatable {
+public class MyHero extends Figuren {
     private Animation idleAnimation;
-    public static Point position;
-    private Level currentLevel;
+
+
     private List<String> animation;
     private List<String> rechts;
     private List<String> links;
     String key="x";
+    private int lebenspunkte;
 
     /**
      * Erstellt die einzelnen Animationslisten und added die entsprechenden Animationen
@@ -32,8 +33,9 @@ public class MyHero extends Animatable {
      * @param painter irgendwas mit Texturen
      * @param batch auch irgendwas mit Texturen
      */
-    public MyHero(Painter painter, SpriteBatch batch) {
-        super(painter, batch);
+    public MyHero(int lebenspunkte, int staerke, float geschwindigkeit, Painter painter, SpriteBatch batch) {
+        super(lebenspunkte,staerke, geschwindigkeit,painter, batch);
+        this.lebenspunkte=lebenspunkte;
         animation = new ArrayList<>();
         rechts= new ArrayList<>();
         links = new ArrayList<>();
@@ -58,20 +60,16 @@ public class MyHero extends Animatable {
         links.add("character/held/wizzard/wizzard_m_run_anim_f3.png");
     }
 
-    /**
-     * Empfaengt die Startposition im Level
-     * @param level uebergibt der Klasse das aktuelle Level
-     */
-    public void setLevel(Level level) {
-        currentLevel = level;
-        position = level.getStartTile().getCoordinate().toPoint();
-        System.out.println(level.getStartTile().getCoordinate().x);
-        System.out.println(level.getStartTile().getCoordinate().y);
+
+
+    @Override
+    public Animation getActiveAnimation() {
+        return idleAnimation;
     }
 
     @Override
     public void update() {
-        Point newPosition = new Point(this.position);
+        Point newPosition = new Point(getPosition());
         float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease;
 
 
@@ -95,18 +93,11 @@ public class MyHero extends Animatable {
                 key="d";
             }
         }
-        if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
-            this.position = newPosition;
+        if (getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {
+            setPosition(newPosition);
         }
     }
 
-    @Override
-    public Point getPosition() {
-        return position;
-    }
 
-    @Override
-    public Animation getActiveAnimation() {
-        return idleAnimation;
-    }
 }
+
