@@ -10,7 +10,7 @@ import tools.Point;
 public class Axe extends Weapon{
 
     String texturePath;
-    Point position;
+
 
     /**
      * A object that can be controlled by the <code>EntityController
@@ -24,10 +24,7 @@ public class Axe extends Weapon{
         texturePath="character/items/weapon_axe.png";
     }
 
-    @Override
-    public Point getPosition() {
-        return position;
-    }
+
 
     @Override
     public String getTexturePath() {
@@ -39,7 +36,7 @@ public class Axe extends Weapon{
         position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
-    public boolean removable() {
+    public boolean removable() {/*
         float x = MyHero.position.x;
         float y = MyHero.position.y;
 
@@ -52,8 +49,8 @@ public class Axe extends Weapon{
                     return Inventar.hinzufuegen(this);
                 }
             }
-        }
-        return false;
+        }*/
+        return this.taken;
     }
 }
 

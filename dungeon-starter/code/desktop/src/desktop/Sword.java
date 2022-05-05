@@ -10,7 +10,6 @@ import tools.Point;
 public class Sword extends Weapon{
 
 
-    Point position;
 
     String texturePath;
 
@@ -31,7 +30,7 @@ public class Sword extends Weapon{
         position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
-    public boolean removable() {
+    public boolean removable() {/*
         float x = MyHero.position.x;
         float y = MyHero.position.y;
 
@@ -44,14 +43,10 @@ public class Sword extends Weapon{
                    return Inventar.hinzufuegen(this);
                 }
             }
-        }
-        return false;
+        }*/
+        return taken;
     }
 
-    @Override
-    public Point getPosition() {
-        return position;
-    }
 
     @Override
     public String getTexturePath() {

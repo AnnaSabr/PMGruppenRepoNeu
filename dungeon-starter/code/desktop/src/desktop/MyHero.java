@@ -95,9 +95,6 @@ public class MyHero extends Figuren {
                 key="d";
             }
         }
-        if (getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {
-            setPosition(newPosition);
-        }
         if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
             itemInventar.anzeigen();
         }
@@ -111,7 +108,8 @@ public class MyHero extends Figuren {
                 hand=null;
             }
         }
+        if (getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {
+            setPosition(newPosition);
+        }
     }
-
-
 }

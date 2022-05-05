@@ -12,7 +12,6 @@ public class SpeedDecreasePotion extends Potion{
 
     String texturePath;
     static float SpeedDecrease=0.0f;
-    Point position;
     /**
      * A object that can be controlled by the <code>EntityController
      * </code>.
@@ -30,7 +29,7 @@ public class SpeedDecreasePotion extends Potion{
         position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
-    public boolean removable() {
+    public boolean removable() {/*
         float x = MyHero.position.x;
         float y = MyHero.position.y;
 
@@ -43,8 +42,8 @@ public class SpeedDecreasePotion extends Potion{
                     return Inventar.hinzufuegen(this);
                 }
             }
-        }
-        return false;
+        }*/
+        return taken;
     }
 
     @Override
@@ -56,10 +55,6 @@ public class SpeedDecreasePotion extends Potion{
 
     }
 
-    @Override
-    public Point getPosition() {
-        return position;
-    }
 
     @Override
     public String getTexturePath() {

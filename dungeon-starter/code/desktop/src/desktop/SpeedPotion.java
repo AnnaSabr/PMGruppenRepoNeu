@@ -17,7 +17,7 @@ public class SpeedPotion extends Potion{
     //public static int PotionsTaken = 0;
 
     String texturePath;
-    Point position;
+
     public static float SpeedIncrease = 0.0f;
     private Point point ;
 
@@ -55,10 +55,7 @@ public class SpeedPotion extends Potion{
 
     }
 
-    @Override
-    public Point getPosition() {
-        return position;
-    }
+
 
     @Override
     public String getTexturePath() {
@@ -79,6 +76,6 @@ public class SpeedPotion extends Potion{
                 }
             }
         }*/
-        return false;
+        return taken;
     }
 }

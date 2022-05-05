@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public abstract class Monster extends Figuren {
 
-    private Level currentLevel;
+
     private Animation idleAnimation;
     private float geschwindigkeit;
     private int lebenspunkte;
@@ -61,7 +61,7 @@ public abstract class Monster extends Figuren {
             if (r == 3) {
                 newPosition.y -= movementSpeed;
             }
-            if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
+            if (getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {
                 setPosition(newPosition);
                 if (r == 1 | r == 2) {
                     idleAnimation = new Animation(links, 5);
@@ -72,15 +72,6 @@ public abstract class Monster extends Figuren {
             }
         }
         time++;
-    }
-
-    /**
-     *
-     * @param level ist das aktuelle Level
-     */
-    public void setLevel(Level level) {
-        currentLevel = level;
-        setPosition(level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint());
     }
 
     @Override

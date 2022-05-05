@@ -1,6 +1,7 @@
 package desktop;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import controller.MainController;
 import level.generator.LevelLoader.LevelLoader;
 import level.generator.dungeong.graphg.NoSolutionException;
@@ -21,6 +22,7 @@ public class MyGame extends MainController {
     ArrayList<Monster> monster;
     ArrayList<Fallen> fallen;
     Point heroposition;
+    ArrayList<Items> it;
 
     @Override
     protected void setup() {
@@ -30,6 +32,7 @@ public class MyGame extends MainController {
         monster = new ArrayList<>();
         item = new SpeedPotion(painter, batch);
         fallen = new ArrayList<>();
+        it= new ArrayList<>();
         // load the first level
         try {
             levelAPI.loadLevel();
@@ -63,6 +66,15 @@ public class MyGame extends MainController {
                 }
             }
         }
+        for (Items item: it){
+            double itX=Math.round((item.getPosition().x));
+            double itY=Math.round((item.getPosition().y));
+            if (itX == heroX && itY == heroY&&Gdx.input.isKeyPressed(Input.Keys.E)) {
+                Inventar.hinzufuegen(item);
+                item.setTaken(true);
+
+            }
+        }
     }
 
 
@@ -82,22 +94,21 @@ public class MyGame extends MainController {
         heroposition = hero.getPosition();
         levelCounter++;
         entityController.remove(hero);
+        entityController.remove(item);
+
         for (Monster element : monster) {
             entityController.remove(element);
         }
-        entityController.remove(item);
-        levelCounter++;
         for (Fallen element : fallen) {
             entityController.remove(element);
         }
         monsterGenerieren();
-        itemPlatzieren();
-        hero.setLevel(levelAPI.getCurrentLevel());//bei text im hud nicht mehr in funktion
-        for (Monster element: monster){
         fallenGenerieren();
-        for (Fallen element : fallen) {
-            entityController.add(element);
-            element.setLevel(levelAPI.getCurrentLevel());
+        itemPlatzieren();
+
+        for (Fallen ele : fallen) {
+            entityController.add(ele);
+            ele.setLevel(levelAPI.getCurrentLevel());
         }
         for (Monster element : monster) {
             entityController.add(element);
@@ -105,13 +116,6 @@ public class MyGame extends MainController {
         }
         hero.setLevel(levelAPI.getCurrentLevel());//bei text im hud nicht mehr in funktion
         entityController.add(hero);
-        //bei text im hud nicht mehr in funktion
-        /*if (levelCounter==1){
-            levelLabel=hudController.drawText("Level"+levelCounter,"PATH/TO/FONT.ttf",Color.RED,30,50,50,30,30);
-        }
-        else{
-            levelLabel.setText("Level "+levelCounter);
-        }*/
     }
 
     /**
@@ -144,6 +148,7 @@ public class MyGame extends MainController {
         }
         entityController.add(item);
         item.setLevel(levelAPI.getCurrentLevel());
+        it.add(item);
     }
 
     /**
