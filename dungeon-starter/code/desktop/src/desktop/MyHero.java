@@ -1,7 +1,6 @@
 package desktop;
 
 import basiselements.Animatable;
-import basiselements.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,12 +18,14 @@ import java.util.List;
 
 public class MyHero extends Animatable {
     private Animation idleAnimation;
-    private Point position;
+    public static Point position;
     private Level currentLevel;
     private List<String> animation;
     private List<String> rechts;
     private List<String> links;
     String key="x";
+    Inventar itemInventar = new Inventar();
+    static Items hand;
 
     /**
      * Erstellt die einzelnen Animationslisten und added die entsprechenden Animationen
@@ -70,7 +71,8 @@ public class MyHero extends Animatable {
     @Override
     public void update() {
         Point newPosition = new Point(this.position);
-        float movementSpeed = 0.1f;
+        float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease+SpeedDecreasePotion.SpeedDecrease;
+
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             newPosition.y += movementSpeed;
@@ -95,6 +97,19 @@ public class MyHero extends Animatable {
         if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
             this.position = newPosition;
         }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
+            itemInventar.anzeigen();
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.L)){
+            if(hand instanceof Potion){
+                ((Potion) hand).usePotion();
+            }
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.T)){
+            if(hand!=null){
+                hand=null;
+            }
+        }
     }
 
     @Override
@@ -107,4 +122,3 @@ public class MyHero extends Animatable {
         return idleAnimation;
     }
 }
-
