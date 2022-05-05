@@ -7,11 +7,12 @@ import graphic.Painter;
 import level.elements.Level;
 import tools.Point;
 
-public class SpeedDecreasePotion extends Potion{
+public class Sword extends Weapon{
+
+    Point position;
 
     String texturePath;
-    static float SpeedDecrease=0.0f;
-    Point position;
+
     /**
      * A object that can be controlled by the <code>EntityController
      * </code>.
@@ -19,9 +20,9 @@ public class SpeedDecreasePotion extends Potion{
      * @param painter Painter that draws this object
      * @param batch   Batch to draw on
      */
-    public SpeedDecreasePotion(Painter painter, SpriteBatch batch) {
+    public Sword(Painter painter, SpriteBatch batch) {
         super(painter, batch);
-        texturePath="character/items/flask_big_red.png";
+        texturePath="character/items/weapon_katana.png";
     }
 
     public void setLevel(Level level) {
@@ -39,21 +40,11 @@ public class SpeedDecreasePotion extends Potion{
         if(x>coordx-1&&x<coordx+1) {
             if (y > coordy - 1 && y < coordy + 1) {
                 if(Gdx.input.isKeyPressed(Input.Keys.E)){
-                    
-                    //usePotion();
-                    //return true;
+                    return true;
                 }
             }
         }
         return false;
-    }
-
-    @Override
-    public void usePotion() {
-        if(SpeedPotion.SpeedIncrease+ SpeedDecrease >-0.04f){
-            SpeedDecrease = SpeedDecrease -0.02f;
-        }
-
     }
 
     @Override
