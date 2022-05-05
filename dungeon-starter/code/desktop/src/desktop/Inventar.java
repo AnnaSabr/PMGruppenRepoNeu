@@ -60,7 +60,7 @@ public class Inventar {
     }
 
     /**
-     * Item aus hand mit Item in Inventar tauschen
+     * Item aus hand(Instanzvariable von MyHero) mit Item in Inventar tauschen
      */
     public void ausruesten(){
         System.out.println("Welches Item soll ausgeruestet werden?");

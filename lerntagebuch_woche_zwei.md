@@ -1,6 +1,6 @@
 
 ---
-title: "Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben "Dungeon", "Texturen" und Animationen"
+title: "Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben "textbasiertes Inventar" und "Items"
 author:
 -   "Anna Heim (anna_sabrina.heim@fh-bielefeld.de)"
 -   "Leonie Terlutter (leonie.terlutter@fh-bielefeld.de)"
@@ -35,8 +35,8 @@ einbetten (etwa UML-Diagramme), denken Sie daran, diese auch abzugeben!
 
 
 # Aufgabe
-Implementierung von mindestens zwei Monsterarten, deren individuelle Anzahl anhand
-des aktuellen Levels variert und Klassenweise Faehigkeiten besitzen, die ebenso an das Level angepasst werden.
+Items sollen vom Spieler gesammelt und verwendet werden können. Gesammelte Items werden in einem Inventar gespeichert. Items können aus dem Inventar entfernt 
+oder aufgenommen werden.
 
 <!--
 Bitte hier die zu lösende Aufgabe kurz in eigenen Worten beschreiben.
@@ -53,10 +53,9 @@ Bitte hier den Lösungsansatz kurz beschreiben:
 -   Wie sah Ihre Modellierung aus (UML-Diagramm)?
 -   Worauf müssen Sie konkret achten?
 -->
-Orientieren konnte man sich an der MyHero Klasse, da es sich dort auch um eine Animierte Figur handelt.
-Um sich doppelte Arbeiten zu ersparen sollte eine Factory-Method Pattern angewandt werde. So muss lediglich einmal eine Klasse implementiert werden,
-die saemtliche Funktionen steuert, die jedes Monster unabhängig seiner Art gebraucht. Darunter fällt zum Beispiel die IDLEAnimation.
-Die unterschiedlichen Texturen dafür werden dann in der entsprechenden Artenklassen geladen und einer Liste hinzugefügt.
+Alle Item-Klassen sind Unterklassen der Klasse "Items". Dadurch können alle Items in einer ArrayList, die als Inventar dient, gespeichert werden.
+Dadurch, dass alle Tränke von der Klasse "Potion" erben, können alle ausgerüsteten Tränke die Methode "usePotion" nutzen.
+Das Inventar verwendet die Konsole. Falsche Benutzereingaben müssen abgefangen werden, damit das Programm nicht abstürzt.
 
 
 # Umsetzung
@@ -68,11 +67,8 @@ Bitte hier die Umsetzung der Lösung kurz beschreiben:
 -   wie lange hat es gedauert,
 -   was war das Ergebnis?
 -->
-Die Eigentlichen Monsterarten wie z.B. Skelet oder Necromancer erhalten jeweils eine eigen Klasse die von Monster extended
-und so selbst nur individuelle Werte, wie zum Beispiel die unterschiedlichen Texturen ändern müssen. Des weiteren gibt es eine MonsterCreator Klasse in der eine statische Methode enthalten ist, die +in MyGame aufgerufen wird. sie dient als Schnittstelle zwischen MyGame und den ganzen Monsterklassen.
-Zur Fehlervermeidung kann außerdem ein Enum hinzugezogen werden. Darin Dokumentiert man die vorhandenen Monsterarten und kann so sicherstellen, das beim jeweiligen Monster Objekt-Erstellen keine
-nicht existenten Individuen erstellt werden sollen.
-
+Zuerst wurde die Superklasse "Items" mit einer Unterklasse erstellt. Die Unterklasse "Potion" hat weitere Unterklassen um die eigentlichen Trank-Objekte zu erzeugen.
+Diese Objekte konnten am 02.05. zufällig im Dungeon verteilt werden. Die Objekte können vom Spieler mit einer Taste eingesammelt werden. In jedem Level wird ein neues, zufälliges Objekt platziert. Am 03.05. wurde eine weitere Unterklasse von "Items" erstellt, in deren Unterklassen Waffen implementiert wurden. Da die Funktion der Waffen von dem Kampfsystem abhängig ist, konnte diese noch nicht implementiert werden. Am 04.05. und 05.05. wurde das Inventar implementiert. Das Inventar ist eine ArrayList vom Typ Items, in der gesammelte Items gespeichert werden. Das Inventar kann über Eingaben in der Konsole gesteuert werden. Um Tränke zu benutzen, müssen die Tränke zuerst ausgerüstet werden. 
 
 
 # Postmortem
@@ -84,9 +80,4 @@ kritisch zurück:
 -   Welche Probleme sind bei der Umsetzung Ihres Lösungsansatzes aufgetreten?
 -   Wie haben Sie die Probleme letztlich gelöst?
 -->
-Wie bei der letzten Ausarbeitung auch schon, wäre zur allgemein 
-besseren ausarbeitung ein geregeltes Zeitmanagement von vorteil. 
-Kleine Fehler kosten so verhältnismäßig viel Zeit. Bis auf die 
-Richtungsorientierte Animation Wechsel funktioniert, aber trotzdem 
-alles aus der Aufgabe und konnte erfolgreich quasi nach vorher überlegter 
-Strategy angewandt werden.
+Das Inventar konnte ohne Probleme implementiert werden. Das Inventar und die Tränke können benutzt werden. Items anderer Kategorien wie z.B. Waffen konnten zuerst nicht implementiert werden, weil die Waffen die Variablen des Kampfes (z.B. Schlagkraft) beeinflussen sollen und die Variablen und die Items nicht von der gleichen Person programmiert wurden. Eine weitere Item-Kategorie hätte implementiert werden sollen, da diese aber noch keine Funktion gehabt hätte, muss sie später hinzugefügt werden. Genauere Absprachen mit dem Team wären von Vorteil gewesen, damit beispielsweise Waffen so implementiert werden können, dass sie das Kampfsystem ergänzen. Dieses Problem konnte durch eine genauere Absprache im Team gelöst werden.
