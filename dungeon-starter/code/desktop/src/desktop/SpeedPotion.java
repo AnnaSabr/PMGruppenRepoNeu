@@ -13,7 +13,8 @@ import java.util.List;
 
 public class SpeedPotion extends Potion{
 
-    public static int PotionsTaken = 0;
+
+    //public static int PotionsTaken = 0;
 
     String texturePath;
     Point position;

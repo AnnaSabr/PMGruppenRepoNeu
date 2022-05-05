@@ -6,6 +6,8 @@ import graphic.Painter;
 import level.elements.Level;
 
 public abstract class Items extends Entity {
+
+
     /**
      * A object that can be controlled by the <code>EntityController
      * </code>.

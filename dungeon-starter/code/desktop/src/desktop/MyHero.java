@@ -24,6 +24,8 @@ public class MyHero extends Animatable {
     private List<String> rechts;
     private List<String> links;
     String key="x";
+    Inventar itemInventar = new Inventar();
+    static Items hand;
 
     /**
      * Erstellt die einzelnen Animationslisten und added die entsprechenden Animationen
@@ -70,9 +72,6 @@ public class MyHero extends Animatable {
     public void update() {
         Point newPosition = new Point(this.position);
         float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease+SpeedDecreasePotion.SpeedDecrease;
-        //System.out.println(movementSpeed);
-        //System.out.println(SpeedDecreasePotion.SpeedDecrease);
-        System.out.println(movementSpeed);
 
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
@@ -97,6 +96,14 @@ public class MyHero extends Animatable {
         }
         if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
             this.position = newPosition;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
+            itemInventar.anzeigen();
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.L)){
+            if(hand instanceof Potion){
+                ((Potion) hand).usePotion();
+            }
         }
     }
 

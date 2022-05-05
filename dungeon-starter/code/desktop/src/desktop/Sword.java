@@ -9,6 +9,7 @@ import tools.Point;
 
 public class Sword extends Weapon{
 
+
     Point position;
 
     String texturePath;

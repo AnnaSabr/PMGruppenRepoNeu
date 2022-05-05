@@ -5,6 +5,7 @@ import graphic.Painter;
 
 public abstract class Potion extends Items {
 
+
     /**
      * A object that can be controlled by the <code>EntityController
      * </code>.

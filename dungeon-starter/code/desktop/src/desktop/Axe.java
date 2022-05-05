@@ -6,6 +6,7 @@ import tools.Point;
 
 public class Axe extends Weapon{
 
+    public String name="Axt";
     String texturePath;
     Point position;
 
