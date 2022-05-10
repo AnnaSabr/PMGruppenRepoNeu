@@ -20,12 +20,11 @@ public class Mountainbike extends Bike {
     }
 
     @Override
-    public double getActionPrice(double price , int purchaseAmount) {
+    public double getActionPrice(int purchaseAmount) {
         if (purchaseAmount > 2) {
-            price += purchaseAmount * super.price * 9 / 10;
+            return purchaseAmount * super.price * 9 / 10;
         } else {
-            price += purchaseAmount * super.price;
+            return purchaseAmount * super.price;
         }
-        return price;
     }
 }

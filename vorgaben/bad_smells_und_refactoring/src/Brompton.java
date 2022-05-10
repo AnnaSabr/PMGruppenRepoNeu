@@ -20,9 +20,10 @@ public class Brompton extends Bike {
     }
 
     @Override
-    public double getActionPrice(double price , int purchaseAmount) {
+    public double getActionPrice(int purchaseAmount) {
+        double price = 0.0;
         if (purchaseAmount > 1) {
-            price += (purchaseAmount - 1) * super.price / 2;
+            price = (purchaseAmount - 1) * super.price / 2;
         }
         price += purchaseAmount * super.price;
         return price;

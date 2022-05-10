@@ -8,7 +8,7 @@ public class Bill {
     private String streetNumber;
     private int postalCode;
     private String city;
-    public ArrayList<Article> articles;
+    private ArrayList<Article> articles;
 
     /**
      * Ezeigt ein Oject vom Typ Bill welches eine Rechnung representiert
@@ -24,7 +24,7 @@ public class Bill {
         this.streetNumber = streetNumber;
         this.postalCode = postalCode;
         this.city = city;
-        articles = new ArrayList<Article>();
+        this.articles = new ArrayList<Article>();
     }
 
     /**
@@ -92,30 +92,24 @@ public class Bill {
     }
 
     public boolean addArticle(Article a) {
-        return articles.add(a);
+        return this.articles.add(a);
     }
 
     private String getCustomerDetails() {
-        StringBuilder builder = new StringBuilder("Details for \"");
-        builder.append(this.getCustomerName()).append("\"\n");
-        builder.append(this.getStreet()).append(" ").append(this.getStreetNumber()).append("\n");
-        builder.append(this.getPostalCode()).append(" ").append(this.getStreetNumber()).append("\n");
-        builder.append("Geburtstag: ").append(this.getBirthday()).append("\n");
-        builder.append("Email: ").append(this.getEmail()).append("\n\n");
-        return builder.toString();
-    }
-
-    public String getDetails() {
-        double total = 0;
-
         String result = "Details for \"" + this.getCustomerName() + "\"\n";
         result += street + " " + streetNumber + "\n";
         result += postalCode + " " + city + "\n";
         result += "Geburtstag: " + this.getBirthday() + "\n";
         result += "Email: " + this.getEmail() + "\n\n";
+        return result;
+    }
+
+    public String getDetails() {
+        double total = 0;
+        String result = getCustomerDetails();
         result += "Article: \n";
-        for (Article article : articles) {
-            double price = article.getActionPrice(0.0);
+        for (Article article : this.articles) {
+            double price = article.getActionPrice();
             result += "\t" + article.getProductName() + "\tx\t" + article.getPurchaseAmount() + "\t=\t" + String.valueOf(price) + "\n";
             total += price;
         }

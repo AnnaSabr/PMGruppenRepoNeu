@@ -16,8 +16,7 @@ public class EBike extends Bike {
     }
 
     @Override
-    public double getActionPrice(double price , int purchaseAmount) {
-        price += purchaseAmount * super.price; 
-        return price;
+    public double getActionPrice(int purchaseAmount) { 
+        return purchaseAmount * super.price;
     }
 }

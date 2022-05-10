@@ -50,7 +50,7 @@ public class BillTest {
      * Test des Ausgabe in ein String mit keinen Artikeln
      */
     @Test
-    public void testGetDetails() {
+    public void testGetDetailsEmpty() {
         double price = 0.0;
         String result = "Details for \"" + this.customerName + "\"\n";
         result += this.street + " " + this.streetNumber + "\n";
@@ -60,5 +60,10 @@ public class BillTest {
         result += "Article: \n";
         result += "\nTotal price:\t" + String.valueOf(price) + "\n";
         assertTrue(this.bill.getDetails().equals(result));
+    }
+
+    @Test
+    public void testGetDetailsFull() {
+        
     }
 }
