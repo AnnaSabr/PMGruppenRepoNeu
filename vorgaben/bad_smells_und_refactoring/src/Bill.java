@@ -3,68 +3,127 @@ import java.util.Date;
 
 public class Bill {
 
-    public String customerName;
-    public String nickname;
-    public Date birthday;
-    public String email;
-    public String street;
-    public String streetNumber;
-    public int postalCode;
-    public String city;
-    public ArrayList<Article> articles;
+    private Customer customer;
+    private String street;
+    private String streetNumber;
+    private int postalCode;
+    private String city;
+    private ArrayList<Article> articles;
 
-    public Bill(String cn, String n, String s, String sn, int pc, Date b, String e, String c) {
-        customerName = cn;
-        nickname = n;
-        street = s;
-        streetNumber = sn;
-        postalCode = pc;
-        birthday = b;
-        email = e;
-        city = c;
-        articles = new ArrayList<Article>();
+    /**
+     * Ezeigt ein Oject vom Typ Bill welches eine Rechnung representiert
+     * @param customer gibt den Kunden an
+     * @param street gibt die Strasse in der Anschrift an
+     * @param streetNumber gibt die Hausnummer in der Aschrift an
+     * @param postalCode gibt die Postleitzahl in der Anschrift an
+     * @param city gibt die Stadt in der Anschrift an
+     */
+    public Bill(Customer customer, String street, String streetNumber, int postalCode, String city) {
+        this.customer = customer;
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.articles = new ArrayList<Article>();
+    }
+
+    /**
+     * Gibt den Namen des Kunden zurück
+     * @return Name des Kunden
+     */
+    public String getCustomerName() {
+        return this.customer.getCustomerName();
+    }
+
+    /**
+     * Gibt den Benutzernamen des Kunden zurück
+     * @return Benutzername des Kunden
+     */
+    public String getNickname() {
+        return this.customer.getNickname();
+    }
+
+    /**
+     * Gibt den Strassennamen der Anschrift des Kunden zurück
+     * @return Strassenname der Anschrift des Kunden
+     */
+    public String getStreet() {
+        return this.street;
+    }
+
+    /**
+     * Gibt die Hausnummer der Anschrift des Kunden zurück
+     * @return Hausnummer der Anschrift des Kunden
+     */
+    public String getStreetNumber() {
+        return this.streetNumber;
+    }
+
+    /**
+     * Gibt die Postleitzahl der Anschrift des Kunden zurück
+     * @return Postleitzahl der Anschrift des Kunden
+     */
+    public int getPostalCode() {
+        return this.postalCode;
+    }
+
+    /**
+     * Gibt das Datum des Geburtstages des Kunden zurück
+     * @return Datum des Geburtstages des Kunden
+     */
+    public Date getBirthday() {
+        return this.customer.getBirthday();
+    }
+
+    /**
+     * Gibt die Email Adresse des Kunden zurück
+     * @return Email Adresse des Kunden
+     */
+    public String getEmail() {
+        return this.customer.getEmail();
+    }
+
+    /**
+     * Gibt den Namen der Stadt der Anschrift zurück
+     * @return Namen der Stadt der Anschrift
+     */
+    public String getCity() {
+        return this.city;
     }
 
     public boolean addArticle(Article a) {
-        return articles.add(a);
+        return this.articles.add(a);
     }
 
-    public String getDetails() {
-        double total = 0;
-
-        String result = "Details for \"" + customerName + "\"\n";
+    private String getCustomerDetails() {
+        String result = "Details for \"" + this.getCustomerName() + "\"\n";
         result += street + " " + streetNumber + "\n";
         result += postalCode + " " + city + "\n";
-        result += "Geburtstag: " + birthday + "\n";
-        result += "Email: " + email + "\n\n";
-        result += "Article: \n";
-        for (Article article : articles) {
-            double price = 0;
-            if (article.bike instanceof Brompton) {
-                if (article.purchaseAmount > 1) {
-                    price += (article.purchaseAmount - 1) * article.bike.price / 2;
-                }
-                price += article.bike.price * article.purchaseAmount;
-            } else if (article.bike instanceof EBike) {
-                price += article.bike.price * article.purchaseAmount;
-            } else if (article.bike instanceof Mountainbike) {
-                if (article.purchaseAmount > 2) {
-                    price += article.purchaseAmount * article.bike.price * 9 / 10;
-                } else {
-                    price += article.bike.price * article.purchaseAmount;
-                }
-            }
-            if (price > 1000f || price == 1000.0) {
-                price = price * 0.8;
-            }
-
-            result += "\t" + article.bike.productName + "\tx\t" + article.purchaseAmount + "\t=\t" + String.valueOf(price) + "\n";
-            total += price;
-        }
-
-        result += "\nTotal price:\t" + String.valueOf(total) + "\n";
-
+        result += "Geburtstag: " + this.getBirthday() + "\n";
+        result += "Email: " + this.getEmail() + "\n\n";
         return result;
     }
 
+    
+    /**
+     * Gibt den Gesammtpreis zurück
+     * @return Gesammtpreis
+     */
+    public double getTotalPrice() {
+        double total = 0.0;
+        for(Article article : this.articles) {
+            total += article.getActionPrice();
+        }
+        return total;
+    }
+
+    public String getDetails() {
+        String result = getCustomerDetails();
+        result += "Article: \n";
+        for (Article article : this.articles) {
+            result += article.getDetails();
+        }
+        result += "\nTotal price:\t" + String.valueOf(this.getTotalPrice()) + "\n";
+        return result;
+    }
 }
