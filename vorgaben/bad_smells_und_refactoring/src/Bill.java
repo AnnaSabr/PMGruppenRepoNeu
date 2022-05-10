@@ -104,17 +104,26 @@ public class Bill {
         return result;
     }
 
+    
+    /**
+     * Gibt den Gesammtpreis zurück
+     * @return Gesammtpreis
+     */
+    public double getTotalPrice() {
+        double total = 0.0;
+        for(Article article : this.articles) {
+            total += article.getActionPrice();
+        }
+        return total;
+    }
+
     public String getDetails() {
-        double total = 0;
         String result = getCustomerDetails();
         result += "Article: \n";
         for (Article article : this.articles) {
-            double price = article.getActionPrice();
-            result += "\t" + article.getProductName() + "\tx\t" + article.getPurchaseAmount() + "\t=\t" + String.valueOf(price) + "\n";
-            total += price;
+            result += article.getDetails();
         }
-        result += "\nTotal price:\t" + String.valueOf(total) + "\n";
-
+        result += "\nTotal price:\t" + String.valueOf(this.getTotalPrice()) + "\n";
         return result;
     }
 }

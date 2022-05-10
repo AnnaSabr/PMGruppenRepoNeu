@@ -62,8 +62,11 @@ public class BillTest {
         assertTrue(this.bill.getDetails().equals(result));
     }
 
+    /**
+     * Testet die Berechnung des Gesamtpreises
+     */
     @Test
-    public void testGetDetailsFull() {
+    public void testGetTotalPrice() {
         
     }
 }

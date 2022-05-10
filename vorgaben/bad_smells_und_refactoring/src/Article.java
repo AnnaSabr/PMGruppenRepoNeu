@@ -9,14 +9,6 @@ public class Article {
     }
 
     /**
-     * Gibt die Produktanzahl zurück
-     * @return Produktanzahl
-     */
-    public int getPurchaseAmount() {
-        return this.purchaseAmount;
-    }
-
-    /**
      * Berechnet den Aktionspreis und gibt diesen zurück
      * @return Aktionspreis
      */
@@ -29,11 +21,10 @@ public class Article {
     }
 
     /**
-     * Gibt den Pruduktnamen zurück
-     * @return Produktname
+     * Gibt einen String mit den Details des Produktes
+     * @return Details
      */
-    public String getProductName() {
-        return this.bike.getProductName();
+    public String getDetails() {
+        return "\t" + this.bike.getProductName() + "\tx\t" + this.purchaseAmount + "\t=\t" + String.valueOf(this.getActionPrice()) + "\n";
     }
-
 }
