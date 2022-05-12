@@ -22,6 +22,8 @@ public class Inventar {
                 name="Schnelligkeitstrank";
             } else if (inventar.get(a) instanceof SpeedDecreasePotion) {
                 name="Langsamkeitstrank";
+            } else if (inventar.get(a) instanceof Tasche<?>) {
+                name="Tasche fuer "+ ((Tasche<?>) inventar.get(a)).nameTyp;
             }
             System.out.println((a+1)+": " + name);
         }
@@ -33,10 +35,23 @@ public class Inventar {
     public void anzeigen(){
         ausgeben();
         if(inventar.size()>0){
-            entfernen();
+            System.out.println("Welche Tasche soll geöffnet werden?");
+            Scanner scanner= new Scanner(System.in);
+            String eingabe=scanner.nextLine();
+            try{
+                int zahl = Integer.parseInt(eingabe);
+                zahl--;
+                ((Tasche<?>) inventar.get(zahl)).inhaltAusgeben();
+                zahl=zahl+1;
+            } catch (Exception e) {
+                System.out.println("Kein Tasche wurde geöffnet.");
+            }
             if(inventar.size()>0){
-                ausgeben();
-                ausruesten();
+                entfernen();
+                if(inventar.size()>0){
+                    ausgeben();
+                    ausruesten();
+                }
             }
         }
     }
@@ -93,6 +108,27 @@ public class Inventar {
      * @return wurde das Item hinzugefügt
      */
     public static boolean hinzufuegen(Items i){
+        for(int a=0;a<inventar.size();a++){
+            if(inventar.get(a) instanceof Tasche<?>){
+                if(((Tasche<?>) inventar.get(a)).tascheInventar.size()<3){
+                    try{
+                        if(((Tasche<Weapon>) inventar.get(a)).tascheInventar.size()<=3){
+                            Weapon weapon= (Weapon) i;
+                            ((Tasche<Weapon>) inventar.get(a)).tascheInventar.add(weapon);
+                            return true;
+                        }
+                    } catch (Exception e) {
+                    }
+
+                    try{
+                        Potion potion= (Potion) i;
+                        ((Tasche<Potion>)  inventar.get(a)).tascheInventar.add(potion);
+                        return true;
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }
         if(inventar.size()<5){
             inventar.add(i);
             return true;

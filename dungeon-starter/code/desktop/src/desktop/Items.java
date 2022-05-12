@@ -9,6 +9,7 @@ import tools.Point;
 public abstract class Items extends Entity {
     Point position;
 
+    String nameTyp;
     boolean taken;
     /**
      * A object that can be controlled by the <code>EntityController

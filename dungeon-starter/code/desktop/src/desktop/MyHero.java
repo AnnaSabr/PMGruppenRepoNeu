@@ -25,7 +25,7 @@ public class MyHero extends Figuren {
     private List<String> rechts;
     private List<String> links;
     String key="x";
-    Inventar itemInventar = new Inventar();
+    static Inventar itemInventar = new Inventar();
     static Items hand;
     private int lebenspunkte;
 
