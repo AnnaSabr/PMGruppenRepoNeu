@@ -29,7 +29,7 @@ public class Tasche<T extends Items> extends Items{
      * Item aus Tasche ausrüsten
      */
     public void ausruestenTasche(){
-        System.out.println("Welches Item soll ausgeruestet werden?");
+        System.out.println("Welches Item aus der Tasche soll ausgeruestet werden?");
         Scanner scanner= new Scanner(System.in);
         String eingabe=scanner.nextLine();
         try{
@@ -38,23 +38,18 @@ public class Tasche<T extends Items> extends Items{
             Items x;
             if(MyHero.hand!=null){
                 x = MyHero.hand;
-                MyHero.hand= tascheInventar.get(zahl);
-                try{
-                    if(tascheInventar.size()<3){
-                        tascheInventar.add((T) x);
-                        tascheInventar.remove(zahl);
+                MyHero.hand = tascheInventar.get(zahl);
+                try {
+                    if (x instanceof Weapon && this.nameTyp == "Waffen") {
+                        T weapon = (T) x;
+                        tascheInventar.add(weapon);
+                    } else if (x instanceof Potion && this.nameTyp == "Tränke") {
+                        T potion = (T) x;
+                        tascheInventar.add(potion);
                     }
-                    else{
-                        if(!MyHero.itemInventar.hinzufuegen(x)){
-                            MyHero.hand=x;
-                        }
-                    }
-                } catch (Exception e) {
-                    if(!MyHero.itemInventar.hinzufuegen(x)){
-                        MyHero.hand=x;
-                    }
+                }catch (Exception e){
+                    MyHero.itemInventar.hinzufuegen(x);
                 }
-                //tascheInventar.remove(zahl);
             }
             else{
                 MyHero.hand= tascheInventar.get(zahl);
@@ -86,6 +81,8 @@ public class Tasche<T extends Items> extends Items{
                     name="Langsamkeitstrank";
                 } else if (tascheInventar.get(a) instanceof Tasche<?>) {
                     name="Tasche fuer "+ ((Tasche<?>) tascheInventar.get(a)).nameTyp;
+                } else if (tascheInventar.get(a) instanceof Key) {
+                    name="Schluessel";
                 }
                 System.out.println((a+1)+": " + name);
             }
@@ -99,7 +96,7 @@ public class Tasche<T extends Items> extends Items{
      * Item aus Tasche entfernen
      */
     public void entfernenTasche(){
-        System.out.println("Welches Item soll entfernt werden?");
+        System.out.println("Welches Item soll aus der Tasche entfernt werden?");
         Scanner scanner= new Scanner(System.in);
         String eingabe=scanner.nextLine();
         try{

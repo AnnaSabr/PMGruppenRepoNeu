@@ -178,8 +178,8 @@ public class MyGame extends MainController {
      * erstellt ein zufälliges Item
      */
     public void itemPlatzieren(){
-        //int zufall = (int) (Math.random()*6);
-        int zufall = 5;
+        int zufall = (int) (Math.random()*6);
+        //int zufall = 5;
         if(zufall==0){
             item =new SpeedPotion(painter, batch);
         } else if (zufall==1) {

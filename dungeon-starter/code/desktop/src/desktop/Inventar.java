@@ -85,7 +85,7 @@ public class Inventar {
      * Item aus Inventar entfernen
      */
     public void entfernen(){
-        System.out.println("Welches Item soll entfernt werden?");
+        System.out.println("Welches Item soll aus dem Inventar entfernt werden?");
         Scanner scanner= new Scanner(System.in);
         String eingabe=scanner.nextLine();
         try{
