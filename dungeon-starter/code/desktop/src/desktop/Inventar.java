@@ -136,7 +136,7 @@ public class Inventar {
     }
 
     /**Item wird in das Inventar gelegt
-     *
+     *enee
      * @param i
      * @return wurde das Item hinzugefügt
      */

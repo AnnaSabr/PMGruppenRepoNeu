@@ -71,8 +71,9 @@ public class MyGame extends MainController {
             double itX=Math.round((item.getPosition().x));
             double itY=Math.round((item.getPosition().y));
             if (itX == heroX && itY == heroY&&Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-                MyHero.itemInventar.hinzufuegen(item);
-                item.setTaken(true);
+                if(MyHero.itemInventar.hinzufuegen(item)){
+                    item.setTaken(true);
+                }
 
             }
         }
