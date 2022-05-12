@@ -16,6 +16,7 @@ import java.util.Random;
 public class MyGame extends MainController {
     private MyHero hero;
     Items item;
+    Chest chest;
 
     private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
     private int levelCounter=0;
@@ -70,10 +71,22 @@ public class MyGame extends MainController {
             double itX=Math.round((item.getPosition().x));
             double itY=Math.round((item.getPosition().y));
             if (itX == heroX && itY == heroY&&Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-                Inventar.hinzufuegen(item);
+                MyHero.itemInventar.hinzufuegen(item);
                 item.setTaken(true);
 
             }
+        }
+        double itX=Math.round((chest.getPosition().x));
+        double itY=Math.round((chest.getPosition().y));
+        if (itX == heroX && itY == heroY&&Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            if(chest.offen){
+                chest.oeffnen();
+            }
+            if(MyHero.hand instanceof Key){
+                chest.oeffnen();
+                MyHero.hand=null;
+            }
+
         }
     }
 
@@ -95,6 +108,7 @@ public class MyGame extends MainController {
         levelCounter++;
         entityController.remove(hero);
         entityController.remove(item);
+        entityController.remove(chest);
 
         for (Monster element : monster) {
             entityController.remove(element);
@@ -105,6 +119,7 @@ public class MyGame extends MainController {
         monsterGenerieren();
         fallenGenerieren();
         itemPlatzieren();
+        truhePlatzieren();
 
         for (Fallen ele : fallen) {
             entityController.add(ele);
@@ -132,11 +147,39 @@ public class MyGame extends MainController {
     }
 
     /**
+     * Truhe mit zwei oder drei Items im Level platzieren
+     */
+    public void truhePlatzieren(){
+        chest=new Chest(painter, batch);
+        int zufallAnzahl=(int) (Math.random()*2);
+        zufallAnzahl=zufallAnzahl+2;
+        Items item;
+        for(int a=0; a<zufallAnzahl;a++){
+            int zufall = (int) (Math.random()*5);
+            if(zufall==0){
+                item =new SpeedPotion(painter, batch);
+            } else if (zufall==1) {
+                item = new SpeedDecreasePotion(painter, batch);
+            } else if (zufall==2) {
+                item= new Sword(painter, batch);
+            } else if (zufall==3) {
+                item=new Axe(painter, batch);
+            }else{
+                item=new Key(painter, batch);
+            }
+            chest.schatz.hinzufuegen(item);
+        }
+        entityController.add(chest);
+        chest.setLevel(levelAPI.getCurrentLevel());
+    }
+
+
+    /**
      * erstellt ein zufälliges Item
      */
     public void itemPlatzieren(){
-        int zufall = (int) (Math.random()*5);
-        //int zufall = 4;
+        //int zufall = (int) (Math.random()*6);
+        int zufall = 5;
         if(zufall==0){
             item =new SpeedPotion(painter, batch);
         } else if (zufall==1) {
@@ -154,11 +197,14 @@ public class MyGame extends MainController {
                 item = new Tasche<Potion>(painter, batch);
                 item.nameTyp ="Tränke";
             }
+        }else if(zufall==5){
+            item=new Key(painter, batch);
         }
         entityController.add(item);
         item.setLevel(levelAPI.getCurrentLevel());
         it.add(item);
     }
+
 
     /**
      * Erstellt die Fallen fuer das Level

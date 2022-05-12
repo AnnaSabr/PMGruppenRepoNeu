@@ -5,7 +5,12 @@ import java.util.Scanner;
 
 public class Inventar {
 
-    public static ArrayList<Items> inventar = new ArrayList<>();
+    public ArrayList<Items> inventar;
+
+    public Inventar(){
+        inventar=new ArrayList<>();
+    }
+
 
     /**
      * Inventar auf Konsole anzeigen
@@ -24,9 +29,21 @@ public class Inventar {
                 name="Langsamkeitstrank";
             } else if (inventar.get(a) instanceof Tasche<?>) {
                 name="Tasche fuer "+ ((Tasche<?>) inventar.get(a)).nameTyp;
+            }else if(inventar.get(a) instanceof Key){
+                name="Schluessel";
             }
             System.out.println((a+1)+": " + name);
         }
+    }
+
+    /**
+     * Item aus Inventar zurückgeben
+     * @param a Index des Items
+     * @return Item
+     */
+    public Items holen(int a){
+        Items item = inventar.get(a);
+        return item;
     }
 
     /**
@@ -35,23 +52,31 @@ public class Inventar {
     public void anzeigen(){
         ausgeben();
         if(inventar.size()>0){
-            System.out.println("Welche Tasche soll geöffnet werden?");
-            Scanner scanner= new Scanner(System.in);
-            String eingabe=scanner.nextLine();
-            try{
-                int zahl = Integer.parseInt(eingabe);
-                zahl--;
-                ((Tasche<?>) inventar.get(zahl)).inhaltAusgeben();
-                zahl=zahl+1;
-            } catch (Exception e) {
-                System.out.println("Kein Tasche wurde geöffnet.");
-            }
-            if(inventar.size()>0){
-                entfernen();
-                if(inventar.size()>0){
-                    ausgeben();
-                    ausruesten();
+            boolean tascheGefunden=false;
+            for(int a =0; a<inventar.size();a++){
+                if(inventar.get(a) instanceof Tasche<?>){
+                    tascheGefunden=true;
                 }
+            }
+            if(tascheGefunden){
+                System.out.println("Welche Tasche soll geoeffnet werden?");
+                Scanner scanner= new Scanner(System.in);
+                String eingabe=scanner.nextLine();
+                try{
+                    int zahl = Integer.parseInt(eingabe);
+                    zahl=zahl-1;
+                    ((Tasche<?>) inventar.get(zahl)).inhaltAusgeben();
+                    zahl=zahl+1;
+                } catch (Exception e) {
+                    System.out.println("Kein Tasche wurde geoeffnet.");
+                }
+            }
+        }
+        if(inventar.size()>0){
+            entfernen();
+            if(inventar.size()>0){
+                ausgeben();
+                ausruesten();
             }
         }
     }
@@ -66,12 +91,20 @@ public class Inventar {
         try{
             int zahl = Integer.parseInt(eingabe);
             zahl--;
-            inventar.remove(zahl);
-            zahl=zahl+1;
-            System.out.println("Item " + zahl +" wurde entfernt.");
+            itemEntfernen(zahl);
         } catch (Exception e) {
             System.out.println("Kein Item wurde entfernt.");
         }
+    }
+
+    /**
+     * Item an einer Stelle entfernen
+     * @param a Index des Items
+     */
+    public void itemEntfernen(int a){
+            inventar.remove(a);
+            a=a+1;
+            System.out.println("Item " + a +" wurde entfernt.");
     }
 
     /**
@@ -107,24 +140,18 @@ public class Inventar {
      * @param i
      * @return wurde das Item hinzugefügt
      */
-    public static boolean hinzufuegen(Items i){
+    public boolean hinzufuegen(Items i){
         for(int a=0;a<inventar.size();a++){
-            if(inventar.get(a) instanceof Tasche<?>){
-                if(((Tasche<?>) inventar.get(a)).tascheInventar.size()<3){
-                    try{
-                        if(((Tasche<Weapon>) inventar.get(a)).tascheInventar.size()<=3){
-                            Weapon weapon= (Weapon) i;
-                            ((Tasche<Weapon>) inventar.get(a)).tascheInventar.add(weapon);
-                            return true;
-                        }
-                    } catch (Exception e) {
-                    }
-
-                    try{
+            if (inventar.get(a) instanceof Tasche<?>) {
+                if (((Tasche<?>) inventar.get(a)).tascheInventar.size() < 3) {
+                    if (i instanceof Weapon && inventar.get(a).nameTyp=="Waffen") {
+                        Weapon weapon = (Weapon) i;
+                        ((Tasche<Weapon>) inventar.get(a)).tascheInventar.add(weapon);
+                        return true;
+                    } else if (i instanceof Potion && inventar.get(a).nameTyp=="Tränke") {
                         Potion potion= (Potion) i;
                         ((Tasche<Potion>)  inventar.get(a)).tascheInventar.add(potion);
                         return true;
-                    } catch (Exception e) {
                     }
                 }
             }

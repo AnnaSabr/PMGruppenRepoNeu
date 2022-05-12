@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Tasche<T extends Items> extends Items{
 
-    List<T> tascheInventar;
+    List<T> tascheInventar= new ArrayList<>();
     String texturePath;
 
     /**
@@ -25,6 +25,9 @@ public class Tasche<T extends Items> extends Items{
         texturePath="character/items/genericItem_color_144.png";
     }
 
+    /**
+     * Item aus Tasche ausrüsten
+     */
     public void ausruestenTasche(){
         System.out.println("Welches Item soll ausgeruestet werden?");
         Scanner scanner= new Scanner(System.in);
@@ -64,24 +67,49 @@ public class Tasche<T extends Items> extends Items{
         }
     }
 
+    /**
+     * Inhalt der Tasche ausgeben
+     */
     public void inhaltAusgeben(){
         if(tascheInventar.isEmpty()){
             System.out.println("Die Tasche ist leer.");
-        }
-        for(int a=0; a<tascheInventar.size(); a++){
-            String name="Item";
-            if(tascheInventar.get(a) instanceof Axe){
-                name="Axt";
-            } else if (tascheInventar.get(a) instanceof Sword) {
-                name="Schwert";
-            } else if (tascheInventar.get(a) instanceof SpeedPotion) {
-                name="Schnelligkeitstrank";
-            } else if (tascheInventar.get(a) instanceof SpeedDecreasePotion) {
-                name="Langsamkeitstrank";
-            } else if (tascheInventar.get(a) instanceof Tasche<?>) {
-                name="Tasche fuer "+ ((Tasche<?>) tascheInventar.get(a)).nameTyp;
+        }else{
+            for(int a=0; a<tascheInventar.size(); a++){
+                String name="Item";
+                if(tascheInventar.get(a) instanceof Axe){
+                    name="Axt";
+                } else if (tascheInventar.get(a) instanceof Sword) {
+                    name="Schwert";
+                } else if (tascheInventar.get(a) instanceof SpeedPotion) {
+                    name="Schnelligkeitstrank";
+                } else if (tascheInventar.get(a) instanceof SpeedDecreasePotion) {
+                    name="Langsamkeitstrank";
+                } else if (tascheInventar.get(a) instanceof Tasche<?>) {
+                    name="Tasche fuer "+ ((Tasche<?>) tascheInventar.get(a)).nameTyp;
+                }
+                System.out.println((a+1)+": " + name);
             }
-            System.out.println((a+1)+": " + name);
+            ausruestenTasche();
+            entfernenTasche();
+        }
+    }
+
+
+    /**
+     * Item aus Tasche entfernen
+     */
+    public void entfernenTasche(){
+        System.out.println("Welches Item soll entfernt werden?");
+        Scanner scanner= new Scanner(System.in);
+        String eingabe=scanner.nextLine();
+        try{
+            int zahl = Integer.parseInt(eingabe);
+            zahl--;
+            tascheInventar.remove(zahl);
+            zahl=zahl+1;
+            System.out.println("Item " + zahl +" wurde entfernt.");
+        } catch (Exception e) {
+            System.out.println("Kein Item wurde entfernt.");
         }
     }
 
