@@ -19,6 +19,17 @@ public class Spezies {
 
     /**
      *
+     * @param parent OberMonster
+     * @param xp des aktuellen Monsters
+     */
+    public Spezies(Spezies parent, int xp){
+        this.xp=xp;
+        this.magic=parent.getMagic();
+        this.variety=parent.getVariety();
+    }
+
+    /**
+     *
      * @return das aktuelle Monsterobjekt
      */
     public Monster getMonster() {
