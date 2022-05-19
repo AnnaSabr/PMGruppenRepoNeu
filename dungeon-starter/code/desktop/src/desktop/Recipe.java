@@ -26,6 +26,10 @@ public abstract class Recipe extends Items{
         System.out.println(inhalt);
     }
 
+    public boolean useRecipe(){
+        return false;
+    }
+
     @Override
     public String getTexturePath() {
         return texturePath;

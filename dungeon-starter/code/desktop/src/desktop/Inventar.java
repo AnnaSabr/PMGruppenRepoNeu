@@ -173,4 +173,21 @@ public class Inventar {
         }
     }
 
+    public void crafting(){
+        System.out.println("Rezept auswaehlen");
+        Scanner scanner= new Scanner(System.in);
+        String eingabe=scanner.nextLine();
+        try{
+            int zahl = Integer.parseInt(eingabe);
+            zahl--;
+            if(inventar.get(zahl) instanceof Recipe){
+                if (((Recipe) inventar.get(zahl)).useRecipe()){
+                    System.out.println("Das Rezept wurde verwendet");
+                }
+            }
+        }catch(Exception e){
+            System.out.println("kein Rezept gefunden");
+        }
+    }
+
 }
