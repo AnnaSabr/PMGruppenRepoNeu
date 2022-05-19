@@ -35,6 +35,10 @@ einbetten (etwa UML-Diagramme), denken Sie daran, diese auch abzugeben!
 # Aufgabe
 Gruppe B: Monster und Kampf Schlaue Monster
 Ziel war es unterschiedliche Bewegungsmuster fuer die Monster zu erstellen.
+
+Crafting: Über das Inventar soll mit einem Rezept und den darin beschriebenen Zutaten ein neues Item erzeugt werden.
+
+
 <!--
 Bitte hier die zu lösende Aufgabe kurz in eigenen Worten beschreiben.
 -->
@@ -56,6 +60,10 @@ Vererbungshirachie genutzt, bei der exakt eine Methode weiter gegeben wird. Da e
 nur um die Bewegung der Monster und sonst keinerlei Attribute doer Faehigkeiten ging, konnte so 
 der Aufgabe effizient gestaltet werden.
 
+
+Crafting: Die Rezepte müssen Items erweitern, damit sie in das Inventar aufgenommen werden können. Die Items, die als Zutat dienen, haben keine weitere Funktionalität. Der Spieler muss über das Inventar die Items selbst auswählen. Dies ist bisher nur über die Konsole möglich. Damit der Spieler den Inhalt des Rezepts lesen kann, muss
+eine Methode implementiert werden, die den Inhalt ausgibt und die der Spieler aufrufen kann.
+
 # Umsetzung
 
 <!--
@@ -69,6 +77,10 @@ Bitte hier die Umsetzung der Lösung kurz beschreiben:
 Wie vorab ausfuehrlich geplant, konnte das StrategyPattern angewendet werden. Je nach Bewegungsstrategie
 musste zwar der ein oder andere Parameter angepasst werden. Dies stellte allerdings keine grosse Herausforderung da.
 
+
+Crafting: Die Items ohne Funktionaliät mussten grafisch dargestellt und im Inventar sichtbar sein. Dafür mussten sie "Items" erweitern.
+Dem Inventar musste eine neue Methode hinzugefügt werden, um das Crafting zu steuern. In dieser Methode wird der Spieler aufgefordert, über die Konsole Items auszuwählen, mit denen das Rezept durchgeführt werden kann. Ungültige Eingaben mussten abgefangen werden.
+
 # Postmortem
 
 <!--
@@ -80,3 +92,8 @@ kritisch zurück:
 -->
 
 Bis auf den kleinen Fehler, dass die Monster noch an Waenden feststucken, laufen alle Bewegung einwandfrei und genau nach Plan.
+
+Crafting: Einige Fehler hätten vermieden werden können, wenn der neue Code öfter getestet worden wäre. Ein Problem trat beispielsweise auf, weil einer Variable mehrmals
+der falsche Typ zugewiesen wurde, was zu einem Absturz des Programms führte.
+Zaubersprüche können durch das Crafting nicht erzeugt werden, weil es noch keine Items von diesem Typ im Spiel gibt. Dies hätte durch eine andere Einteilung der Arbeit
+verhindert werden können.
