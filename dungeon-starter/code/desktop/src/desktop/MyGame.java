@@ -87,6 +87,9 @@ public class MyGame extends MainController {
                 chest.oeffnen();
                 MyHero.hand=null;
             }
+            if(MyHero.hand instanceof Recipe){
+                ((Recipe) MyHero.hand).lesen();
+            }
 
         }
     }
