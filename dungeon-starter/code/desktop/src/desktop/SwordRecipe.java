@@ -3,14 +3,14 @@ package desktop;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Painter;
 import level.elements.Level;
-import tools.Point;
 
 import java.util.Scanner;
 
-public class SpeedPotionRecipe extends Recipe{
+public class SwordRecipe extends Items{
 
     String texturePath;
 
+    String inhalt;
     /**
      * A object that can be controlled by the <code>EntityController
      * </code>.
@@ -18,47 +18,32 @@ public class SpeedPotionRecipe extends Recipe{
      * @param painter Painter that draws this object
      * @param batch   Batch to draw on
      */
-    public SpeedPotionRecipe(Painter painter, SpriteBatch batch) {
+    public SwordRecipe(Painter painter, SpriteBatch batch) {
         super(painter, batch);
-        this.inhalt="Kraut, Wein und Kochtopf";
-        this.texturePath="character/items/book.png";
+        this.texturePath="character/items/yellow_book.png";
+        this.inhalt="Eisen und Hammer";
     }
 
-    /**
-     * Prüft, ob das Item nach dem Rezept erzeugt werden kann
-     *
-     * @return
-     */
+    //TODO anpassen
     public boolean useRecipe(){
         boolean usable=false;
-        System.out.println("Kraut");
+        System.out.println("Eisen");
         Scanner scanner= new Scanner(System.in);
         String eingabe=scanner.nextLine();
-        int[] positionen=new int[3];
+        int[] positionen=new int[2];
         try {
             int zahl = Integer.parseInt(eingabe);
             zahl--;
             positionen[0]=zahl;
-            if(MyHero.itemInventar.holen(zahl) instanceof Kraut){
-                System.out.println("Wein");
+            if(MyHero.itemInventar.holen(zahl) instanceof Iron){
+                System.out.println("Hammer");
                 eingabe=scanner.nextLine();
                 try {
                     zahl = Integer.parseInt(eingabe);
                     zahl--;
                     positionen[1]=zahl;
-                    if (MyHero.itemInventar.holen(zahl) instanceof Wein) {
-                        System.out.println("Kochtopf");
-                        eingabe=scanner.nextLine();
-                        try {
-                            zahl = Integer.parseInt(eingabe);
-                            zahl--;
-                            positionen[2]=zahl;
-                            if(MyHero.itemInventar.holen(zahl) instanceof Kochtopf){
-                                usable=true;
-                            }
-                        }catch (Exception e){
-                            System.out.println("nicht gefunden");
-                        }
+                    if (MyHero.itemInventar.holen(zahl) instanceof Hammer) {
+                        usable=true;
                     }
                 }catch (Exception e){
                     System.out.println("nicht gefunden");
@@ -69,26 +54,26 @@ public class SpeedPotionRecipe extends Recipe{
         }
         if(usable){
             for(int a=0; a<MyHero.itemInventar.getSize(); a++){
-                if(MyHero.itemInventar.holen(a) instanceof Wein){
+                if(MyHero.itemInventar.holen(a) instanceof Iron){
                     MyHero.itemInventar.itemEntfernen(a);
                     break;
                 }
             }
             for(int a=0; a<MyHero.itemInventar.getSize(); a++){
-                if(MyHero.itemInventar.holen(a) instanceof Kochtopf){
+                if(MyHero.itemInventar.holen(a) instanceof Hammer){
                     MyHero.itemInventar.itemEntfernen(a);
                     break;
                 }
             }
-            for(int a=0; a<MyHero.itemInventar.getSize(); a++){
-                if(MyHero.itemInventar.holen(a) instanceof Kraut){
-                    MyHero.itemInventar.itemEntfernen(a);
-                    break;
-                }
-            }
-            MyHero.itemInventar.hinzufuegen(new SpeedPotion(getPainter(),getBatch()));
+            MyHero.itemInventar.hinzufuegen(new Sword(getPainter(),getBatch()));
         }
         return usable;
+    }
+
+
+    @Override
+    public String getTexturePath() {
+        return texturePath;
     }
 
     public void setLevel(Level level) {
@@ -102,9 +87,5 @@ public class SpeedPotionRecipe extends Recipe{
 
     public void lesen(){
         System.out.println(inhalt);
-    }
-
-    public String getTexturePath() {
-        return texturePath;
     }
 }

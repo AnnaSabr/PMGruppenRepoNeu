@@ -158,7 +158,7 @@ public class MyGame extends MainController {
         zufallAnzahl=zufallAnzahl+2;
         Items item;
         for(int a=0; a<zufallAnzahl;a++){
-            int zufall = (int) (Math.random()*5);
+            int zufall = (int) (Math.random()*9);
             if(zufall==0){
                 item =new SpeedPotion(painter, batch);
             } else if (zufall==1) {
@@ -167,7 +167,15 @@ public class MyGame extends MainController {
                 item= new Sword(painter, batch);
             } else if (zufall==3) {
                 item=new Axe(painter, batch);
-            }else{
+            } else if(zufall==4){
+                item=new Kraut(painter, batch);
+            } else if(zufall==5){
+                item=new Wein(painter, batch);
+            } else if(zufall==6){
+                item=new Kochtopf(painter, batch);
+            } else if(zufall==7){
+                item=new SpeedPotionRecipe(painter, batch);
+            } else{
                 item=new Key(painter, batch);
             }
             chest.schatz.hinzufuegen(item);

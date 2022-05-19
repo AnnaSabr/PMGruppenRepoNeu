@@ -124,6 +124,7 @@ public class Inventar {
             System.out.println("Item " + a +" wurde entfernt.");
     }
 
+
     /**
      * Item aus hand(Instanzvariable von MyHero) mit Item in Inventar tauschen
      */
@@ -197,6 +198,10 @@ public class Inventar {
         }catch(Exception e){
             System.out.println("kein Rezept gefunden");
         }
+    }
+
+    public int getSize(){
+        return inventar.size();
     }
 
 }
