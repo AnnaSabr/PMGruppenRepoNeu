@@ -98,9 +98,12 @@ public class MyHero extends Figuren {
         if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
             itemInventar.anzeigen();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.L)){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.L)){
             if(hand instanceof Potion){
                 ((Potion) hand).usePotion();
+            }
+            else if(MyHero.hand instanceof Recipe){
+                ((Recipe) MyHero.hand).lesen();
             }
         }
         if(Gdx.input.isKeyPressed(Input.Keys.T)){

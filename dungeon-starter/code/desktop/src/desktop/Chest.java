@@ -26,7 +26,7 @@ public class Chest extends Entity {
      */
     public Chest(Painter painter, SpriteBatch batch) {
         super(painter, batch);
-        texturePath="character/items/chest_closed.png";
+        this.texturePath="character/items/chest_closed.png";
     }
 
     /**

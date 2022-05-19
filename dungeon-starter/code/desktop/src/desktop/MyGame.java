@@ -87,7 +87,6 @@ public class MyGame extends MainController {
                 chest.oeffnen();
                 MyHero.hand=null;
             }
-
         }
     }
 
@@ -119,7 +118,10 @@ public class MyGame extends MainController {
         }
 
         fallenGenerieren();
-        itemPlatzieren();
+        for(int i = 0;i<5;i++){
+            itemPlatzieren();
+        }
+
         truhePlatzieren();
 
         for (Fallen ele : fallen) {
@@ -161,7 +163,7 @@ public class MyGame extends MainController {
         zufallAnzahl=zufallAnzahl+2;
         Items item;
         for(int a=0; a<zufallAnzahl;a++){
-            int zufall = (int) (Math.random()*5);
+            int zufall = (int) (Math.random()*12);
             if(zufall==0){
                 item =new SpeedPotion(painter, batch);
             } else if (zufall==1) {
@@ -170,7 +172,22 @@ public class MyGame extends MainController {
                 item= new Sword(painter, batch);
             } else if (zufall==3) {
                 item=new Axe(painter, batch);
-            }else{
+            } else if(zufall==4){
+                item=new Kraut(painter, batch);
+            } else if(zufall==5){
+                item=new Wein(painter, batch);
+            } else if(zufall==6){
+                item=new Kochtopf(painter, batch);
+            } else if(zufall==7){
+                item=new SpeedPotionRecipe(painter, batch);
+            }else if(zufall==8){
+                item=new Hammer(painter,batch);
+            }else if(zufall==9){
+                item=new SwordRecipe(painter,batch);
+            }else if(zufall==10){
+                item=new Iron(painter,batch);
+            }
+            else{
                 item=new Key(painter, batch);
             }
             chest.schatz.hinzufuegen(item);
@@ -184,8 +201,8 @@ public class MyGame extends MainController {
      * erstellt ein zufälliges Item
      */
     public void itemPlatzieren(){
-        int zufall = (int) (Math.random()*6);
-        //int zufall = 5;
+        int zufall = (int) (Math.random()*13);
+        //int zufall = 9;
         if(zufall==0){
             item =new SpeedPotion(painter, batch);
         } else if (zufall==1) {
@@ -205,6 +222,20 @@ public class MyGame extends MainController {
             }
         }else if(zufall==5){
             item=new Key(painter, batch);
+        }else if(zufall==6){
+            item=new Kraut(painter, batch);
+        }else if(zufall==7){
+            item=new Wein(painter, batch);
+        }else if(zufall==8){
+            item=new Kochtopf(painter, batch);
+        }else if(zufall==9){
+            item=new SpeedPotionRecipe(painter, batch);
+        }else if(zufall==10){
+            item=new Iron(painter, batch);
+        }else if(zufall==11){
+            item=new Hammer(painter,batch);
+        }else if(zufall==12){
+            item=new SwordRecipe(painter,batch);
         }
         entityController.add(item);
         item.setLevel(levelAPI.getCurrentLevel());

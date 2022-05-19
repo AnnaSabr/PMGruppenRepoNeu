@@ -31,6 +31,20 @@ public class Inventar {
                 name="Tasche fuer "+ ((Tasche<?>) inventar.get(a)).nameTyp;
             }else if(inventar.get(a) instanceof Key){
                 name="Schluessel";
+            }else if(inventar.get(a) instanceof Wein){
+                name="Wein";
+            }else if(inventar.get(a) instanceof Kraut){
+                name="Kraut";
+            }else if(inventar.get(a) instanceof Kochtopf){
+                name="Kochtopf";
+            }else if(inventar.get(a) instanceof SpeedPotionRecipe){
+                name="Rezept fuer Schnelligkeitstrank";
+            }else if(inventar.get(a) instanceof Hammer){
+                name="Hammer";
+            }else if(inventar.get(a) instanceof Iron){
+                name="Eisen";
+            }else if(inventar.get(a) instanceof SwordRecipe){
+                name="Rezept fuer Schwert";
             }
             System.out.println((a+1)+": " + name);
         }
@@ -57,6 +71,15 @@ public class Inventar {
                 if(inventar.get(a) instanceof Tasche<?>){
                     tascheGefunden=true;
                 }
+            }
+            boolean rezeptGefunden=false;
+            for(int a =0; a<inventar.size();a++){
+                if(inventar.get(a) instanceof Recipe){
+                    rezeptGefunden=true;
+                }
+            }
+            if(rezeptGefunden){
+                crafting();
             }
             if(tascheGefunden){
                 System.out.println("Welche Tasche soll geoeffnet werden?");
@@ -107,6 +130,7 @@ public class Inventar {
             System.out.println("Item " + a +" wurde entfernt.");
     }
 
+
     /**
      * Item aus hand(Instanzvariable von MyHero) mit Item in Inventar tauschen
      */
@@ -136,7 +160,7 @@ public class Inventar {
     }
 
     /**Item wird in das Inventar gelegt
-     *enee
+     *
      * @param i
      * @return wurde das Item hinzugefügt
      */
@@ -163,6 +187,30 @@ public class Inventar {
         else{
             return false;
         }
+    }
+
+    /**
+     * Rezept im Inventar wird verwendet
+     */
+    public void crafting(){
+        System.out.println("Rezept auswaehlen");
+        Scanner scanner= new Scanner(System.in);
+        String eingabe=scanner.nextLine();
+        try{
+            int zahl = Integer.parseInt(eingabe);
+            zahl--;
+            if(inventar.get(zahl) instanceof Recipe){
+                if (((Recipe) inventar.get(zahl)).useRecipe()){
+                    System.out.println("Das Rezept wurde verwendet");
+                }
+            }
+        }catch(Exception e){
+            System.out.println("kein Rezept gefunden");
+        }
+    }
+
+    public int getSize(){
+        return inventar.size();
     }
 
 }
