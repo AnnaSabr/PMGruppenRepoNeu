@@ -117,7 +117,7 @@ public class MyGame extends MainController {
         for (Fallen element : fallen) {
             entityController.remove(element);
         }
-        monsterGenerieren();
+
         fallenGenerieren();
         itemPlatzieren();
         truhePlatzieren();
@@ -126,24 +126,29 @@ public class MyGame extends MainController {
             entityController.add(ele);
             ele.setLevel(levelAPI.getCurrentLevel());
         }
+
+        hero.setLevel(levelAPI.getCurrentLevel());//bei text im hud nicht mehr in funktion
+        entityController.add(hero);
+        monsterGenerieren();
         for (Monster element : monster) {
             entityController.add(element);
             element.setLevel(levelAPI.getCurrentLevel());
         }
-        hero.setLevel(levelAPI.getCurrentLevel());//bei text im hud nicht mehr in funktion
-        entityController.add(hero);
     }
 
     /**
      * Erstellt die Level angepasste Anzahl Monster und deren Werte
      */
     public void monsterGenerieren() {
+        MonsterBewegung kuschel=new WillKuschelnMonster(hero);
+        MonsterBewegung freiSchnauze= new RandomMonster();
+        MonsterBewegung klassentreffen = new KlassentreffenMonster(hero);
         Random ran = new Random();
         monster = new ArrayList<>();
         int r = ran.nextInt(2 + levelCounter);
         for (int a = 0; a < r; a++) {
-            monster.add(MonsterCreator.getMonster(1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.SKELET, painter, batch));
-            monster.add(MonsterCreator.getMonster(1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.NECROMANT, painter, batch));
+            monster.add(MonsterCreator.getMonster(kuschel,1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.SKELET, painter, batch));
+            monster.add(MonsterCreator.getMonster(klassentreffen,1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.NECROMANT, painter, batch));
         }
     }
 
