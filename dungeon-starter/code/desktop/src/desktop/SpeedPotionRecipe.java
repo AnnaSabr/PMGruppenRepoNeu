@@ -27,7 +27,7 @@ public class SpeedPotionRecipe extends Recipe{
     /**
      * Prüft, ob das Item nach dem Rezept erzeugt werden kann
      *
-     * @return
+     * @return wurde das Rezept verwendet
      */
     public boolean useRecipe(){
         boolean usable=false;
@@ -100,6 +100,9 @@ public class SpeedPotionRecipe extends Recipe{
         return taken;
     }
 
+    /**
+     * gibt den Inhalt des Rezepts aus
+     */
     public void lesen(){
         System.out.println(inhalt);
     }

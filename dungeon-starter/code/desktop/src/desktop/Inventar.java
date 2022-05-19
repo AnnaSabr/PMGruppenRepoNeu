@@ -39,6 +39,12 @@ public class Inventar {
                 name="Kochtopf";
             }else if(inventar.get(a) instanceof SpeedPotionRecipe){
                 name="Rezept fuer Schnelligkeitstrank";
+            }else if(inventar.get(a) instanceof Hammer){
+                name="Hammer";
+            }else if(inventar.get(a) instanceof Iron){
+                name="Eisen";
+            }else if(inventar.get(a) instanceof SwordRecipe){
+                name="Rezept fuer Schwert";
             }
             System.out.println((a+1)+": " + name);
         }
@@ -154,7 +160,7 @@ public class Inventar {
     }
 
     /**Item wird in das Inventar gelegt
-     *enee
+     *
      * @param i
      * @return wurde das Item hinzugefügt
      */
@@ -183,6 +189,9 @@ public class Inventar {
         }
     }
 
+    /**
+     * Rezept im Inventar wird verwendet
+     */
     public void crafting(){
         System.out.println("Rezept auswaehlen");
         Scanner scanner= new Scanner(System.in);

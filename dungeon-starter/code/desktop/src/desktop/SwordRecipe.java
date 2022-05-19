@@ -6,11 +6,12 @@ import level.elements.Level;
 
 import java.util.Scanner;
 
-public class SwordRecipe extends Items{
+public class SwordRecipe extends Recipe{
 
     String texturePath;
 
     String inhalt;
+
     /**
      * A object that can be controlled by the <code>EntityController
      * </code>.
@@ -24,7 +25,10 @@ public class SwordRecipe extends Items{
         this.inhalt="Eisen und Hammer";
     }
 
-    //TODO anpassen
+    /**prüft, ob alle benötigten Items im Inventar sind und setzt das Rezept um
+     *
+     * @return wurde das item entfernt
+     */
     public boolean useRecipe(){
         boolean usable=false;
         System.out.println("Eisen");
@@ -85,6 +89,9 @@ public class SwordRecipe extends Items{
         return taken;
     }
 
+    /**
+     * Inhalt des Rezepts ausgeben
+     */
     public void lesen(){
         System.out.println(inhalt);
     }

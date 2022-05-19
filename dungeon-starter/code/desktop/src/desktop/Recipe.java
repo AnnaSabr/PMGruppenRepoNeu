@@ -20,10 +20,17 @@ public abstract class Recipe extends Items{
         super(painter, batch);
     }
 
+    /**
+     * gibt den Inhalt des Rezepts aus
+     */
     public void lesen(){
         System.out.println(inhalt);
     }
 
+    /**
+     * verwendet das Rezept
+     * @return konnte das Rezept verwendet werden
+     */
     public boolean useRecipe(){
         return false;
     }
