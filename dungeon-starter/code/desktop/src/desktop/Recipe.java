@@ -6,9 +6,7 @@ import tools.Point;
 
 public abstract class Recipe extends Items{
 
-    Point position;
-
-    String inhalt;
+    String inhalt="";
 
     String texturePath;
     /**

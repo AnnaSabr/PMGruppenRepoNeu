@@ -7,7 +7,7 @@ import tools.Point;
 
 public class Kraut extends Items{
 
-    Point position;
+
     String texturePath;
 
     /**

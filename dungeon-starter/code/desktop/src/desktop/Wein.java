@@ -7,8 +7,6 @@ import tools.Point;
 
 public class Wein extends Items{
 
-
-    Point position;
     String texturePath;
 
     /**

@@ -87,10 +87,6 @@ public class MyGame extends MainController {
                 chest.oeffnen();
                 MyHero.hand=null;
             }
-            if(MyHero.hand instanceof Recipe){
-                ((Recipe) MyHero.hand).lesen();
-            }
-
         }
     }
 
@@ -185,8 +181,8 @@ public class MyGame extends MainController {
      * erstellt ein zufälliges Item
      */
     public void itemPlatzieren(){
-        int zufall = (int) (Math.random()*10);
-        //int zufall = 5;
+        //int zufall = (int) (Math.random()*10);
+        int zufall = 9;
         if(zufall==0){
             item =new SpeedPotion(painter, batch);
         } else if (zufall==1) {
@@ -207,9 +203,9 @@ public class MyGame extends MainController {
         }else if(zufall==5){
             item=new Key(painter, batch);
         }else if(zufall==6){
-            item=new Wein(painter, batch);
-        }else if(zufall==7){
             item=new Kraut(painter, batch);
+        }else if(zufall==7){
+            item=new Wein(painter, batch);
         }else if(zufall==8){
             item=new Kochtopf(painter, batch);
         }else if(zufall==9){

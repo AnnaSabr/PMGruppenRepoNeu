@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class SpeedPotionRecipe extends Recipe{
 
-    Point position;
     String texturePath;
 
     /**
@@ -83,5 +82,13 @@ public class SpeedPotionRecipe extends Recipe{
 
     public boolean removable() {
         return taken;
+    }
+
+    public void lesen(){
+        System.out.println(inhalt);
+    }
+
+    public String getTexturePath() {
+        return texturePath;
     }
 }

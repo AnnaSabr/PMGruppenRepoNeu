@@ -7,7 +7,6 @@ import tools.Point;
 
 public class Kochtopf extends Items{
 
-    Point position;
     String texturePath;
 
     /**
