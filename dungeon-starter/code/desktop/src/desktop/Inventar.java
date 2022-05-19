@@ -31,6 +31,14 @@ public class Inventar {
                 name="Tasche fuer "+ ((Tasche<?>) inventar.get(a)).nameTyp;
             }else if(inventar.get(a) instanceof Key){
                 name="Schluessel";
+            }else if(inventar.get(a) instanceof Wein){
+                name="Wein";
+            }else if(inventar.get(a) instanceof Kraut){
+                name="Kraut";
+            }else if(inventar.get(a) instanceof Kochtopf){
+                name="Kochtopf";
+            }else if(inventar.get(a) instanceof SpeedPotionRecipe){
+                name="Rezept fuer Schnelligkeitstrank";
             }
             System.out.println((a+1)+": " + name);
         }
