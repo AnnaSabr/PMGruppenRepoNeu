@@ -66,6 +66,15 @@ public class Inventar {
                     tascheGefunden=true;
                 }
             }
+            boolean rezeptGefunden=false;
+            for(int a =0; a<inventar.size();a++){
+                if(inventar.get(a) instanceof Recipe){
+                    rezeptGefunden=true;
+                }
+            }
+            if(rezeptGefunden){
+                crafting();
+            }
             if(tascheGefunden){
                 System.out.println("Welche Tasche soll geoeffnet werden?");
                 Scanner scanner= new Scanner(System.in);

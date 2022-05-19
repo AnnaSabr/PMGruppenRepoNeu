@@ -47,6 +47,7 @@ public class SpeedPotionRecipe extends Recipe{
                     zahl--;
                     positionen[1]=zahl;
                     if (MyHero.itemInventar.holen(zahl) instanceof Wein) {
+                        System.out.println("Kochtopf");
                         eingabe=scanner.nextLine();
                         try {
                             zahl = Integer.parseInt(eingabe);
@@ -56,18 +57,18 @@ public class SpeedPotionRecipe extends Recipe{
                                 usable=true;
                             }
                         }catch (Exception e){
-                            System.out.println();
+                            System.out.println("nicht gefunden");
                         }
                     }
                 }catch (Exception e){
-                    System.out.println();
+                    System.out.println("nicht gefunden");
                 }
             }
         }catch (Exception e){
-            System.out.println("");
+            System.out.println("nicht gefunden");
         }
         if(usable){
-            for(int a=0; a<positionen.length; a++){
+            for(int a=positionen.length-1; a>=0; a--){
                 MyHero.itemInventar.itemEntfernen(a);
             }
             MyHero.itemInventar.hinzufuegen(new SpeedPotion(getPainter(),getBatch()));
