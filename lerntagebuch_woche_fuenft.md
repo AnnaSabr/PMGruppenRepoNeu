@@ -38,6 +38,10 @@ Ziel war es unterschiedliche Bewegungsmuster fuer die Monster zu erstellen.
 
 Crafting: Über das Inventar soll mit einem Rezept und den darin beschriebenen Zutaten ein neues Item erzeugt werden.
 
+Die Fähigkeiten Aufgabe muss überarbeitet werden da der Held nun verschiedenene Gegenstände tragen kann und diese dann die Fähigkeiten implementieren sollen.
+Die HUD muss auch soweit verändert werden dass die verschiedenen Fähigkeiten angezeigt werden.
+Das Inventar soll übetarbeitet weden und eine Grafische Oberfläche implementieren.
+
 
 <!--
 Bitte hier die zu lösende Aufgabe kurz in eigenen Worten beschreiben.
@@ -64,6 +68,8 @@ der Aufgabe effizient gestaltet werden.
 Crafting: Die Rezepte müssen Items erweitern, damit sie in das Inventar aufgenommen werden können. Die Items, die als Zutat dienen, haben keine weitere Funktionalität. Der Spieler muss über das Inventar die Items selbst auswählen. Dies ist bisher nur über die Konsole möglich. Damit der Spieler den Inhalt des Rezepts lesen kann, muss
 eine Methode implementiert werden, die den Inhalt ausgibt und die der Spieler aufrufen kann.
 
+Die Implementierung der Grafischen Oberfläche wird von libGDX mithilfe der Klasse DragAndDrop vorgegeben. Das Inventar muss soweit verändert werden dass die Elemente den Anforderungen entsprechen.
+
 # Umsetzung
 
 <!--
@@ -81,6 +87,8 @@ musste zwar der ein oder andere Parameter angepasst werden. Dies stellte allerdi
 Crafting: Die Items ohne Funktionaliät mussten grafisch dargestellt und im Inventar sichtbar sein. Dafür mussten sie "Items" erweitern.
 Dem Inventar musste eine neue Methode hinzugefügt werden, um das Crafting zu steuern. In dieser Methode wird der Spieler aufgefordert, über die Konsole Items auszuwählen, mit denen das Rezept durchgeführt werden kann. Ungültige Eingaben mussten abgefangen werden.
 
+Die Klasse DragAndDropp setzt verschiedene Hilfklassen voraus welche für die Funktionalität benötigt werden. Diese Klassen mussten erweitert weden.
+
 # Postmortem
 
 <!--
@@ -97,3 +105,5 @@ Crafting: Einige Fehler hätten vermieden werden können, wenn der neue Code öf
 der falsche Typ zugewiesen wurde, was zu einem Absturz des Programms führte.
 Zaubersprüche können durch das Crafting nicht erzeugt werden, weil es noch keine Items von diesem Typ im Spiel gibt. Dies hätte durch eine andere Einteilung der Arbeit
 verhindert werden können.
+
+Das Zusammenspiel der Einzelnen Klassen bezüglich des Inventars funktioniert noch nicht korrekt.
