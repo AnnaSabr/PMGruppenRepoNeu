@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+
 public class OperationLoader {
 
     /**
@@ -21,6 +22,7 @@ public class OperationLoader {
      * @return a map with the operations and their names, or an empty map if none were found
      */
     public static Map<String, IOperation> loadOperations(File directory) {
+
         HashMap<String, IOperation> operations = new HashMap<>();
         if(directory.isDirectory()){
             try {
@@ -45,5 +47,6 @@ public class OperationLoader {
             }
         }
         return operations;
+
     }
 }
