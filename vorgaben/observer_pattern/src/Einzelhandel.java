@@ -14,10 +14,12 @@ public class Einzelhandel implements IObserver{
     private static final Logger log = Logger.getLogger(Einzelhandel.class.getName());
 
     @Deprecated
+
     public Einzelhandel(Grosshandel grosshandel) {
         lager = new HashMap<>();
         auftraege = new ArrayList<>();
         this.grosshandel = grosshandel;
+
         this.assortment = new HashSet<>();
         this.assortment.add(WarenTyp.Bretter);
         this.assortment.add(WarenTyp.Batterien);
@@ -51,6 +53,7 @@ public class Einzelhandel implements IObserver{
      * in <code>loop()</code>, den Auftrag beim Großhandel zu bestellen.
      *
      * @param auftrag der Auftrag, der aufgenommen werden soll.
+
      * @return true wenn der Auftrag erfolgreich beaebeitet wurde, sonst false
      */
     public boolean bestellen(Auftrag auftrag) {
@@ -61,6 +64,7 @@ public class Einzelhandel implements IObserver{
         else{
             return false;
         }
+
     }
 
     /**
@@ -77,6 +81,7 @@ public class Einzelhandel implements IObserver{
     /**
      * Versuche alle Aufträge durch Bestellung beim Großhandel abzuschließen.
      */
+
     @Deprecated
      public void loop() {
         for (int i = auftraege.size(); i > 0; i--) {
@@ -90,6 +95,7 @@ public class Einzelhandel implements IObserver{
      *
      * @return true wenn mehr als 1 Auftrag offen ist, sonst false
      */
+
     @Deprecated
      public boolean hatAuftraege() {
         return auftraege.size() > 0;
@@ -116,4 +122,5 @@ public class Einzelhandel implements IObserver{
         }
         log.info("end update");
     }
+
 }

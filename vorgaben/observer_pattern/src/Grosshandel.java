@@ -1,3 +1,4 @@
+
 import java.util.logging.Logger;
 import java.util.Collection;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class Grosshandel implements IObservarble{
      *
      * @param kunde   Der Kunde, welcher die Bestellung tätigt.
      * @param auftrag Der Auftrag, welcher abgearbeitet werden soll.
+
      */
     public void bestellen(Einzelhandel kunde, Auftrag auftrag) {
         log.info("start ordering");
@@ -57,6 +59,7 @@ public class Grosshandel implements IObservarble{
         Map.Entry<WarenTyp, Integer> kleinsterBestand = findeKleinstenBestand();
         int zusatzMenge = random.nextInt(1, 5);
         kleinsterBestand.setValue(kleinsterBestand.getValue() + zusatzMenge);
+
         //Observer Pattern
         this.newOffer = new Auftrag(kleinsterBestand.getKey(), kleinsterBestand.getValue());
         this.notifyObservers();
@@ -71,6 +74,7 @@ public class Grosshandel implements IObservarble{
         }
         return kleinsterBestand;
     }
+
 
     @Override
     public void notifyObservers() {
