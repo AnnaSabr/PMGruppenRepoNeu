@@ -24,6 +24,7 @@ public class MyGame extends MainController {
     ArrayList<Fallen> fallen;
     Point heroposition;
     ArrayList<Items> it;
+    Npc npc;
 
     @Override
     protected void setup() {
@@ -107,6 +108,7 @@ public class MyGame extends MainController {
         heroposition = hero.getPosition();
         levelCounter++;
         entityController.remove(hero);
+        entityController.remove(npc);
         entityController.remove(item);
         entityController.remove(chest);
 
@@ -129,7 +131,11 @@ public class MyGame extends MainController {
             ele.setLevel(levelAPI.getCurrentLevel());
         }
 
+
         hero.setLevel(levelAPI.getCurrentLevel());//bei text im hud nicht mehr in funktion
+        npcGenerieren();
+        npc.setLevel(levelAPI.getCurrentLevel());
+        entityController.add(npc);
         entityController.add(hero);
         monsterGenerieren();
         for (Monster element : monster) {
@@ -142,9 +148,9 @@ public class MyGame extends MainController {
      * Erstellt die Level angepasste Anzahl Monster und deren Werte
      */
     public void monsterGenerieren() {
-        MonsterBewegung kuschel=new WillKuschelnMonster(hero);
-        MonsterBewegung freiSchnauze= new RandomMonster();
-        MonsterBewegung klassentreffen = new KlassentreffenMonster(hero);
+        FigurenBewegung kuschel=new WillKuscheLnMonster(hero);
+        FigurenBewegung freiSchnauze= new RandomMonster();
+        FigurenBewegung klassentreffen = new KlassentreffenMonster(hero);
         Random ran = new Random();
         monster = new ArrayList<>();
         int r = ran.nextInt(2 + levelCounter);
@@ -152,6 +158,24 @@ public class MyGame extends MainController {
             monster.add(MonsterCreator.getMonster(kuschel,1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.SKELET, painter, batch));
             monster.add(MonsterCreator.getMonster(klassentreffen,1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.NECROMANT, painter, batch));
         }
+    }
+
+
+    /**
+     * Erstellt fuer das Level einen Npc nahc dem Zufallsprinzip
+     */
+    public void npcGenerieren(){
+        FigurenBewegung stand=new NpcStand(hero);
+        FigurenBewegung wandern = new NpcWandern(hero);
+        Random ran = new Random();
+        int r= ran.nextInt(2);
+        if (r==1){
+            this.npc=NpcCreator.getNpc(stand,100,100,0.1f,ENpcs.ELF,painter,batch);
+        }
+        else{
+            this.npc=NpcCreator.getNpc(wandern,100,100,0.3f,ENpcs.LIZARD,painter,batch);
+        }
+
     }
 
     /**

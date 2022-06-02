@@ -18,7 +18,7 @@ public class Skelet extends Monster {
     private List<String> rechts;
 
 
-    public Skelet(MonsterBewegung bewegung,int staerke, float geschwindigkeit, int lebenspunkte,Painter painter, SpriteBatch batch) {
+    public Skelet(FigurenBewegung bewegung, int staerke, float geschwindigkeit, int lebenspunkte, Painter painter, SpriteBatch batch) {
         super(bewegung,lebenspunkte,staerke,geschwindigkeit,painter, batch);
         animation=getAnimation();
         links= getLinks();

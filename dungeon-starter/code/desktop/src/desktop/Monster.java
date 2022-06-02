@@ -1,15 +1,7 @@
 package desktop;
 
-import basiselements.Animatable;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import graphic.Animation;
 import graphic.Painter;
-import level.elements.Level;
-import tools.Point;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Oberklasse der Monster
@@ -18,32 +10,18 @@ import java.util.Random;
  */
 public abstract class Monster extends Figuren {
 
-
-    private Animation idleAnimation;
-    private float geschwindigkeit;
-    private int lebenspunkte;
-    private int staerke;
-    private List<String> animation;
-    private List<String> rechts;
-    private List<String> links;
-    private int time;
-    private MonsterBewegung bewegung;
+    private FigurenBewegung bewegung;
 
 
 
-    public Monster(MonsterBewegung bewegung, int lebenspunkte,int staerke, float geschwindigkeit, Painter painter, SpriteBatch batch) {
+    public Monster(FigurenBewegung bewegung, int lebenspunkte, int staerke, float geschwindigkeit, Painter painter, SpriteBatch batch) {
         super(lebenspunkte,staerke,geschwindigkeit,painter, batch);
-        this.staerke= staerke;
-        this.geschwindigkeit=geschwindigkeit;
-        this.lebenspunkte=lebenspunkte;
-        this.rechts = new ArrayList<>();
-        this.links = new ArrayList<>();
-        this.animation = new ArrayList<>();
-        this.time = 0;
-        this.idleAnimation = new Animation(animation, 5);
         this.bewegung=bewegung;
     }
 
+    /**
+     * ruft die entsprechende individuelle Bewegung der Figur auf
+     */
     public void bewegen(){
         bewegung.bewegen(this);
     }
@@ -51,26 +29,10 @@ public abstract class Monster extends Figuren {
 
     @Override
     public void update() {
-        if (time % 10 == 0) {
+
+        if (getTime() % 10 == 0) {
             bewegen();
         }
-        time++;
-    }
-
-    @Override
-    public Animation getActiveAnimation() {
-        return idleAnimation;
-    }
-
-    public void setIdleAnimation(Animation idleAnimation) {
-        this.idleAnimation = idleAnimation;
-    }
-
-    public List<String> getlinks(){
-        return links;
-    }
-
-    public List<String> getNichtLinks(){
-        return rechts;
+        setTime(getTime()+1);
     }
 }

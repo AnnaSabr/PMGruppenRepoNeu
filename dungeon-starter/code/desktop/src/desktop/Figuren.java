@@ -111,5 +111,27 @@ public abstract class Figuren extends Animatable {
         }
         return dead;
     }
+    public void setIdleAnimation(Animation idleAnimation) {
+        this.idleAnimation = idleAnimation;
+    }
 
+
+    public int getTime() {
+        return time;
+    }
+    public void setTime(int tm){
+        this.time=tm;
+    }
+
+    public void setRechts(List<String> rechts){
+        this.rechts=rechts;
+    }
+
+    public void setLinks(List<String> links){
+        this.links=links;
+    }
+
+    public void setAnimation(List<String> animation){
+        this.animation=animation;
+    }
 }

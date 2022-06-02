@@ -7,7 +7,7 @@ import tools.Point;
 /**
  * Bewegung fuer Monster, die auf den Helden zulaufen
  */
-public class WillKuschelnMonster implements MonsterBewegung {
+public class WillKuscheLnMonster implements FigurenBewegung {
 
     MyHero hero;
 
@@ -15,12 +15,12 @@ public class WillKuschelnMonster implements MonsterBewegung {
      *
      * @param hero unser Held
      */
-    public WillKuschelnMonster(MyHero hero) {
+    public WillKuscheLnMonster(MyHero hero) {
         this.hero = hero;
     }
 
     @Override
-    public void bewegen(Monster monster) {
+    public void bewegen(Figuren monster) {
         float movementSpeed = 0.3f;
         Point posiMonster = monster.getPosition();
         Point posiHero = hero.getPosition();

@@ -3,7 +3,7 @@ package desktop;
 /**
  * Interface von der die einzelnen Bewegungen beziehen
  */
-public interface MonsterBewegung {
+public interface FigurenBewegung {
 
-    public void bewegen(Monster monster);
+    public void bewegen(Figuren figur);
 }

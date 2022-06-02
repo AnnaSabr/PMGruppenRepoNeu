@@ -22,7 +22,7 @@ public class MonsterCreator {
      * @param batch auch irgendwas mit Texturen
      * @return gibt das gezeugte Monster zurueck
      */
-    public static Monster getMonster(MonsterBewegung bewegung, int staerke, float geschwindigkeit, int lebenspunkte, EMonster monsterName, Painter painter, SpriteBatch batch) {
+    public static Monster getMonster(FigurenBewegung bewegung, int staerke, float geschwindigkeit, int lebenspunkte, EMonster monsterName, Painter painter, SpriteBatch batch) {
         if (monsterName == EMonster.SKELET) {
             Skelet knochen = new Skelet(bewegung,staerke,geschwindigkeit,lebenspunkte,painter, batch);
             return knochen;

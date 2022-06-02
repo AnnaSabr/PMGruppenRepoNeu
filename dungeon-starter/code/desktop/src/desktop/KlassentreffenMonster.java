@@ -6,7 +6,7 @@ import tools.Point;
 /**
  * Bewegung der Monster die alle nur eine Zielpositon im Dungeon haben
  */
-public class KlassentreffenMonster implements MonsterBewegung{
+public class KlassentreffenMonster implements FigurenBewegung {
     Tile ziel;
 
     public KlassentreffenMonster(MyHero hero){
@@ -14,7 +14,7 @@ public class KlassentreffenMonster implements MonsterBewegung{
     }
 
     @Override
-    public void bewegen(Monster monster){
+    public void bewegen(Figuren monster){
         float movementSpeed = 0.3f;
         Point newPosition = new Point(monster.getPosition());
 
