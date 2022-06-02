@@ -158,6 +158,7 @@ public class MyGame extends MainController {
      * Truhe mit zwei oder drei Items im Level platzieren
      */
     public void truhePlatzieren(){
+
         chest=new Chest(painter, batch);
         int zufallAnzahl=(int) (Math.random()*2);
         zufallAnzahl=zufallAnzahl+2;
