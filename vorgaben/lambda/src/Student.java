@@ -20,4 +20,24 @@ public class Student {
     public Date getBirthday() {
         return birthday;
     }
+
+    static int compareByAge(Student a, Student b){
+        if(a.getBirthday().compareTo(b.getBirthday())<0){
+            return -1;
+        } else if (a.getBirthday().compareTo(b.getBirthday())>0) {
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    int compareByName(Student other){
+        if(this.getName().compareToIgnoreCase(other.getName())>0){
+            return 1;
+        } else if (this.getName().compareToIgnoreCase(other.getName())<0) {
+            return -1;
+        }else{
+            return 0;
+        }
+    }
 }

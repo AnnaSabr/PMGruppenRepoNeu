@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 
 public class StudentSort {
@@ -10,7 +11,7 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_1a(List<Student> students) {
-        // TODO
+        students.sort((Student student, Student student2)-> student.getBirthday().compareTo(student2.getBirthday()));
         return students;
     }
 
@@ -21,7 +22,7 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_1b(List<Student> students) {
-        // TODO
+        students.sort((Student student, Student student2)->(student.getName().compareToIgnoreCase(student2.getName())*-1));
         return students;
     }
 
@@ -33,7 +34,7 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_2a(List<Student> students) {
-        // TODO
+        students.sort((Student student, Student student2)-> Student.compareByAge(student,student2));
         return students;
     }
 
@@ -45,7 +46,7 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_2b(List<Student> students) {
-        // TODO
+        students.sort(Student::compareByAge);
         return students;
     }
 
@@ -57,7 +58,7 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_3a(List<Student> students) {
-        // TODO
+        students.sort((Student student, Student student2)->student.compareByName(student2));
         return students;
     }
 
@@ -69,7 +70,7 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_3b(List<Student> students) {
-        // TODO
+        students.sort(Student::compareByName);
         return students;
     }
 
@@ -81,7 +82,16 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_4a(List<Student> students) {
-        // TODO
+        Vergleich<Student> vergleich = ((student, student2)->{
+            if(student.getBirthday().compareTo(student2.getBirthday())<0){
+                return 1;
+            } else if (student.getBirthday().compareTo(student2.getBirthday())>0) {
+                return -1;
+            }else{
+                return 0;
+            }
+        });
+        students.sort(vergleich);
         return students;
     }
 
@@ -93,7 +103,20 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_4b(List<Student> students) {
-        // TODO
+        Vergleich<Student> vergleich = ((student, student2)->{
+            if(student.getName().compareToIgnoreCase(student2.getName())>0){
+                return 1;
+            } else if (student.getName().compareToIgnoreCase(student2.getName())<0) {
+                return -1;
+            }else{
+                return 0;
+            }
+        });
+        mySort(students, vergleich);
         return students;
+    }
+
+    public static <T> void mySort(List<T> liste, Vergleich<T> vergleich){
+        liste.sort(vergleich);
     }
 }
