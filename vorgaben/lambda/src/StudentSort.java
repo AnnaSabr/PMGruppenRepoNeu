@@ -12,7 +12,6 @@ public class StudentSort {
      */
     public static List<Student> sort_1a(List<Student> students) {
         students.sort((Student student, Student student2)-> student.getBirthday().compareTo(student2.getBirthday()));
-        // TODO
         return students;
     }
 
@@ -24,7 +23,6 @@ public class StudentSort {
      */
     public static List<Student> sort_1b(List<Student> students) {
         students.sort((Student student, Student student2)->(student.getName().compareToIgnoreCase(student2.getName())*-1));
-        // TODO
         return students;
     }
 
@@ -37,7 +35,6 @@ public class StudentSort {
      */
     public static List<Student> sort_2a(List<Student> students) {
         students.sort((Student student, Student student2)-> Student.compareByAge(student,student2));
-        // TODO
         return students;
     }
 
@@ -50,7 +47,6 @@ public class StudentSort {
      */
     public static List<Student> sort_2b(List<Student> students) {
         students.sort(Student::compareByAge);
-        // TODO
         return students;
     }
 
@@ -63,7 +59,6 @@ public class StudentSort {
      */
     public static List<Student> sort_3a(List<Student> students) {
         students.sort((Student student, Student student2)->student.compareByName(student2));
-        // TODO
         return students;
     }
 
@@ -76,7 +71,6 @@ public class StudentSort {
      */
     public static List<Student> sort_3b(List<Student> students) {
         students.sort(Student::compareByName);
-        // TODO
         return students;
     }
 
@@ -88,7 +82,7 @@ public class StudentSort {
      * @return die sortierte Liste mit Studierenden
      */
     public static List<Student> sort_4a(List<Student> students) {
-        students.sort((student, student2)->{
+        Vergleich<Student> vergleich = ((student, student2)->{
             if(student.getBirthday().compareTo(student2.getBirthday())<0){
                 return 1;
             } else if (student.getBirthday().compareTo(student2.getBirthday())>0) {
@@ -97,7 +91,7 @@ public class StudentSort {
                 return 0;
             }
         });
-        // TODO
+        students.sort(vergleich);
         return students;
     }
 
@@ -118,26 +112,11 @@ public class StudentSort {
                 return 0;
             }
         });
-        // TODO
-        students.sort((student, student2)->{
-            if(student.getName().compareToIgnoreCase(student2.getName())>0){
-                return 1;
-            } else if (student.getName().compareToIgnoreCase(student2.getName())<0) {
-                return -1;
-            }else{
-                return 0;
-            }
-        });
-        mySort(students, new Vergleich<Student>() {
-            @Override
-            public int compare(Student type, Student type2) {
-                return 0;
-            }
-        });
+        mySort(students, vergleich);
         return students;
     }
 
     public static <T> void mySort(List<T> liste, Vergleich<T> vergleich){
-        //liste.sort(vergleich.compare((type, type2)->()));
+        liste.sort(vergleich);
     }
 }
