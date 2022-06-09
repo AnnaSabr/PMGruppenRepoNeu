@@ -2,6 +2,7 @@ package desktop;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Painter;
+import tools.Point;
 
 /**
  * Oberklasse der Monster
@@ -34,5 +35,25 @@ public abstract class Monster extends Figuren {
             bewegen();
         }
         setTime(getTime()+1);
+    }
+
+    /**
+     * bestimmt, was mit dem MOnster passiert, wenn es von einem Projektiel getroffen wird
+     * @param richtung in welche Richtung das MOnster geschossenw erden soll
+     */
+    public void getroffen(EProjektile richtung){
+        Point newPosition = new Point(getPosition());
+        float stossWeite = 2.0f;
+        if (richtung==EProjektile.NORD){
+                newPosition.y+=stossWeite;}
+        if (richtung==EProjektile.OST){
+            newPosition.x+=stossWeite;}
+        if (richtung==EProjektile.SUED){
+            newPosition.y-=stossWeite;}
+        if (richtung==EProjektile.WEST){
+            newPosition.x-=stossWeite;}
+        if (this.getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {
+            setPosition(newPosition);
+        }
     }
 }
