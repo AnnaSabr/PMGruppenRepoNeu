@@ -3,10 +3,11 @@ package desktop;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Inventar {
+public class Inventar implements QuestObservable{
 
     public ArrayList<Items> inventar;
 
+    ArrayList<QuestObserver> quests = new ArrayList<QuestObserver>();
     public Inventar(){
         inventar=new ArrayList<>();
     }
@@ -213,4 +214,20 @@ public class Inventar {
         return inventar.size();
     }
 
+    @Override
+    public void register(QuestObserver questObserver) {
+        this.quests.add(questObserver);
+    }
+
+    @Override
+    public void unregister(QuestObserver questObserver) {
+        quests.remove(questObserver);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(QuestObserver q : quests){
+            q.questUpdate();
+        }
+    }
 }

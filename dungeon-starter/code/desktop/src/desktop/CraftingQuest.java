@@ -8,7 +8,7 @@ import tools.Point;
 
 import java.util.Scanner;
 
-public class CraftingQuest extends Quest{
+public class CraftingQuest extends Quest implements QuestObserver{
 
     String texturePath;
 
@@ -76,4 +76,13 @@ public class CraftingQuest extends Quest{
         return texturePath;
     }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void questUpdate() {
+
+    }
 }

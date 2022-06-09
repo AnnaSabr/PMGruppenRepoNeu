@@ -8,7 +8,7 @@ import tools.Point;
 
 import java.util.Scanner;
 
-public class CollectionQuest extends Quest{
+public class CollectionQuest extends Quest implements QuestObserver{
 
     String texturePath;
 
@@ -139,6 +139,11 @@ public class CollectionQuest extends Quest{
 
     public String getTexturePath() {
         return texturePath;
+    }
+
+    @Override
+    public void questUpdate() {
+
     }
 }
 
