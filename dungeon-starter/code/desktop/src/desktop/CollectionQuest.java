@@ -1,6 +1,14 @@
 package desktop;
 
+import basiselements.Entity;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.Painter;
+import level.elements.Level;
+import tools.Point;
+
 public class CollectionQuest extends Quest{
+
+    String texturePath;
 
     /**
      * A object that can be controlled by the <code>EntityController
@@ -13,6 +21,8 @@ public class CollectionQuest extends Quest{
         super(painter, batch);
         this.questTask =this.chooseCollection();
     }
+
+    int anzahl;
 
     public void chooseReward(Items items){
         String reward="Dafür erhältst du ";
@@ -60,9 +70,9 @@ public class CollectionQuest extends Quest{
     }
 
     public String chooseCollection(){
-        int zufall = (int) (Math.random()*2) +2;
-        String aufgabe = "Sammel " + zufall + " ";
-        zufall = (int) (Math.random()*9);
+        this.anzahl = (int) (Math.random()*2) +2;
+        String aufgabe = "Sammel " + this.anzahl + " ";
+        int zufall = (int) (Math.random()*9);
         Items item;
         if(zufall==0){
             item =new SpeedPotion(painter, batch);
@@ -88,7 +98,7 @@ public class CollectionQuest extends Quest{
         } else if(zufall==7){
             aufgabe=aufgabe+"Hämmer";
             item=new Hammer(painter,batch);
-        }else if(zufall==8){
+        }else{
             aufgabe=aufgabe+"Eisen";
             item=new Iron(painter,batch);
         }
@@ -105,4 +115,10 @@ public class CollectionQuest extends Quest{
 
     public void setLevel(Level currentLevel) {
     }
+
+    public String getTexturePath() {
+        return texturePath;
+    }
 }
+
+

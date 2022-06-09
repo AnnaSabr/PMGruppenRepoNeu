@@ -1,5 +1,11 @@
 package desktop;
 
+import basiselements.Entity;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.Painter;
+import level.elements.Level;
+import tools.Point;
+
 public abstract class Quest extends Entity {
 
     Point position;
