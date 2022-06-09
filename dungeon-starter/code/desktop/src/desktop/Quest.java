@@ -6,8 +6,11 @@ import graphic.Painter;
 import level.elements.Level;
 import tools.Point;
 
+import java.util.Scanner;
+
 public abstract class Quest extends Entity {
 
+    public abstract void questVorschlagen();
 
     boolean accepted = false;
     Point position;

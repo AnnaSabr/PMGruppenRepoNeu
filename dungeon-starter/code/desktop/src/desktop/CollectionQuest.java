@@ -6,9 +6,31 @@ import graphic.Painter;
 import level.elements.Level;
 import tools.Point;
 
+import java.util.Scanner;
+
 public class CollectionQuest extends Quest{
 
     String texturePath;
+
+
+    @Override
+    public void questVorschlagen() {
+        System.out.println(questTask);
+        System.out.println(questReward);
+        System.out.println("Drücke 1 um die Aufgabe anzunehmen");
+        Scanner scanner = new Scanner(System.in);
+        String eingabe = scanner.nextLine();
+        try{
+            int eingegeben = Integer.parseInt(eingabe);
+            if(eingabe=="1"){
+                System.out.println("Auftrag angenommen");
+                this.accepted=true;
+                texturePath="character/umgebung/Ausrufezeichen.png";
+            }
+        }catch (Exception exception){
+            System.out.println("Auftrag abgelehnt");
+        }
+    }
 
     /**
      * A object that can be controlled by the <code>EntityController
