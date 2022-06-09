@@ -15,20 +15,25 @@ public class CollectionQuest extends Quest{
 
     @Override
     public void questVorschlagen() {
-        System.out.println(questTask);
-        System.out.println(questReward);
-        System.out.println("Drücke 1 um die Aufgabe anzunehmen");
-        Scanner scanner = new Scanner(System.in);
-        String eingabe = scanner.nextLine();
-        try{
-            int eingegeben = Integer.parseInt(eingabe);
-            if(eingabe=="1"){
-                System.out.println("Auftrag angenommen");
-                this.accepted=true;
-                texturePath="character/umgebung/Ausrufezeichen.png";
+        if(!accepted){
+            System.out.println(questTask);
+            System.out.println(questReward);
+            System.out.println("Drücke 1 um die Aufgabe anzunehmen");
+            Scanner scanner = new Scanner(System.in);
+            String eingabe = scanner.nextLine();
+            try{
+                int eingegeben = Integer.parseInt(eingabe);
+                if(eingegeben==1){
+                    System.out.println("Auftrag angenommen");
+                    this.accepted=true;
+                    MyHero.acceptedQuest.add(this);
+                    texturePath="character/umgebung/Ausrufezeichen.png";
+                }
+            }catch (Exception exception){
+                System.out.println("Auftrag abgelehnt");
             }
-        }catch (Exception exception){
-            System.out.println("Auftrag abgelehnt");
+        }else{
+            System.out.println("Der Auftrag wurde bereits angenommen.");
         }
     }
 

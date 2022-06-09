@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 public abstract class Quest extends Entity {
 
+    /**
+     * Quest kann angenommen werden, wenn es noch nicht angenommen wurde
+     */
     public abstract void questVorschlagen();
 
     boolean accepted = false;

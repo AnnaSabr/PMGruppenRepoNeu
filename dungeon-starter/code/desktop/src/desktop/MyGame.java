@@ -92,7 +92,7 @@ public class MyGame extends MainController {
         }
         double itXquest=Math.round((quest.getPosition().x));
         double itYquest=Math.round((quest.getPosition().y));
-        if(itXquest == heroX && itYquest == heroY && Gdx.input.isKeyJustPressed(Input.Keys.E) && quest.accepted==false){
+        if(itXquest == heroX && itYquest == heroY && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             quest.questVorschlagen();
         }
     }
