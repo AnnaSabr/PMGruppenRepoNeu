@@ -25,6 +25,7 @@ public class Sword extends Weapon{
         texturePath="character/items/weapon_katana.png";
     }
 
+    boolean crafted= false;
     public void setLevel(Level level) {
         Level currentLevel = level;
         position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();

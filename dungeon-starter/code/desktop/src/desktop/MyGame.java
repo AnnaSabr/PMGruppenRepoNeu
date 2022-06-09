@@ -95,6 +95,16 @@ public class MyGame extends MainController {
         if(itXquest == heroX && itYquest == heroY && Gdx.input.isKeyJustPressed(Input.Keys.E)){
             quest.questVorschlagen();
         }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.A)){
+            if(MyHero.acceptedQuest.isEmpty()){
+                System.out.println("Keine Quests angenommen");
+            }else{
+                for(int a =0; a < MyHero.acceptedQuest.size(); a++){
+                    System.out.println(MyHero.acceptedQuest.get(a).questTask);
+                    System.out.println(MyHero.acceptedQuest.get(a).questReward);
+                }
+            }
+        }
     }
 
 

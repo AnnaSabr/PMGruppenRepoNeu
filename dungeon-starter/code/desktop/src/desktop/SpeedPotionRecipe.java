@@ -86,7 +86,9 @@ public class SpeedPotionRecipe extends Recipe{
                     break;
                 }
             }
-            MyHero.itemInventar.hinzufuegen(new SpeedPotion(getPainter(),getBatch()));
+            SpeedPotion speedPotion = new SpeedPotion(getPainter(),getBatch());
+            speedPotion.crafted=true;
+            MyHero.itemInventar.hinzufuegen(speedPotion);
         }
         return usable;
     }

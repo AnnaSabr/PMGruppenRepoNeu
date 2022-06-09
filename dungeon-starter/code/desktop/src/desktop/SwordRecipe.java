@@ -69,7 +69,9 @@ public class SwordRecipe extends Recipe{
                     break;
                 }
             }
-            MyHero.itemInventar.hinzufuegen(new Sword(getPainter(),getBatch()));
+            Sword sword = new Sword(getPainter(),getBatch());
+            sword.crafted=true;
+            MyHero.itemInventar.hinzufuegen(sword);
         }
         return usable;
     }

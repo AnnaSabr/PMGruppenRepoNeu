@@ -13,6 +13,7 @@ import java.util.List;
 
 public class SpeedPotion extends Potion{
 
+    boolean crafted = false;
 
     //public static int PotionsTaken = 0;
 
@@ -62,20 +63,7 @@ public class SpeedPotion extends Potion{
         return texturePath;
     }
 
-    public boolean removable() {/*
-        float x = MyHero.position.x;
-        float y = MyHero.position.y;
-
-        int coordx = (int) getPosition().x;
-        int coordy = (int) getPosition().y;
-
-        if(x>coordx-1&&x<coordx+1) {
-            if (y > coordy - 1 && y < coordy + 1) {
-                if(Gdx.input.isKeyPressed(Input.Keys.E)){
-                    return Inventar.hinzufuegen(this);
-                }
-            }
-        }*/
+    public boolean removable() {
         return taken;
     }
 }

@@ -6,7 +6,6 @@ import graphic.Painter;
 import level.elements.Level;
 import tools.Point;
 
-import java.util.Scanner;
 
 public abstract class Quest extends Entity {
 
