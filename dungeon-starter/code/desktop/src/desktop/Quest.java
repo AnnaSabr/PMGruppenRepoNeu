@@ -8,9 +8,12 @@ import tools.Point;
 
 public abstract class Quest extends Entity {
 
-    Point position;
 
     boolean accepted = false;
+    Point position;
+    public Point getPosition() {
+        return position;
+    }
 
     String questTask;
 
@@ -27,10 +30,6 @@ public abstract class Quest extends Entity {
         super(painter, batch);
     }
 
-    @Override
-    public Point getPosition() {
-        return position;
-    }
 
     public void setLevel(Level currentLevel) {
     }

@@ -20,101 +20,95 @@ public class CollectionQuest extends Quest{
     public CollectionQuest(Painter painter, SpriteBatch batch) {
         super(painter, batch);
         this.questTask =this.chooseCollection();
+        this.texturePath="character/umgebung/Fragezeichen.png";
     }
 
     int anzahl;
 
-    public void chooseReward(Items items){
+    int collectZahl;
+
+    int rewardZahl;
+
+    /**
+     * zufällige Belohnung wählen
+     *
+     * @param itemZahl Zahl des Items für die Aufgabe, damit Belohnung und Aufgabe nicht gleich sind
+     */
+    public void chooseReward(int itemZahl){
         String reward="Dafür erhältst du ";
         int zufall = (int) (Math.random()*12);
         Items item;
         if(zufall==0){
-            item =new SpeedPotion(painter, batch);
             reward=reward+"einen Geschwindigkeitstrank";
         } else if (zufall==1) {
-            item = new SpeedDecreasePotion(painter, batch);
             reward=reward+"einen Langsamkeitstrank";
         } else if (zufall==2) {
-            item= new Sword(painter, batch);
             reward=reward+"ein Schwert";
         } else if (zufall==3) {
-            item=new Axe(painter, batch);
             reward=reward+"eine Axt";
         } else if(zufall==4){
-            item=new Kraut(painter, batch);
             reward=reward+"ein Kraut";
         } else if(zufall==5){
-            item=new Wein(painter, batch);
             reward=reward+"einen Wein";
         } else if(zufall==6){
-            item=new Kochtopf(painter, batch);
             reward=reward+"einen Kochtopf";
         } else if(zufall==7){
-            item=new SpeedPotionRecipe(painter, batch);
-            reward=reward+"ein Rezept für Geschwindigkeitstränke";
-        }else if(zufall==8){
-            item=new Hammer(painter,batch);
             reward=reward+"einen Hammer";
+        }else if(zufall==8){
+            reward=reward+"ein Eisen";
         }else if(zufall==9){
-            item=new SwordRecipe(painter,batch);
             reward=reward+"ein Rezept für Schwerter";
         }else {
-            item=new Iron(painter,batch);
-            reward=reward+"ein Eisen";
+            reward=reward+"ein Rezept für Geschwindigkeitstränke";
         }
-        if(items.getClass()==item.getClass()){
-            this.chooseReward(items);
-        }else{
-            this.questReward=reward;
+        if(itemZahl==zufall){
+            this.chooseReward(itemZahl);
+        }
+        else {
+            this.rewardZahl = zufall;
+            this.questReward = reward;
         }
     }
 
+    /**
+     * wählt zufällig eine Aufgabe aus
+     *
+     * @return Text, in dem die Aufgabe erklärt wird
+     */
     public String chooseCollection(){
         this.anzahl = (int) (Math.random()*2) +2;
         String aufgabe = "Sammel " + this.anzahl + " ";
         int zufall = (int) (Math.random()*9);
-        Items item;
         if(zufall==0){
-            item =new SpeedPotion(painter, batch);
             aufgabe=aufgabe+"Geschwindigkeitstränke.";
         } else if (zufall==1) {
-            item = new SpeedDecreasePotion(painter, batch);
             aufgabe=aufgabe+"Langsamkeitstränke";
         } else if (zufall==2) {
-            item= new Sword(painter, batch);
             aufgabe=aufgabe+"Schwerter";
         } else if (zufall==3) {
-            item=new Axe(painter, batch);
             aufgabe=aufgabe+"Äxte";
         } else if(zufall==4){
-            item=new Kraut(painter, batch);
             aufgabe=aufgabe+"Kräuter";
         } else if(zufall==5){
-            item=new Wein(painter, batch);
             aufgabe=aufgabe+"Weine";
         } else if(zufall==6){
             aufgabe=aufgabe+"Kochtöpfe";
-            item=new Kochtopf(painter, batch);
         } else if(zufall==7){
             aufgabe=aufgabe+"Hämmer";
-            item=new Hammer(painter,batch);
         }else{
             aufgabe=aufgabe+"Eisen";
-            item=new Iron(painter,batch);
         }
-        this.chooseReward(item);
+        this.chooseReward(zufall);
+        this.collectZahl=zufall;
         return aufgabe;
     }
 
-    Point position;
 
-    @Override
-    public Point getPosition() {
-        return position;
+    public void setLevel(Level level) {
+        Level currentLevel = level;
+        position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
-    public void setLevel(Level currentLevel) {
-    }
 
     public String getTexturePath() {
         return texturePath;

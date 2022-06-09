@@ -20,8 +20,14 @@ public class CraftingQuest extends Quest{
     public CraftingQuest(Painter painter, SpriteBatch batch) {
         super(painter, batch);
         this.questTask=this.chooseTask();
+        this.texturePath="character/umgebung/Fragezeichen.png";
     }
 
+    /**
+     * Aufgabe erzeugen
+     *
+     * @return Text mit der Aufgabe
+     */
     public String chooseTask(){
         String aufgabe="Erstelle mit Crafing ";
         int zufall=((int) Math.random()*2);
@@ -33,15 +39,12 @@ public class CraftingQuest extends Quest{
         return aufgabe;
     }
 
-    Point position;
 
-    @Override
-    public Point getPosition() {
-        return position;
+    public void setLevel(Level level) {
+        Level currentLevel = level;
+        position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
-    public void setLevel(Level currentLevel) {
-    }
 
     public String getTexturePath() {
         return texturePath;

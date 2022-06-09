@@ -17,6 +17,7 @@ public class MyGame extends MainController {
     private MyHero hero;
     Items item;
     Chest chest;
+    Quest quest;
 
     private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
     private int levelCounter=0;
@@ -111,6 +112,7 @@ public class MyGame extends MainController {
         entityController.remove(npc);
         entityController.remove(item);
         entityController.remove(chest);
+        entityController.remove(quest);
 
         for (Monster element : monster) {
             entityController.remove(element);
@@ -131,6 +133,7 @@ public class MyGame extends MainController {
             ele.setLevel(levelAPI.getCurrentLevel());
         }
 
+        questErstellen();
 
         hero.setLevel(levelAPI.getCurrentLevel());//bei text im hud nicht mehr in funktion
         npcGenerieren();
@@ -284,6 +287,20 @@ public class MyGame extends MainController {
                 fallen.add(FallenCreator.getFallen(EFallen.HOLE,  painter, batch));
             }
         }
+    }
+
+    /**
+     *  neue Quest erstellen
+     */
+    public void questErstellen(){
+        int zufall = (int) (Math.random()*2);
+        if(zufall==1){
+            quest=new CollectionQuest(painter,batch);
+        }else{
+            quest=new CraftingQuest(painter,batch);
+        }
+        entityController.add(quest);
+        quest.setLevel(levelAPI.getCurrentLevel());
     }
 
     public static void main(String[] args) {
