@@ -12,6 +12,8 @@ public class CollectionQuest extends Quest implements QuestObserver{
 
     String texturePath;
 
+    Items taskItem;
+    Items rewardItem;
 
     @Override
     public void questVorschlagen() {
@@ -59,40 +61,48 @@ public class CollectionQuest extends Quest implements QuestObserver{
     /**
      * zufällige Belohnung wählen
      *
-     * @param itemZahl Zahl des Items für die Aufgabe, damit Belohnung und Aufgabe nicht gleich sind
      */
-    public void chooseReward(int itemZahl){
+    public void chooseReward(){
         String reward="Dafür erhältst du ";
         int zufall = (int) (Math.random()*12);
-        Items item;
         if(zufall==0){
+            rewardItem=new SpeedPotion(getPainter(),getBatch());
             reward=reward+"einen Geschwindigkeitstrank";
         } else if (zufall==1) {
+            rewardItem=new SpeedDecreasePotion(getPainter(),getBatch());
             reward=reward+"einen Langsamkeitstrank";
         } else if (zufall==2) {
+            rewardItem=new Sword(getPainter(),getBatch());
             reward=reward+"ein Schwert";
         } else if (zufall==3) {
+            rewardItem=new Axe(getPainter(),getBatch());
             reward=reward+"eine Axt";
         } else if(zufall==4){
+            rewardItem= new Kraut(getPainter(),getBatch());
             reward=reward+"ein Kraut";
         } else if(zufall==5){
+            rewardItem=new Wein(getPainter(),getBatch());
             reward=reward+"einen Wein";
         } else if(zufall==6){
+            rewardItem=new Kochtopf(getPainter(),getBatch());
             reward=reward+"einen Kochtopf";
         } else if(zufall==7){
+            rewardItem=new Hammer(getPainter(),getBatch());
             reward=reward+"einen Hammer";
         }else if(zufall==8){
+            rewardItem=new Iron(getPainter(),getBatch());
             reward=reward+"ein Eisen";
         }else if(zufall==9){
+            rewardItem=new SwordRecipe(getPainter(),getBatch());
             reward=reward+"ein Rezept für Schwerter";
         }else {
+            rewardItem=new SpeedPotionRecipe(getPainter(),getBatch());
             reward=reward+"ein Rezept für Geschwindigkeitstränke";
         }
-        if(itemZahl==zufall){
-            this.chooseReward(itemZahl);
+        if(taskItem==rewardItem){
+            this.chooseReward();
         }
         else {
-            this.rewardZahl = zufall;
             this.questReward = reward;
         }
     }
@@ -107,26 +117,34 @@ public class CollectionQuest extends Quest implements QuestObserver{
         String aufgabe = "Sammel " + this.anzahl + " ";
         int zufall = (int) (Math.random()*9);
         if(zufall==0){
+            taskItem=new SpeedPotion(getPainter(),getBatch());
             aufgabe=aufgabe+"Geschwindigkeitstränke.";
         } else if (zufall==1) {
+            taskItem=new SpeedDecreasePotion(getPainter(),getBatch());
             aufgabe=aufgabe+"Langsamkeitstränke";
         } else if (zufall==2) {
+            taskItem=new Sword(getPainter(),getBatch());
             aufgabe=aufgabe+"Schwerter";
         } else if (zufall==3) {
+            taskItem=new Axe(getPainter(),getBatch());
             aufgabe=aufgabe+"Äxte";
         } else if(zufall==4){
+            taskItem=new Kraut(getPainter(),getBatch());
             aufgabe=aufgabe+"Kräuter";
         } else if(zufall==5){
+            taskItem=new Wein(getPainter(),getBatch());
             aufgabe=aufgabe+"Weine";
         } else if(zufall==6){
+            taskItem=new Kochtopf(getPainter(),getBatch());
             aufgabe=aufgabe+"Kochtöpfe";
         } else if(zufall==7){
+            taskItem=new Hammer(getPainter(),getBatch());
             aufgabe=aufgabe+"Hämmer";
         }else{
+            taskItem=new Iron(getPainter(),getBatch());
             aufgabe=aufgabe+"Eisen";
         }
-        this.chooseReward(zufall);
-        this.collectZahl=zufall;
+        this.chooseReward();
         return aufgabe;
     }
 
@@ -145,6 +163,7 @@ public class CollectionQuest extends Quest implements QuestObserver{
     public void questUpdate() {
 
     }
+
 }
 
 

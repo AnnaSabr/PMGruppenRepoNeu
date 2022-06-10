@@ -210,6 +210,11 @@ public class Inventar implements QuestObservable{
         }
     }
 
+    /**
+     * gibt die Anzahl der Items im Inventar aus
+     *
+     * @return
+     */
     public int getSize(){
         return inventar.size();
     }
@@ -229,5 +234,9 @@ public class Inventar implements QuestObservable{
         for(QuestObserver q : quests){
             q.questUpdate();
         }
+    }
+    public void questErfuellen(QuestObserver questObserver){
+
+
     }
 }

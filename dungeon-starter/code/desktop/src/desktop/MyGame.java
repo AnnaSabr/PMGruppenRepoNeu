@@ -305,7 +305,7 @@ public class MyGame extends MainController {
     }
 
     /**
-     *  neue Quest erstellen
+     *  zufällige Quest erstellen
      */
     public void questErstellen(){
         int zufall = (int) (Math.random()*2);
