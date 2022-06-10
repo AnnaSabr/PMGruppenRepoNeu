@@ -30,12 +30,11 @@ public class MyHero extends Figuren {
     static Inventar itemInventar = new Inventar();
     static Items hand;
     private int lebenspunkte;
-<<<<<<< HEAD
+
     static ArrayList<Quest> acceptedQuest = new ArrayList<>();
 
-=======
     private int time;
->>>>>>> 9caa89d944005f4f9c84e66108bdeae0de6919d3
+
 
     /**
      * Erstellt die einzelnen Animationslisten und added die entsprechenden Animationen

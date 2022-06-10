@@ -98,7 +98,7 @@ public class MyGame extends MainController {
                 MyHero.hand=null;
             }
         }
-<<<<<<< HEAD
+
         double itXquest=Math.round((quest.getPosition().x));
         double itYquest=Math.round((quest.getPosition().y));
         if(itXquest == heroX && itYquest == heroY && Gdx.input.isKeyJustPressed(Input.Keys.E)){
@@ -114,7 +114,7 @@ public class MyGame extends MainController {
                 }
             }
         }
-=======
+
         if (pfeil.isKaputt()){
             MyHero.itemInventar.inventar.remove(pfeil);
             MyHero.itemInventar.hinzufuegen(pfeil=new Pfeil(hero,EProjektile.NORD,painter,batch));
@@ -122,7 +122,6 @@ public class MyGame extends MainController {
             pfeil.setLevel(levelAPI.getCurrentLevel());
         }
 
->>>>>>> 9caa89d944005f4f9c84e66108bdeae0de6919d3
     }
 
 
@@ -340,19 +339,21 @@ public class MyGame extends MainController {
     }
 
     /**
-<<<<<<< HEAD
      *  zufällige Quest erstellen
      */
-    public void questErstellen(){
-        int zufall = (int) (Math.random()*2);
-        if(zufall==1){
-            quest=new CollectionQuest(painter,batch);
-        }else{
-            quest=new CraftingQuest(painter,batch);
+    public void questErstellen() {
+        int zufall = (int) (Math.random() * 2);
+        if (zufall == 1) {
+            quest = new CollectionQuest(painter, batch);
+        } else {
+            quest = new CraftingQuest(painter, batch);
         }
         entityController.add(quest);
         quest.setLevel(levelAPI.getCurrentLevel());
-=======
+    }
+
+
+     /**
      * bestimmt was passiert, wenn ein MOnster von einem Projektil getroffen wird
      */
     public void lebenAbziehen(){
@@ -368,7 +369,6 @@ public class MyGame extends MainController {
             }
         }
 
->>>>>>> 9caa89d944005f4f9c84e66108bdeae0de6919d3
     }
 
     public static void main(String[] args) {
