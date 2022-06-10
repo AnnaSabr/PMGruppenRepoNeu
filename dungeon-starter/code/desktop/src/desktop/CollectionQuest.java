@@ -29,6 +29,7 @@ public class CollectionQuest extends Quest implements QuestObserver{
                     System.out.println("Auftrag angenommen");
                     this.accepted=true;
                     MyHero.acceptedQuest.add(this);
+                    MyHero.itemInventar.register(this);
                     texturePath="character/umgebung/Ausrufezeichen.png";
                 }else{
                     System.out.println("Auftrag abgelehnt");
@@ -56,9 +57,6 @@ public class CollectionQuest extends Quest implements QuestObserver{
 
     int anzahl;
 
-    int collectZahl;
-
-    int rewardZahl;
 
     /**
      * zufällige Belohnung wählen
@@ -101,12 +99,7 @@ public class CollectionQuest extends Quest implements QuestObserver{
             rewardItem=new SpeedPotionRecipe(getPainter(),getBatch());
             reward=reward+"ein Rezept für Geschwindigkeitstränke";
         }
-        if(taskItem==rewardItem){
-            this.chooseReward();
-        }
-        else {
-            this.questReward = reward;
-        }
+        this.questReward = reward;
     }
 
     /**
@@ -116,7 +109,7 @@ public class CollectionQuest extends Quest implements QuestObserver{
      */
     public String chooseCollection(){
         this.anzahl = (int) (Math.random()*2) +2;
-        String aufgabe = "Sammel " + this.anzahl + " ";
+        String aufgabe = "Hole " + this.anzahl + " ";
         int zufall = (int) (Math.random()*9);
         if(zufall==0){
             taskItem=new SpeedPotion(getPainter(),getBatch());
@@ -161,9 +154,44 @@ public class CollectionQuest extends Quest implements QuestObserver{
         return texturePath;
     }
 
-    @Override
-    public void questUpdate() {
+    int gefunden=0;
 
+    @Override
+    public void questUpdate(Inventar inventar) {
+        if(this.taskItem instanceof SpeedPotion && inventar.recent instanceof SpeedPotion){
+            gefunden++;
+        } else if (this.taskItem instanceof SpeedDecreasePotion && inventar.recent instanceof SpeedDecreasePotion) {
+            gefunden++;
+        } else if (this.taskItem instanceof Sword && inventar.recent instanceof Sword){
+            gefunden++;
+        }else if (this.taskItem instanceof Axe && inventar.recent instanceof Axe){
+            gefunden++;
+        }else if (this.taskItem instanceof Kraut && inventar.recent instanceof Kraut){
+            gefunden++;
+        }else if (this.taskItem instanceof Wein && inventar.recent instanceof Wein){
+            gefunden++;
+        }else if (this.taskItem instanceof Kochtopf && inventar.recent instanceof Kochtopf){
+            gefunden++;
+        }else if (this.taskItem instanceof Hammer && inventar.recent instanceof Hammer){
+            gefunden++;
+        }else if (this.taskItem instanceof Iron && inventar.recent instanceof Iron){
+            gefunden++;
+        }
+        if(gefunden==this.anzahl){
+            this.erfuellt=true;
+            if(inventar.hinzufuegen(this.rewardItem)){
+                inventar.quests.remove(this);
+                MyHero.acceptedQuest.remove(this);
+                MyHero.itemInventar.unregister(this);
+            }
+        }
+        else if(erfuellt){
+            if(inventar.hinzufuegen(this.rewardItem)){
+                inventar.quests.remove(this);
+                MyHero.acceptedQuest.remove(this);
+                MyHero.itemInventar.unregister(this);
+            }
+        }
     }
 }
 

@@ -9,6 +9,10 @@ import tools.Point;
 
 public abstract class Quest extends Entity {
 
+    Items taskItem;
+    Items rewardItem;
+    boolean erfuellt=false;
+
     /**
      * Quest kann angenommen werden, wenn es noch nicht angenommen wurde
      */

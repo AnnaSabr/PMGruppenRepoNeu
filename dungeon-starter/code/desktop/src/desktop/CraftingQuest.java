@@ -26,6 +26,7 @@ public class CraftingQuest extends Quest implements QuestObserver{
                     System.out.println("Auftrag angenommen");
                     this.accepted=true;
                     MyHero.acceptedQuest.add(this);
+                    MyHero.itemInventar.register(this);
                     texturePath="character/umgebung/Ausrufezeichen.png";
                 }else{
                     System.out.println("Auftrag abgelehnt");
@@ -133,7 +134,35 @@ public class CraftingQuest extends Quest implements QuestObserver{
     }
 
     @Override
-    public void questUpdate() {
+    public void questUpdate(Inventar inventar) {
+        if(this.taskItem instanceof Sword){
+            if(inventar.recent instanceof Sword){
+                if(((Sword) inventar.recent).crafted){
+                    this.erfuellt=true;
+                    if(inventar.hinzufuegen(this.rewardItem)){
+                        inventar.quests.remove(this);
+                        MyHero.acceptedQuest.remove(this);
+                    }
+                }
+            }
+        } else if (this.taskItem instanceof SpeedPotion) {
+            if(inventar.recent instanceof SpeedPotion){
+                if(((SpeedPotion) inventar.recent).crafted){
+                    this.erfuellt=true;
+                    if(inventar.hinzufuegen(this.rewardItem)){
+                        inventar.quests.remove(this);
+                        MyHero.acceptedQuest.remove(this);
+                        MyHero.itemInventar.unregister(this);
+                    }
+                }
+            }
+        } else if (this.erfuellt) {
+            if(inventar.hinzufuegen(this.rewardItem)){
+                inventar.quests.remove(this);
+                MyHero.acceptedQuest.remove(this);
+                MyHero.itemInventar.unregister(this);
+            }
+        }
 
     }
 }

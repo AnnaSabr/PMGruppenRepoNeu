@@ -3,7 +3,7 @@ package desktop;
 public interface QuestObserver {
 
     /**
-     * update-Methode des Observer-Patterns für Quests
+     * update-Methode des Observer-Patterns für Quests, informiert Quests über neue Items im Inventarddddw
      */
-    void questUpdate();
+    void questUpdate(Inventar inventar);
 }

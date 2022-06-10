@@ -128,6 +128,8 @@ public class Inventar implements QuestObservable{
     public void itemEntfernen(int a){
             inventar.remove(a);
             a=a+1;
+            this.recent=null;
+            this.notifyObservers();
             System.out.println("Item " + a +" wurde entfernt.");
     }
 
@@ -160,6 +162,9 @@ public class Inventar implements QuestObservable{
         }
     }
 
+    Items recent;
+
+
     /**Item wird in das Inventar gelegt
      *
      * @param i
@@ -172,10 +177,14 @@ public class Inventar implements QuestObservable{
                     if (i instanceof Weapon && inventar.get(a).nameTyp=="Waffen") {
                         Weapon weapon = (Weapon) i;
                         ((Tasche<Weapon>) inventar.get(a)).tascheInventar.add(weapon);
+                        this.recent=weapon;
+                        this.notifyObservers();
                         return true;
                     } else if (i instanceof Potion && inventar.get(a).nameTyp=="Tränke") {
                         Potion potion= (Potion) i;
                         ((Tasche<Potion>)  inventar.get(a)).tascheInventar.add(potion);
+                        this.recent=potion;
+                        this.notifyObservers();
                         return true;
                     }
                 }
@@ -183,6 +192,8 @@ public class Inventar implements QuestObservable{
         }
         if(inventar.size()<5){
             inventar.add(i);
+            this.recent=i;
+            this.notifyObservers();
             return true;
         }
         else{
@@ -232,11 +243,8 @@ public class Inventar implements QuestObservable{
     @Override
     public void notifyObservers() {
         for(QuestObserver q : quests){
-            q.questUpdate();
+            q.questUpdate(this);
         }
     }
-    public void questErfuellen(QuestObserver questObserver){
 
-
-    }
 }
