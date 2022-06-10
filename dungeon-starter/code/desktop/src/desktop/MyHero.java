@@ -21,6 +21,8 @@ public class MyHero extends Figuren {
     private Animation idleAnimation;
 
 
+
+
     private List<String> animation;
     private List<String> rechts;
     private List<String> links;
@@ -28,8 +30,12 @@ public class MyHero extends Figuren {
     static Inventar itemInventar = new Inventar();
     static Items hand;
     private int lebenspunkte;
+<<<<<<< HEAD
     static ArrayList<Quest> acceptedQuest = new ArrayList<>();
 
+=======
+    private int time;
+>>>>>>> 9caa89d944005f4f9c84e66108bdeae0de6919d3
 
     /**
      * Erstellt die einzelnen Animationslisten und added die entsprechenden Animationen
@@ -43,6 +49,7 @@ public class MyHero extends Figuren {
         animation = new ArrayList<>();
         rechts= new ArrayList<>();
         links = new ArrayList<>();
+        time=0;
         animation.add("character/held/wizzard/wizzard_m_idle_anim_f0.png");
         animation.add("character/held/wizzard/r/wizzard_m_idle_anim_f0.png");
         animation.add("character/held/wizzard/wizzard_m_idle_anim_f1.png");
@@ -75,7 +82,7 @@ public class MyHero extends Figuren {
     public void update() {
         Point newPosition = new Point(getPosition());
         float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease;
-
+        time++;
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             newPosition.y += movementSpeed;
@@ -111,6 +118,45 @@ public class MyHero extends Figuren {
         if(Gdx.input.isKeyPressed(Input.Keys.T)){
             if(hand!=null){
                 hand=null;
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            for (Items ele:itemInventar.inventar){
+                if(ele instanceof Projektil){
+                    Projektil ele1 =(Projektil)ele;
+                        ele1.schiessen(EProjektile.OST);
+
+
+                }
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            for (Items ele:itemInventar.inventar){
+                if(ele instanceof Projektil){
+                    Projektil ele1 =(Projektil)ele;
+                        ele1.schiessen(EProjektile.WEST);
+
+
+                }
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            for (Items ele:itemInventar.inventar){
+                if(ele instanceof Projektil){
+                    Projektil ele1 =(Projektil)ele;
+                        ele1.schiessen(EProjektile.NORD);
+
+
+                }
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            for (Items ele:itemInventar.inventar){
+                if(ele instanceof Projektil){
+                    Projektil ele1 =(Projektil)ele;
+                        ele1.schiessen(EProjektile.SUED);
+
+                }
             }
         }
         if (getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {

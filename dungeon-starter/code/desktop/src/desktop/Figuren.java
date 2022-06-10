@@ -10,6 +10,9 @@ import tools.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * alle Figuren aka Monster Hero NPC
+ */
 public abstract class Figuren extends Animatable {
     private Point position;
     private Level currentLevel;
@@ -24,6 +27,7 @@ public abstract class Figuren extends Animatable {
     private List<String> links;
 
     private int time;
+    private boolean dead;
 
 
 
@@ -39,6 +43,7 @@ public abstract class Figuren extends Animatable {
         idleAnimation= new Animation(animation,5);
 
         time=0;
+        dead=false;
 
     }
 
@@ -51,6 +56,10 @@ public abstract class Figuren extends Animatable {
         position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
+    /**
+     *
+     * @return das aktuelle Level
+     */
     public Level getLevel(){
         return this.currentLevel;
     }
@@ -66,6 +75,10 @@ public abstract class Figuren extends Animatable {
         return position;
     }
 
+    /**
+     *
+     * @param po legt die leue Positon der Figur fest
+     */
     public void setPosition(Point po){
         this.position=po;
     }
@@ -94,44 +107,87 @@ public abstract class Figuren extends Animatable {
         return rechts;
     }
 
+
+    /**
+     *
+     * @return das Leben der Figur
+     */
     public int getLebenspunkte(){
         return lebenspunkte;
     }
 
+    /**
+     *
+     * @param abzug des Lebens der uebergebenen Punkte
+     */
     public void setLebenspunkte(int abzug){
         this.lebenspunkte=lebenspunkte-abzug;
     }
 
     @Override
     public boolean removable(){
-        boolean dead=false;
-        if (lebenspunkte==0){
+       dead=false;
+        if (lebenspunkte<=0){
             dead=true;
             return dead;
         }
         return dead;
     }
+
+    /**
+     *
+     * @param idleAnimation aktuelle Animation der Figur
+     */
     public void setIdleAnimation(Animation idleAnimation) {
         this.idleAnimation = idleAnimation;
     }
 
-
+    /**
+     *
+     * @return time zum Zaehlen der Sekunden in Update
+     */
     public int getTime() {
         return time;
     }
+
+    /**
+     *
+     * @param tm setzt den timer auf eine uebergebene Zeit
+     */
     public void setTime(int tm){
         this.time=tm;
     }
 
+    /**
+     *
+     * @param rechts bestimtm die Liste der der Texturen fuer die Rechte Animation
+     */
     public void setRechts(List<String> rechts){
         this.rechts=rechts;
     }
 
+    /**
+     *
+     * @param links  bestimtm die Liste der der Texturen fuer die linke Animation
+     */
     public void setLinks(List<String> links){
         this.links=links;
     }
 
+    /**
+     *
+     * @param animation bestimmt die aktuelle animation
+     */
     public void setAnimation(List<String> animation){
         this.animation=animation;
     }
+
+    /**
+     *
+     * @return bestimmt, dass die Fugur tot ist
+     */
+    public boolean isDead() {
+        return dead;
+    }
+
 }

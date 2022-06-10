@@ -22,10 +22,12 @@ public class MyGame extends MainController {
     private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
     private int levelCounter=0;
     ArrayList<Monster> monster;
+    ArrayList<Monster> monsterEntfernen;
     ArrayList<Fallen> fallen;
     Point heroposition;
     ArrayList<Items> it;
     Npc npc;
+    Pfeil pfeil;
 
     @Override
     protected void setup() {
@@ -35,6 +37,7 @@ public class MyGame extends MainController {
         monster = new ArrayList<>();
         item = new SpeedPotion(painter, batch);
         fallen = new ArrayList<>();
+        monsterEntfernen = new ArrayList<>();
         it= new ArrayList<>();
         // load the first level
         try {
@@ -52,6 +55,8 @@ public class MyGame extends MainController {
     @Override
     protected void beginFrame() {
         heroposition = hero.getPosition();
+
+
         double heroX = Math.round((heroposition.x * 100) / 100);
         double heroY = Math.round((heroposition.y * 100) / 100);
         for (Fallen element : fallen) {
@@ -66,6 +71,9 @@ public class MyGame extends MainController {
                 double monsterY = Math.round((ele.getPosition().y * 100) / 100);
                 if (monsterX == falleX && monsterY == falleY) {
                     element.effekte(ele);
+                }
+                if (ele.isDead()){
+                    monsterEntfernen.add(ele);
                 }
             }
         }
@@ -90,6 +98,7 @@ public class MyGame extends MainController {
                 MyHero.hand=null;
             }
         }
+<<<<<<< HEAD
         double itXquest=Math.round((quest.getPosition().x));
         double itYquest=Math.round((quest.getPosition().y));
         if(itXquest == heroX && itYquest == heroY && Gdx.input.isKeyJustPressed(Input.Keys.E)){
@@ -105,6 +114,15 @@ public class MyGame extends MainController {
                 }
             }
         }
+=======
+        if (pfeil.isKaputt()){
+            MyHero.itemInventar.inventar.remove(pfeil);
+            MyHero.itemInventar.hinzufuegen(pfeil=new Pfeil(hero,EProjektile.NORD,painter,batch));
+            entityController.add(pfeil);
+            pfeil.setLevel(levelAPI.getCurrentLevel());
+        }
+
+>>>>>>> 9caa89d944005f4f9c84e66108bdeae0de6919d3
     }
 
 
@@ -117,6 +135,14 @@ public class MyGame extends MainController {
                 e.printStackTrace();
             }
         }
+        lebenAbziehen();
+        if (monsterEntfernen!=null){
+            for (Monster mnst: monsterEntfernen){
+                monster.remove(mnst);
+            }
+            monsterEntfernen= new ArrayList<>();
+        }
+
     }
 
     @Override
@@ -128,6 +154,10 @@ public class MyGame extends MainController {
         entityController.remove(item);
         entityController.remove(chest);
         entityController.remove(quest);
+
+        for (Items element : it) {
+            entityController.remove(element);
+        }
 
         for (Monster element : monster) {
             entityController.remove(element);
@@ -154,6 +184,11 @@ public class MyGame extends MainController {
         npcGenerieren();
         npc.setLevel(levelAPI.getCurrentLevel());
         entityController.add(npc);
+        pfeil = new Pfeil(hero,EProjektile.NORD,painter,batch);
+        MyHero.itemInventar.hinzufuegen(pfeil);
+
+        entityController.add(pfeil);
+        pfeil.setLevel(levelAPI.getCurrentLevel());
         entityController.add(hero);
         monsterGenerieren();
         for (Monster element : monster) {
@@ -174,7 +209,7 @@ public class MyGame extends MainController {
         int r = ran.nextInt(2 + levelCounter);
         for (int a = 0; a < r; a++) {
             monster.add(MonsterCreator.getMonster(kuschel,1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.SKELET, painter, batch));
-            monster.add(MonsterCreator.getMonster(klassentreffen,1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.NECROMANT, painter, batch));
+            monster.add(MonsterCreator.getMonster(freiSchnauze,1 + levelCounter, 0.1f, 3 + levelCounter, EMonster.NECROMANT, painter, batch));
         }
     }
 
@@ -305,6 +340,7 @@ public class MyGame extends MainController {
     }
 
     /**
+<<<<<<< HEAD
      *  zufällige Quest erstellen
      */
     public void questErstellen(){
@@ -316,6 +352,23 @@ public class MyGame extends MainController {
         }
         entityController.add(quest);
         quest.setLevel(levelAPI.getCurrentLevel());
+=======
+     * bestimmt was passiert, wenn ein MOnster von einem Projektil getroffen wird
+     */
+    public void lebenAbziehen(){
+        if (pfeil.getRichtung()!=EProjektile.LEER){
+            for (Monster boese: monster){
+                double distanz = Math.sqrt(Math.pow(pfeil.getPosition().x - boese.getPosition().x, 2.0) + Math.pow(pfeil.getPosition().y - boese.getPosition().y, 2.0));
+                if(distanz<1){
+                    boese.getroffen(pfeil.getRichtung());
+                    boese.setLebenspunkte(2);
+                    pfeil.schrott();
+
+                }
+            }
+        }
+
+>>>>>>> 9caa89d944005f4f9c84e66108bdeae0de6919d3
     }
 
     public static void main(String[] args) {

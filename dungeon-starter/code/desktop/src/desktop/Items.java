@@ -8,6 +8,7 @@ import tools.Point;
 
 public abstract class Items extends Entity {
     Point position;
+    private Level currentLevel;
 
     String nameTyp;
     boolean taken;
@@ -27,13 +28,43 @@ public abstract class Items extends Entity {
         return position;
     }
 
-    public void setLevel(Level currentLevel) {
+    /**
+     *
+     * @param level bestimmt das aktuelle Level
+     */
+    public void setLevel(Level level) {
+        currentLevel = level;
     }
 
+    /**
+     *
+     * @return gibt das aktuelle Level aus
+     */
+    public Level getLevel(){
+        return this.currentLevel;
+    }
+
+    /**
+     *
+     * @param po setzt eine neue Position
+     */
+    public void setPosition(Point po){
+        this.position=po;
+    }
+
+
+    /**
+     *
+     * @return gibt an, dass das Item ausgeruestet ist
+     */
     public boolean isTaken() {
         return taken;
     }
 
+    /**
+     *
+     * @param taken
+     */
     public void setTaken(boolean taken) {
         this.taken = taken;
     }
