@@ -30,6 +30,8 @@ public class CollectionQuest extends Quest implements QuestObserver{
                     this.accepted=true;
                     MyHero.acceptedQuest.add(this);
                     texturePath="character/umgebung/Ausrufezeichen.png";
+                }else{
+                    System.out.println("Auftrag abgelehnt");
                 }
             }catch (Exception exception){
                 System.out.println("Auftrag abgelehnt");
@@ -163,7 +165,6 @@ public class CollectionQuest extends Quest implements QuestObserver{
     public void questUpdate() {
 
     }
-
 }
 
 
