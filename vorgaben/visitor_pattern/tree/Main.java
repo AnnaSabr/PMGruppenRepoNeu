@@ -36,5 +36,12 @@ public class Main {
         System.out.println(root.toDotGraph());
 
         // TODO Visitor
+        Inorder inorder = new Inorder();
+        Postorder postorder = new Postorder();
+        System.out.println("Inorder:");
+        root.accept(inorder);
+        System.out.println("Postorder:");
+        root.accept(postorder);
+
     }
 }

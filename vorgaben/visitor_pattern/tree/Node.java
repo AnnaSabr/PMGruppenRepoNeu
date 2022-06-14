@@ -7,7 +7,7 @@ import card.Card;
  *
  * @param <T> Data-Type to store.
  */
-public class Node<T extends Card> {
+public class Node<T extends Card> implements Elem {
     private Node leftChild;
     private Node rightChild;
     private T data;
@@ -81,5 +81,10 @@ public class Node<T extends Card> {
             dot += rightChild.toDot();
         }
         return dot;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }
