@@ -2,7 +2,10 @@ package desktop;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Painter;
+import level.elements.room.Tile;
 import tools.Point;
+
+import java.util.logging.Logger;
 
 /**
  * Oberklasse der Monster
@@ -12,6 +15,7 @@ import tools.Point;
 public abstract class Monster extends Figuren {
 
     private FigurenBewegung bewegung;
+
 
 
 
@@ -52,8 +56,27 @@ public abstract class Monster extends Figuren {
             newPosition.y-=stossWeite;}
         if (richtung==EProjektile.WEST){
             newPosition.x-=stossWeite;}
-        if (this.getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {
-            setPosition(newPosition);
+        Tile tile=this.getLevel().getTileAt(newPosition.toCoordinate());
+        try{
+            if (tile!=null&&tile.isAccessible()) {
+                setPosition(newPosition);
+            }
+        }
+        catch(ArrayIndexOutOfBoundsException e){}
+    }
+
+    /**
+     * Standart Angriff der Monster in Abhaengigkeit der Distanz zum Hero
+     *
+     * @param distanz die Distanz zum hero
+     * @return der Damage
+     */
+    public int angriff(double distanz){
+        if (distanz<1){
+            return getStaerke();
+        }
+        else{
+            return 0;
         }
     }
 }

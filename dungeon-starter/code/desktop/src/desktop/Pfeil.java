@@ -2,6 +2,7 @@ package desktop;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Painter;
+import level.elements.room.Tile;
 import tools.Point;
 
 /**
@@ -73,13 +74,17 @@ public class Pfeil extends Projektil {
         } else if (eP == EProjektile.WEST) {
             newPosition.x -= flugWeite;
         }
-        if (this.getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {
-            setPosition(newPosition);
-        } else {
-            kaputt = true;
+        try{
+            Tile tile =this.getLevel().getTileAt(newPosition.toCoordinate());
+            if (tile!=null&&tile.isAccessible()) {
+                setPosition(newPosition);
+            } else {
+                kaputt = true;
+            }
         }
-
-
+        catch (ArrayIndexOutOfBoundsException e){
+            kaputt=true;
+        }
     }
 
     @Override

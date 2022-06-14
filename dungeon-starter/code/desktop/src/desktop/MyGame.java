@@ -9,6 +9,7 @@ import tools.Point;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Logger;
 
 /**
  * Erzeugt den Game Loop und verwaltet die Helden und Monster
@@ -18,6 +19,7 @@ public class MyGame extends MainController {
     Items item;
     Chest chest;
     Quest quest;
+    private Logger logger=Logger.getLogger(this.getClass().getName());
 
     private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
     private int levelCounter=0;
@@ -28,11 +30,14 @@ public class MyGame extends MainController {
     ArrayList<Items> it;
     Npc npc;
     Pfeil pfeil;
+    BossTank tank;
+    private int time;
 
     @Override
     protected void setup() {
+        time=0;
         levelAPI.setGenerator(new LevelLoader()); //ausklammern fuer prozedualen Levelgenerator
-        hero = new MyHero(50 + levelCounter,5,0.1f, painter, batch);
+        hero = new MyHero(50,5,0.1f, painter, batch);
         heroposition = hero.getPosition();
         monster = new ArrayList<>();
         item = new SpeedPotion(painter, batch);
@@ -55,8 +60,7 @@ public class MyGame extends MainController {
     @Override
     protected void beginFrame() {
         heroposition = hero.getPosition();
-
-
+        time++;
         double heroX = Math.round((heroposition.x * 100) / 100);
         double heroY = Math.round((heroposition.y * 100) / 100);
         for (Fallen element : fallen) {
@@ -185,11 +189,15 @@ public class MyGame extends MainController {
         entityController.add(npc);
         pfeil = new Pfeil(hero,EProjektile.NORD,painter,batch);
         MyHero.itemInventar.hinzufuegen(pfeil);
-
         entityController.add(pfeil);
         pfeil.setLevel(levelAPI.getCurrentLevel());
         entityController.add(hero);
         monsterGenerieren();
+        FigurenBewegung tanken=new BewegungTank(hero);
+        if (levelCounter==1){
+            tank = new BossTank(tanken,30,5,0.6f,painter,batch);
+            monster.add(tank);
+        }
         for (Monster element : monster) {
             entityController.add(element);
             element.setLevel(levelAPI.getCurrentLevel());
@@ -355,6 +363,7 @@ public class MyGame extends MainController {
 
      /**
      * bestimmt was passiert, wenn ein MOnster von einem Projektil getroffen wird
+      * und den damage den MOnster am Helden machen
      */
     public void lebenAbziehen(){
         if (pfeil.getRichtung()!=EProjektile.LEER){
@@ -364,9 +373,20 @@ public class MyGame extends MainController {
                     boese.getroffen(pfeil.getRichtung());
                     boese.setLebenspunkte(2);
                     pfeil.schrott();
-
                 }
             }
+        }
+        for (Monster ele: monster){
+            int damage=0;
+            double distanz = Math.sqrt(Math.pow(hero.getPosition().x - ele.getPosition().x, 2.0) + Math.pow(hero.getPosition().y - ele.getPosition().y, 2.0));
+            damage=ele.angriff(distanz);
+            if (distanz<3&&time%30==0){
+                hero.setLebenspunkte(damage);
+                if (ele instanceof BossTank){
+                    logger.info("Boss damage: "+damage);
+                }
+            }
+
         }
 
     }

@@ -28,6 +28,7 @@ public abstract class Figuren extends Animatable {
 
     private int time;
     private boolean dead;
+    private int gesamtesLeben;
 
 
 
@@ -36,6 +37,7 @@ public abstract class Figuren extends Animatable {
         this.lebenspunkte=lebenspunkte;
         this.staerke=staerke;
         this.geschwindigkeit=geschwindigkeit;
+        this.gesamtesLeben=lebenspunkte;
 
         animation= new ArrayList<>();
         links = new ArrayList<>();
@@ -124,6 +126,9 @@ public abstract class Figuren extends Animatable {
         this.lebenspunkte=lebenspunkte-abzug;
     }
 
+    public void setLebenspunkteStart(int leben){
+        this.lebenspunkte=leben;
+    }
     @Override
     public boolean removable(){
        dead=false;
@@ -190,4 +195,44 @@ public abstract class Figuren extends Animatable {
         return dead;
     }
 
+
+    /**
+     *
+     * @return staerke der aktuellen Figur
+     */
+    public int getStaerke() {
+        return staerke;
+    }
+
+    /**
+     *
+     * @param staerke legt die Staerke der aktuellen Figur fest
+     */
+    public void setStaerke(int staerke) {
+        this.staerke = staerke;
+    }
+
+    /**
+     *
+     * @return gibt die aktuelle Geschwindigkeit der Figur zurueck
+     */
+    public float getGeschwindigkeit() {
+        return geschwindigkeit;
+    }
+
+    /**
+     *
+     * @param geschwindigkeit setzt diese bei der aktuellen Figur
+     */
+    public void setGeschwindigkeit(float geschwindigkeit) {
+        this.geschwindigkeit = geschwindigkeit;
+    }
+
+    /**
+     *
+     * @return den Wert, den die Figur beim erstellen als Lebenspunkte uebergeben bekommen hat
+     */
+    public int getGesamtesLeben(){
+        return gesamtesLeben;
+    }
 }
