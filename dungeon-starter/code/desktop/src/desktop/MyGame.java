@@ -2,7 +2,9 @@ package desktop;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import controller.HUDController;
 import controller.MainController;
+import graphic.HUDPainter;
 import level.generator.LevelLoader.LevelLoader;
 import level.generator.dungeong.graphg.NoSolutionException;
 import tools.Point;
@@ -117,6 +119,11 @@ public class MyGame extends MainController {
                     System.out.println(MyHero.acceptedQuest.get(a).questReward);
                 }
             }
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
+            InventarUI ui = new InventarUI(hudPainter,hudBatch);
+            hudController.add(ui);
+            ui.setLevel(levelAPI.getCurrentLevel());
         }
 
         if (pfeil.isKaputt()){
@@ -287,7 +294,7 @@ public class MyGame extends MainController {
      */
     public void itemPlatzieren(){
         int zufall = (int) (Math.random()*13);
-        //int zufall = 9;
+        //int zufall = 3;
         if(zufall==0){
             item =new SpeedPotion(painter, batch);
         } else if (zufall==1) {

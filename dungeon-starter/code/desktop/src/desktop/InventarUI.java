@@ -3,6 +3,7 @@ package desktop;
 import basiselements.HUDElement;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.HUDPainter;
+import level.elements.Level;
 import tools.Point;
 
 public class InventarUI extends HUDElement {
@@ -17,12 +18,31 @@ public class InventarUI extends HUDElement {
     public InventarUI(HUDPainter painter, SpriteBatch batch) {
         super(painter, batch);
         texturePath="character/items/Store.png";
-        position = new Point(300,300);
+        position = new Point(0,0);
+        this.drawWithScaling(100,500);
     }
 
+    /**
+     *  bestimmt die Position im aktuellen Level
+     * @param level ist das aktuelle Level
+     */
+    public void setLevel(Level level) {
+        currentLevel = level;
+        //position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
+    }
+
+    /**
+     *
+     * @return das aktuelle Level
+     */
+    public Level getLevel(){
+        return this.currentLevel;
+    }
+
+    private Level currentLevel;
     String texturePath;
     Point position;
-    boolean invisible = true;
+    boolean invisible = false;
 
     @Override
     public Point getPosition() {
@@ -31,7 +51,7 @@ public class InventarUI extends HUDElement {
 
     @Override
     public String getTexturePath() {
-        return null;
+        return texturePath;
     }
 
     @Override

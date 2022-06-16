@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Animation;
+import graphic.HUDPainter;
 import graphic.Painter;
 import tools.Point;
 import level.elements.Level;
@@ -103,9 +104,7 @@ public class MyHero extends Figuren {
                 key="d";
             }
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
-            itemInventar.anzeigen();
-        }
+
         if(Gdx.input.isKeyJustPressed(Input.Keys.L)){
             if(hand instanceof Potion){
                 ((Potion) hand).usePotion();
