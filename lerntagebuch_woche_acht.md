@@ -67,7 +67,7 @@ Bitte hier die Umsetzung der Lösung kurz beschreiben:
 -->
 BossMonster: Hat genauso geklappt wie vorher vermutet. 
 
-Inventar UI: Das Inventar ist ein HUD Element. Es wird an einer festen Position angezeigt. Um ein Item auszurüsten, muss es mit der Maus ausgewählt werden. Das ausgewählte Item wird in einer Variable in Inventar gespeichert. Das Item wird dann ausgerüstet, wenn der Slot für die Hand ausgewählt wird.
+Inventar UI: Das Inventar ist ein HUD Element. Es wird an einer festen Position angezeigt. Um ein Item auszurüsten, muss es mit der Maus ausgewählt werden. Das ausgewählte Item wird in einer Variable in Inventar gespeichert. Das Item wird dann ausgerüstet, wenn der Slot für die Hand ausgewählt wird. Wenn der ausgewählte Slot erneut ausgewählt wird und sich darin ein Trank befindet, wird dieser verwendet.
 # Postmortem
 
 <!--
