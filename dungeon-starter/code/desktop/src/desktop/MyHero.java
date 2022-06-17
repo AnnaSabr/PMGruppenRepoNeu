@@ -29,7 +29,7 @@ public class MyHero extends Figuren {
     private List<String> links;
     String key="x";
     static Inventar itemInventar = new Inventar();
-    static Items hand;
+    static Items hand = null;
     private int lebenspunkte;
 
     static ArrayList<Quest> acceptedQuest = new ArrayList<>();

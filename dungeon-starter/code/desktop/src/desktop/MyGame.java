@@ -2,6 +2,7 @@ package desktop;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import controller.ControllerLayer;
 import controller.HUDController;
 import controller.MainController;
 import graphic.HUDPainter;
@@ -34,6 +35,8 @@ public class MyGame extends MainController {
     Pfeil pfeil;
     BossTank tank;
     private int time;
+    boolean inventarVisible = false;
+    InventarUI ui;
 
     @Override
     protected void setup() {
@@ -121,9 +124,53 @@ public class MyGame extends MainController {
             }
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
-            InventarUI ui = new InventarUI(hudPainter,hudBatch);
-            hudController.add(ui);
-            ui.setLevel(levelAPI.getCurrentLevel());
+            if(!inventarVisible){
+                ui = new InventarUI(hudPainter,hudBatch);
+                hudController.add(ui.slot1, new ControllerLayer(ControllerLayer.TOP_VALUE));
+                hudController.add(ui.slot2, new ControllerLayer(ControllerLayer.TOP_VALUE));
+                hudController.add(ui.slot3, new ControllerLayer(ControllerLayer.TOP_VALUE));
+                hudController.add(ui.slot4, new ControllerLayer(ControllerLayer.TOP_VALUE));
+                hudController.add(ui.slot5, new ControllerLayer(ControllerLayer.TOP_VALUE));
+                hudController.add(ui.slotHand, new ControllerLayer(ControllerLayer.TOP_VALUE));
+
+                hudController.add(ui, new ControllerLayer(ControllerLayer.DEFAULT_VALUE));
+                this.inventarVisible=true;
+                ui.setLevel(levelAPI.getCurrentLevel());
+            }else{
+                ui.invisible=true;
+                hudController.remove(ui.slot1);
+                hudController.remove(ui.slot2);
+                hudController.remove(ui.slot3);
+                hudController.remove(ui.slot4);
+                hudController.remove(ui.slot5);
+                hudController.remove(ui.slotHand);
+                this.inventarVisible=false;
+            }
+        }
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+            if(Gdx.input.getY()>6 && Gdx.input.getY()<45){
+                if(Gdx.input.getX()>7 && Gdx.input.getX()<45){
+                    System.out.println("slot 1");
+                    ui.ausgewaehlt=ui.slot1;
+                }else if(Gdx.input.getX()>60 && Gdx.input.getX()<100){
+                    ui.ausgewaehlt=ui.slot2;
+                }else if(Gdx.input.getX()>114 && Gdx.input.getX()<153){
+                    ui.ausgewaehlt=ui.slot3;
+                }else if(Gdx.input.getX()>168 && Gdx.input.getX()<207){
+                    ui.ausgewaehlt=ui.slot4;
+                }else if(Gdx.input.getX()>220 && Gdx.input.getX()<261){
+                    ui.ausgewaehlt=ui.slot5;
+                }else if(Gdx.input.getX()>274 && Gdx.input.getX()<313){
+                    System.out.println(ui.ausgewaehlt);
+                    this.auswaehlenTausch();
+                }
+
+            }
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Q)){
+            System.out.println("coord");
+            System.out.println(Gdx.input.getX());
+            System.out.println(Gdx.input.getY());
         }
 
         if (pfeil.isKaputt()){
@@ -288,6 +335,30 @@ public class MyGame extends MainController {
         chest.setLevel(levelAPI.getCurrentLevel());
     }
 
+    /**
+     * ausgewähltes Item mit Hand-Item tauschen
+     */
+    public void auswaehlenTausch(){
+        if(ui.ausgewaehlt!=null){
+            int a = 0;
+            if(ui.ausgewaehlt.equals(ui.slot1)){
+                a=0;
+            } else if (ui.ausgewaehlt.equals(ui.slot2)) {
+                a=1;
+            } else if (ui.ausgewaehlt.equals(ui.slot3)) {
+                a=2;
+            } else if (ui.ausgewaehlt.equals(ui.slot4)) {
+                a=3;
+            } else if (ui.ausgewaehlt.equals(ui.slot5)) {
+                a=4;
+            }
+            Items i = MyHero.itemInventar.inventar.get(a);
+            MyHero.itemInventar.inventar.remove(a);
+            MyHero.itemInventar.inventar.add(MyHero.hand);
+            MyHero.hand = i;
+            ui.ausgewaehlt=null;
+        }
+    }
 
     /**
      * erstellt ein zufälliges Item

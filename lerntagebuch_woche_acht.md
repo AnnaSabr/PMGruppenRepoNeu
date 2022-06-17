@@ -35,6 +35,8 @@ einbetten (etwa UML-Diagramme), denken Sie daran, diese auch abzugeben!
 
 # Aufgabe
 BossMonster: Ein Bossmonster erstellen, welches eigene Texturen, Animationen, Angriffsmuster, Bewegungsmuster und Angriffe in Abhaengigkeit von seinem Leben hat.
+
+Inventar UI: Eine grafische Darstellung des Inventars, die der Spieler mit der Maus bedienen kann.
 <!--
 Bitte hier die zu lösende Aufgabe kurz in eigenen Worten beschreiben.
 -->
@@ -52,6 +54,7 @@ Bitte hier den Lösungsansatz kurz beschreiben:
 -->
 BossMonster: Da es auch nur eine Art Monster ist, kann man das individuelle BossMonster von der Monster Klasse extenden und dann die besonderen Funktionen ueberschreiben.
 
+Inventar UI: Das Inventar soll als HUD Element dargestellt werden. Es soll eingeblendet und entfernt werden können, deswegen muss über eine boolean Variable festgelegt werden, ob das Inventar angezeigt wird oder nicht.
 
 # Umsetzung
 
@@ -64,6 +67,7 @@ Bitte hier die Umsetzung der Lösung kurz beschreiben:
 -->
 BossMonster: Hat genauso geklappt wie vorher vermutet. 
 
+Inventar UI: Das Inventar ist ein HUD Element. Es wird an einer festen Position angezeigt. Um ein Item auszurüsten, muss es mit der Maus ausgewählt werden. Das ausgewählte Item wird in einer Variable in Inventar gespeichert. Das Item wird dann ausgerüstet, wenn der Slot für die Hand ausgewählt wird.
 # Postmortem
 
 <!--
@@ -74,3 +78,5 @@ kritisch zurück:
 -   Wie haben Sie die Probleme letztlich gelöst?
 -->
 BossMonster: War umsetzbar.
+
+Inventar UI: Die Items konnten nicht über das Inventar dargestellt werden, weil der HUD Controller die Items vom Typ Entity nicht verwalten kann. Für das Inventar mussten neue grafische Darstellungen erstellt werden. Diese neuen Bilder waren wegen eines Problems mit dem Bildbearbeitungsprogramm zuerst zu groß für das Inventar.
