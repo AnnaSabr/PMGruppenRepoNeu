@@ -150,7 +150,7 @@ public class MyGame extends MainController {
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
             if(Gdx.input.getY()>6 && Gdx.input.getY()<45){
                 if(Gdx.input.getX()>7 && Gdx.input.getX()<45){
-                    if(ui.ausgewaehlt==ui.slot1){
+                    if(ui.ausgewaehlt==ui.slot1 && MyHero.itemInventar.inventar.size()>=1){
                         if(MyHero.itemInventar.inventar.get(0) instanceof Potion){
                             ((Potion) MyHero.itemInventar.inventar.get(0)).usePotion();
                             MyHero.itemInventar.inventar.remove(0);
@@ -160,7 +160,7 @@ public class MyGame extends MainController {
                     }
                     System.out.println("slot 1");
                 }else if(Gdx.input.getX()>60 && Gdx.input.getX()<100){
-                    if(ui.ausgewaehlt==ui.slot2){
+                    if(ui.ausgewaehlt==ui.slot2 && MyHero.itemInventar.inventar.size()>=2){
                         if(MyHero.itemInventar.inventar.get(1) instanceof Potion){
                             ((Potion) MyHero.itemInventar.inventar.get(1)).usePotion();
                             MyHero.itemInventar.inventar.remove(1);
@@ -169,7 +169,7 @@ public class MyGame extends MainController {
                         ui.ausgewaehlt=ui.slot2;
                     }
                 }else if(Gdx.input.getX()>114 && Gdx.input.getX()<153){
-                    if(ui.ausgewaehlt==ui.slot3){
+                    if(ui.ausgewaehlt==ui.slot3 && MyHero.itemInventar.inventar.size()>=3){
                         if(MyHero.itemInventar.inventar.get(2) instanceof Potion){
                             ((Potion) MyHero.itemInventar.inventar.get(2)).usePotion();
                             MyHero.itemInventar.inventar.remove(2);
@@ -178,7 +178,7 @@ public class MyGame extends MainController {
                         ui.ausgewaehlt=ui.slot3;
                     }
                 }else if(Gdx.input.getX()>168 && Gdx.input.getX()<207){
-                    if(ui.ausgewaehlt==ui.slot4){
+                    if(ui.ausgewaehlt==ui.slot4 && MyHero.itemInventar.inventar.size()>=4){
                         if(MyHero.itemInventar.inventar.get(3) instanceof Potion){
                             ((Potion) MyHero.itemInventar.inventar.get(3)).usePotion();
                             MyHero.itemInventar.inventar.remove(3);
@@ -187,7 +187,7 @@ public class MyGame extends MainController {
                         ui.ausgewaehlt=ui.slot4;
                     }
                 }else if(Gdx.input.getX()>220 && Gdx.input.getX()<261){
-                    if(ui.ausgewaehlt==ui.slot5){
+                    if(ui.ausgewaehlt==ui.slot5 && MyHero.itemInventar.inventar.size()>=5){
                         if(MyHero.itemInventar.inventar.get(4) instanceof Potion){
                             ((Potion) MyHero.itemInventar.inventar.get(4)).usePotion();
                             MyHero.itemInventar.inventar.remove(4);
@@ -198,13 +198,40 @@ public class MyGame extends MainController {
                 }else if(Gdx.input.getX()>274 && Gdx.input.getX()<313){
                     System.out.println(ui.ausgewaehlt);
                     if(!this.auswaehlenTausch()){
-                        if(MyHero.itemInventar.inventar.get(4) instanceof Potion){
+                        if(MyHero.hand instanceof Potion){
                             ((Potion) MyHero.itemInventar.inventar.get(4)).usePotion();
                             MyHero.itemInventar.inventar.remove(4);
                         }
                     }
                 }
 
+            }
+        }
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)){
+            if(Gdx.input.getY()>6 && Gdx.input.getY()<45){
+                if(Gdx.input.getX()>7 && Gdx.input.getX()<45){
+                    if(MyHero.itemInventar.inventar.size()>=1){
+                        MyHero.itemInventar.inventar.remove(0);
+                    }
+                } else if(Gdx.input.getX()>60 && Gdx.input.getX()<100) {
+                    if(MyHero.itemInventar.inventar.size()>=2){
+                        MyHero.itemInventar.inventar.remove(1);
+                    }
+                }else if(Gdx.input.getX()>168 && Gdx.input.getX()<207){
+                    if(MyHero.itemInventar.inventar.size()>=4){
+                        MyHero.itemInventar.inventar.remove(3);
+                    }
+                }else if(Gdx.input.getX()>114 && Gdx.input.getX()<153){
+                    if(MyHero.itemInventar.inventar.size()>=3){
+                        MyHero.itemInventar.inventar.remove(2);
+                    }
+                }else if(Gdx.input.getX()>220 && Gdx.input.getX()<261){
+                    if(MyHero.itemInventar.inventar.size()>=5){
+                        MyHero.itemInventar.inventar.remove(4);
+                    }
+                }else if(Gdx.input.getX()>274 && Gdx.input.getX()<313){
+                    MyHero.hand=null;
+                }
             }
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.Q)){
@@ -391,13 +418,14 @@ public class MyGame extends MainController {
                 a=3;
             } else if (ui.ausgewaehlt.equals(ui.slot5)) {
                 a=4;
+            }if(MyHero.itemInventar.inventar.size()>=a+1){
+                Items i = MyHero.itemInventar.inventar.get(a);
+                MyHero.itemInventar.inventar.remove(a);
+                MyHero.itemInventar.inventar.add(MyHero.hand);
+                MyHero.hand = i;
+                ui.ausgewaehlt=null;
+                return true;
             }
-            Items i = MyHero.itemInventar.inventar.get(a);
-            MyHero.itemInventar.inventar.remove(a);
-            MyHero.itemInventar.inventar.add(MyHero.hand);
-            MyHero.hand = i;
-            ui.ausgewaehlt=null;
-            return true;
         }
         return false;
     }
