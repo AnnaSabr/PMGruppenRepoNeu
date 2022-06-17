@@ -17,7 +17,7 @@ public class InventarUI extends HUDElement {
      */
     public InventarUI(HUDPainter painter, SpriteBatch batch) {
         super(painter, batch);
-        texturePath="character/items/Rucksack mit Hand.png";
+        texturePath="character/items/Rucksack_mit_Hand.png";
         position = new Point(0,0);
 
         Items[] i = new Items[5];

@@ -52,7 +52,7 @@ public class SpeedPotion extends Potion{
         if(SpeedIncrease<0.2){
             SpeedIncrease=SpeedIncrease+0.02f;
         }
-        MyHero.hand=null;
+        //MyHero.hand=null;
 
     }
 

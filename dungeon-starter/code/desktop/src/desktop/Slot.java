@@ -8,9 +8,9 @@ import tools.Point;
 public class Slot extends HUDElement {
 
     String texturePath;
-    String[] texturen = {"character/items/barrelgrey_side_inv.png","character/items/book_inv.png","character/items/flask_blue_inv.png","character/items/bag_inv.png","character/items/key_inv.png","character/items/Hammer_inv.png","character/items/Nord_inv.png","character/items/Plant_inv.png","character/items/Topf_inv.png","character/items/weapon_axe_inv.png","character/items/weapon katana_inv.png","character/items/wine_inv.png","character/items/yellow book_inv.png","character/items/key_Hand.png"};
+    String[] texturen = {"character/items/barrelgrey_side_inv.png","character/items/book_inv.png","character/items/flask_blue_inv.png","character/items/bag_inv.png","character/items/key_inv.png","character/items/Hammer_inv.png","character/items/Nord_inv.png","character/items/Plant_inv.png","character/items/Topf_inv.png","character/items/weapon_axe_inv.png","character/items/weapon_katana_inv.png","character/items/wine_inv.png","character/items/yellow_book_inv.png","character/items/Leer_inv.png"};
 
-    String[] handTexturen={};
+    String[] handTexturen={"character/items/barrelgrey_side_hand.png","character/items/Book_Hand.png","character/items/flask_blue_Hand.png","character/items/bag_Hand.png","character/items/key_Hand.png","character/items/Hammer_Hand.png","character/items/Nord_Hand.png","character/items/Plant_Hand.png","character/items/Topf_Hand.png","character/items/weapon_axe_Hand.png","character/items/weapon_katana_Hand.png","character/items/Wine_Hand.png","character/items/yellow_book_Hand.png","character/items/Leer_Hand.png"};
 
     boolean hand;
 
@@ -25,7 +25,7 @@ public class Slot extends HUDElement {
         super(painter, batch);
         this.hand = hand;
         if(hand){
-            texturePath=texturen[objekt];
+            texturePath=handTexturen[objekt];
         }else {
             texturePath=texturen[objekt];
         }

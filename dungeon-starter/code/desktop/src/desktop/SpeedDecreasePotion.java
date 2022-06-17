@@ -51,7 +51,7 @@ public class SpeedDecreasePotion extends Potion{
         if(SpeedPotion.SpeedIncrease+ SpeedDecrease >-0.04f){
             SpeedDecrease = SpeedDecrease -0.02f;
         }
-        MyHero.hand=null;
+        //MyHero.hand=null;
 
     }
 
