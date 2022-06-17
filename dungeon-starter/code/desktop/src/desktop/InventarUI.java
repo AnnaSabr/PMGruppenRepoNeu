@@ -46,7 +46,7 @@ public class InventarUI extends HUDElement {
      */
     public int slotNumber(Items items){
         if(items==null){
-            return 13;
+            return 14;
         }
         if(items instanceof Iron){
             return 0;
@@ -74,8 +74,10 @@ public class InventarUI extends HUDElement {
             return 11;
         }else if(items instanceof SwordRecipe){
             return 12;
-        }else{
+        } else if (items instanceof SpeedDecreasePotion) {
             return 13;
+        } else{
+            return 14;
         }
     }
 
