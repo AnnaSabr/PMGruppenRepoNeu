@@ -27,6 +27,10 @@ public class Kunde implements Runnable {
         }
     }
 
+    /**
+     *
+     * @return das Konto des Kunden
+     */
     public Konto getKonto() {
         return konto;
     }
