@@ -8,7 +8,7 @@ public class Konto {
      * @param betrag Betrag der von diesem Konto abgezogen werden soll
      * @return true wenn der Betrag abgezogen wurde, false wenn nicht
      */
-    public boolean sendeGeld(double betrag) {
+    public synchronized boolean sendeGeld(double betrag) {
         while (betrag > kontostand) {
             return false;
         }
@@ -21,7 +21,7 @@ public class Konto {
      *
      * @param betrag Betrag der diesem Konto gutgeschrieben werden soll
      */
-    public void empfangeGeld(double betrag) {
+    public synchronized void empfangeGeld(double betrag) {
         kontostand += betrag;
     }
 }
