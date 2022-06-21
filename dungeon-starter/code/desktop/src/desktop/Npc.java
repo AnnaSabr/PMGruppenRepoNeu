@@ -38,6 +38,10 @@ public abstract class  Npc extends Figuren{
 
     }
 
+    /**
+     *
+     * @return Array mit den geheimen Zitaten
+     */
     public String[] getZitate() {
         return zitate;
     }
@@ -49,8 +53,15 @@ public abstract class  Npc extends Figuren{
         bewegung.bewegen(this);
     }
 
+    /**
+     * Methode fuer die Dialog Muster der NPCs
+     */
     public abstract void dialog();
 
+    /**
+     *
+     * @return unsere Eingaben zum Dialog
+     */
     public String sprachEingabe(){
         String eingabe="";
         Scanner sc= new Scanner(System.in);
@@ -58,6 +69,11 @@ public abstract class  Npc extends Figuren{
         return eingabe;
     }
 
+    /**
+     * Wertet die Eingabe des Spielers aus
+     * @param eingabe das was der Spieler sagt
+     * @return welche Art die Aussage des Spielers war
+     */
     public DialogAntwortArt auswertungEingabe(String eingabe){
         List<DialogAntwortArt> gematched=new ArrayList<DialogAntwortArt>();
 

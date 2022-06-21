@@ -539,6 +539,9 @@ public class MyGame extends MainController {
         }
     }
 
+    /**
+     * ruft die dialog Funktion auf
+     */
     public void dia(){
         double distanz = Math.sqrt(Math.pow(hero.getPosition().x - npc.getPosition().x, 2.0) + Math.pow(hero.getPosition().y - npc.getPosition().y, 2.0));
         if (distanz<3&&Gdx.input.isKeyJustPressed(Input.Keys.E)){
