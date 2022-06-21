@@ -37,6 +37,7 @@ public class MyGame extends MainController {
     private int time;
     boolean inventarVisible = false;
     InventarUI ui;
+    private boolean amReden=false;
 
     @Override
     protected void setup() {
@@ -68,6 +69,7 @@ public class MyGame extends MainController {
         time++;
         double heroX = Math.round((heroposition.x * 100) / 100);
         double heroY = Math.round((heroposition.y * 100) / 100);
+        dia();
         for (Fallen element : fallen) {
             double falleX = Math.round((element.getPosition().x * 100) / 100);
             double falleY = Math.round((element.getPosition().y * 100) / 100);
@@ -534,9 +536,14 @@ public class MyGame extends MainController {
                     logger.info("Boss damage: "+damage);
                 }
             }
-
         }
+    }
 
+    public void dia(){
+        double distanz = Math.sqrt(Math.pow(hero.getPosition().x - npc.getPosition().x, 2.0) + Math.pow(hero.getPosition().y - npc.getPosition().y, 2.0));
+        if (distanz<3&&Gdx.input.isKeyJustPressed(Input.Keys.E)){
+            npc.dialog();
+        }
     }
 
     public static void main(String[] args) {
