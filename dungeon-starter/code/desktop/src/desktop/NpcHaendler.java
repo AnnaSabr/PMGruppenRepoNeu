@@ -94,8 +94,8 @@ public class NpcHaendler extends Npc {
                Random r = new Random();
                int minimum=0;
                int lanege=getZitate().length;
-               int z = minimum+r.nextInt(lanege-minimum+1);
-               logger.info(getZitate()[z]);
+               int z = minimum+r.nextInt(lanege-minimum)+1;
+               logger.info("\n"+getZitate()[z-1]+"\n\n");
             }
         }
     }
