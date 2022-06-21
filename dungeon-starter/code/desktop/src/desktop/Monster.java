@@ -56,8 +56,8 @@ public abstract class Monster extends Figuren {
             newPosition.y-=stossWeite;}
         if (richtung==EProjektile.WEST){
             newPosition.x-=stossWeite;}
-        Tile tile=this.getLevel().getTileAt(newPosition.toCoordinate());
         try{
+            Tile tile=this.getLevel().getTileAt(newPosition.toCoordinate());
             if (tile!=null&&tile.isAccessible()) {
                 setPosition(newPosition);
             }

@@ -158,7 +158,6 @@ public class MyGame extends MainController {
                     }else{
                         ui.ausgewaehlt=ui.slot1;
                     }
-                    System.out.println("slot 1");
                 }else if(Gdx.input.getX()>60 && Gdx.input.getX()<100){
                     if(ui.ausgewaehlt==ui.slot2 && MyHero.itemInventar.inventar.size()>=2){
                         if(MyHero.itemInventar.inventar.get(1) instanceof Potion){
@@ -271,6 +270,7 @@ public class MyGame extends MainController {
 
     @Override
     public void onLevelLoad() {
+        MyHero.itemInventar.inventar.remove(pfeil);
         heroposition = hero.getPosition();
         levelCounter++;
         entityController.remove(hero);
