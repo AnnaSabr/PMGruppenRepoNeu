@@ -37,7 +37,7 @@ public class MyGame extends MainController {
     boolean inventarVisible = false;
     InventarUI ui;
     private boolean amReden=false;
-    static int geld=0;
+    static int geld=10;
     Kontostand k;
     Shop shop;
 
@@ -61,10 +61,17 @@ public class MyGame extends MainController {
             Gdx.app.exit();
         }
         k=new Kontostand(hudPainter,hudBatch);
+        hudController.add(k);
+        hudController.add(k.z1);
+        if(geld>9){
+            hudController.add(k.z2);
+        }
+        if(geld>99){
+            hudController.add(k.z3);
+        }
         shop=new Shop(painter,batch);
         shop.setLevel(levelAPI.getCurrentLevel());
         entityController.add(shop);
-        hudController.add(k);
         camera.follow(hero);
         entityController.add(item);
         hudController.add(new Icon(hudPainter, hudBatch, new Point(0f,0f)));
@@ -101,12 +108,29 @@ public class MyGame extends MainController {
             if (itX == heroX && itY == heroY&&Gdx.input.isKeyJustPressed(Input.Keys.E)) {
                 if(item instanceof Geld){
                     item.setTaken(true);
-                    geld++;
+                    entityController.remove(item);
                     hudController.remove(k);
-                    hudController.add(k=new Kontostand(hudPainter,hudBatch));
+                    hudController.remove(k.z1);
+                    if(geld>9){
+                        hudController.remove(k.z2);
+                    }
+                    if(geld>99){
+                        hudController.remove(k.z3);
+                    }
+                    geld++;
+                    k=new Kontostand(hudPainter,hudBatch);
+                    hudController.add(k);
+                    hudController.add(k.z1);
+                    if(geld>9){
+                        hudController.add(k.z2);
+                    }
+                    if(geld>99){
+                        hudController.add(k.z3);
+                    }
                 }
                 else if(MyHero.itemInventar.hinzufuegen(item)){
                     item.setTaken(true);
+                    entityController.remove(item);
                 }
 
             }

@@ -16,15 +16,28 @@ public class Kontostand extends HUDElement {
      */
     public Kontostand(HUDPainter painter, SpriteBatch batch) {
         super(painter, batch);
+        texturePath="hud/Ziffer0.png";
+        position=new Point(500,0);
         String a = String.valueOf(MyGame.geld);
-        for(int b = 0; b<a.length(); b++){
-            Character c=a.charAt(b);
-            int d=Integer.parseInt(String.valueOf(c));
-            new Ziffern(getPainter(),getBatch(),d,b);
+        Character c=a.charAt(0);
+        int d=Integer.parseInt(String.valueOf(c));
+        z1=new Ziffern(painter,batch,d,0);
+        if(MyGame.geld>9){
+            c=a.charAt(1);
+            d=Integer.parseInt(String.valueOf(c));
+            z2=new Ziffern(painter,batch,d,1);
+        }if(MyGame.geld>99){
+            c=a.charAt(2);
+            d=Integer.parseInt(String.valueOf(c));
+            z3=new Ziffern(painter,batch,d,2);
         }
-        position=new Point(700,0);
     }
 
+    Ziffern z1;
+    Ziffern z2;
+    Ziffern z3;
+
+    String[] texturen = {"hud/Ziffer0.png","hud/Ziffer1.png","hud/Ziffer2.png","hud/Ziffer3.png","hud/Ziffer4.png","hud/Ziffer5.png","hud/Ziffer6.png","hud/Ziffer7.png","hud/Ziffer8.png","hud/Ziffer9.png"};
     Point position;
 
     @Override

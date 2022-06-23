@@ -15,8 +15,8 @@ public class Ziffern extends HUDElement {
      */
     public Ziffern(HUDPainter painter, SpriteBatch batch, int wert, int stelle) {
         super(painter, batch);
-        texturePath=texturen[wert+1];
-        position=new Point(700+16*stelle,0);
+        texturePath=texturen[wert];
+        position=new Point(500+20*stelle,0);
     }
 
     @Override
