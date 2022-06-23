@@ -19,7 +19,7 @@ public class Kontostand extends HUDElement {
         String a = String.valueOf(MyGame.geld);
         for(int b = 0; b<a.length(); b++){
             Character c=a.charAt(b);
-            int d = Integer.getInteger(String.valueOf(c));
+            int d=Integer.parseInt(String.valueOf(c));
             new Ziffern(getPainter(),getBatch(),d,b);
         }
         position=new Point(700,0);

@@ -39,6 +39,7 @@ public class MyGame extends MainController {
     private boolean amReden=false;
     static int geld=0;
     Kontostand k;
+    Shop shop;
 
     @Override
     protected void setup() {
@@ -60,6 +61,9 @@ public class MyGame extends MainController {
             Gdx.app.exit();
         }
         k=new Kontostand(hudPainter,hudBatch);
+        shop=new Shop(painter,batch);
+        shop.setLevel(levelAPI.getCurrentLevel());
+        entityController.add(shop);
         hudController.add(k);
         camera.follow(hero);
         entityController.add(item);
@@ -289,6 +293,7 @@ public class MyGame extends MainController {
         entityController.remove(item);
         entityController.remove(chest);
         entityController.remove(quest);
+        entityController.remove(shop);
 
         for (Items element : it) {
             entityController.remove(element);
@@ -314,6 +319,9 @@ public class MyGame extends MainController {
         }
 
         questErstellen();
+        shop=new Shop(painter,batch);
+        shop.setLevel(levelAPI.getCurrentLevel());
+        entityController.add(shop);
 
         hero.setLevel(levelAPI.getCurrentLevel());//bei text im hud nicht mehr in funktion
         npcGenerieren();
