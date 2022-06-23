@@ -6,6 +6,7 @@ import controller.ControllerLayer;
 import controller.HUDController;
 import controller.MainController;
 import graphic.HUDPainter;
+import level.LevelAPI;
 import level.generator.LevelLoader.LevelLoader;
 import level.generator.dungeong.graphg.NoSolutionException;
 import tools.Point;
@@ -38,6 +39,8 @@ public class MyGame extends MainController {
     boolean inventarVisible = false;
     InventarUI ui;
     private boolean amReden=false;
+    int geld=0;
+    Geld coin;
 
     @Override
     protected void setup() {
@@ -92,7 +95,12 @@ public class MyGame extends MainController {
             double itX=Math.round((item.getPosition().x));
             double itY=Math.round((item.getPosition().y));
             if (itX == heroX && itY == heroY&&Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-                if(MyHero.itemInventar.hinzufuegen(item)){
+                if(item instanceof Geld){
+                    item.setTaken(true);
+                    geld++;
+                    System.out.println(geld);
+                }
+                else if(MyHero.itemInventar.hinzufuegen(item)){
                     item.setTaken(true);
                 }
 
@@ -472,7 +480,11 @@ public class MyGame extends MainController {
         }else if(zufall==12){
             item=new SwordRecipe(painter,batch);
         }
+        Geld g = new Geld(painter,batch);
+        entityController.add(g);
         entityController.add(item);
+        g.setLevel(levelAPI.getCurrentLevel());
+        it.add(g);
         item.setLevel(levelAPI.getCurrentLevel());
         it.add(item);
     }
