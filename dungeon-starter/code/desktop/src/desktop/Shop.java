@@ -16,7 +16,7 @@ public class Shop extends Entity {
      */
     public Shop(Painter painter, SpriteBatch batch) {
         super(painter, batch);
-        texturePath="logo/logo32x32.png";
+        texturePath="character/umgebung/gebaeude.png";
     }
 
     String texturePath;

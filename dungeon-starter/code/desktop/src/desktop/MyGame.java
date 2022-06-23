@@ -37,7 +37,7 @@ public class MyGame extends MainController {
     boolean inventarVisible = false;
     InventarUI ui;
     private boolean amReden=false;
-    static int geld=10;
+    static int geld=0;
     Kontostand k;
     Shop shop;
 
@@ -101,6 +101,11 @@ public class MyGame extends MainController {
                     monsterEntfernen.add(ele);
                 }
             }
+        }
+        double shopX = Math.round((shop.getPosition().x * 100) / 100);
+        double shopY = Math.round((shop.getPosition().y * 100) / 100);
+        if(shopX == heroX && shopY == heroY && Gdx.input.isKeyJustPressed(Input.Keys.R)){
+            System.out.println("Shop offen");
         }
         for (Items item: it){
             double itX=Math.round((item.getPosition().x));
