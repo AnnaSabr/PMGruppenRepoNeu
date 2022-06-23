@@ -24,8 +24,6 @@ public class MyGame extends MainController {
     Chest chest;
     Quest quest;
     private Logger logger=Logger.getLogger(this.getClass().getName());
-
-    private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
     private int levelCounter=0;
     ArrayList<Monster> monster;
     ArrayList<Monster> monsterEntfernen;
@@ -39,8 +37,8 @@ public class MyGame extends MainController {
     boolean inventarVisible = false;
     InventarUI ui;
     private boolean amReden=false;
-    int geld=0;
-    Geld coin;
+    static int geld=0;
+    Kontostand k;
 
     @Override
     protected void setup() {
@@ -61,6 +59,8 @@ public class MyGame extends MainController {
                 "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
             Gdx.app.exit();
         }
+        k=new Kontostand(hudPainter,hudBatch);
+        hudController.add(k);
         camera.follow(hero);
         entityController.add(item);
         hudController.add(new Icon(hudPainter, hudBatch, new Point(0f,0f)));
@@ -98,7 +98,8 @@ public class MyGame extends MainController {
                 if(item instanceof Geld){
                     item.setTaken(true);
                     geld++;
-                    System.out.println(geld);
+                    hudController.remove(k);
+                    hudController.add(k=new Kontostand(hudPainter,hudBatch));
                 }
                 else if(MyHero.itemInventar.hinzufuegen(item)){
                     item.setTaken(true);
