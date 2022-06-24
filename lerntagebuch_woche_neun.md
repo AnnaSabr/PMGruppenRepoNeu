@@ -72,6 +72,9 @@ Bitte hier die Umsetzung der Lösung kurz beschreiben:
 -->
 Dialogsystem: Die Umsetzung gestaltete sich im Bezug auf die Logik relativ einfach. Wie immer waren die Regulaeren Ausdruecke
 und ihre Feinheiten, dass einzige was zickig war und etwas rumprobieren erforderte.
+
+Shop: Der Shop wird dargestellt, wenn der Spieler ihn ausgewählt hat. Die Texturen werden aus der Klasse Slots übernommen. Der Shop kann höchstens 9 Items anbieten. Das
+Dialogsystem ist in der Klasse NPCs implementiert. Die Klasse Shop konnte nicht von NPCs erben, weil sie bereits von Entity bzw. HUDElement erbt. Die Klasse musste einige modifizierte Methoden aus de NPC Klasse übernehmen, weil das Dialogsystem nicht immer der Funktionsweise des Shops kompatibel ist.
 # Postmortem
 
 <!--
@@ -82,3 +85,5 @@ kritisch zurück:
 -   Wie haben Sie die Probleme letztlich gelöst?
 -->
 Dialogsystem: Auch wenn die Aufgabe 5 Punkte gibt, war sie relativ einfach und in verhaeltnissmaessig geringer Zeit zu loesen. 
+
+Shop: Die Visualisierung des Shops und das Geld konnten ohne Probleme implementiert werden. Die Anwendung des Dialogsystems auf den Shop ist nur begrenzt möglich, weil über den Shop verhandelt werden soll, was im Dialog mit den NPCs nicht notwendig ist. Diese Probleme hätten durch eine andere Arbeitsteilung, bei der eine Person für den Shop und das Dialogsystem verantwortlich ist, oder die Implementierung mehrerer Dialogsysteme vermieden werden können.

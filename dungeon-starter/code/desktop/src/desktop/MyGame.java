@@ -117,7 +117,6 @@ public class MyGame extends MainController {
             hudController.add(shopUI.slot7);
             hudController.add(shopUI.slot8);
             hudController.add(shopUI.slot9);
-            System.out.println("Shop offen");
         }
         for (Items item: it){
             double itX=Math.round((item.getPosition().x));
