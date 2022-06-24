@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Animation;
+import graphic.HUDPainter;
 import graphic.Painter;
 import tools.Point;
 import level.elements.Level;
@@ -17,14 +18,24 @@ import java.util.List;
  * Steuert die Animation von unserem wunderschoenen Helden
  */
 
-public class MyHero extends Animatable {
+public class MyHero extends Figuren {
     private Animation idleAnimation;
-    private Point position;
-    private Level currentLevel;
+
+
+
+
     private List<String> animation;
     private List<String> rechts;
     private List<String> links;
     String key="x";
+    static Inventar itemInventar = new Inventar();
+    static Items hand = null;
+    private int lebenspunkte;
+
+    static ArrayList<Quest> acceptedQuest = new ArrayList<>();
+
+    private int time;
+
 
     /**
      * Erstellt die einzelnen Animationslisten und added die entsprechenden Animationen
@@ -32,11 +43,13 @@ public class MyHero extends Animatable {
      * @param painter irgendwas mit Texturen
      * @param batch auch irgendwas mit Texturen
      */
-    public MyHero(Painter painter, SpriteBatch batch) {
-        super(painter, batch);
+    public MyHero(int lebenspunkte, int staerke, float geschwindigkeit, Painter painter, SpriteBatch batch) {
+        super(lebenspunkte,staerke, geschwindigkeit,painter, batch);
+        this.lebenspunkte=lebenspunkte;
         animation = new ArrayList<>();
         rechts= new ArrayList<>();
         links = new ArrayList<>();
+        time=0;
         animation.add("character/held/wizzard/wizzard_m_idle_anim_f0.png");
         animation.add("character/held/wizzard/r/wizzard_m_idle_anim_f0.png");
         animation.add("character/held/wizzard/wizzard_m_idle_anim_f1.png");
@@ -58,19 +71,18 @@ public class MyHero extends Animatable {
         links.add("character/held/wizzard/wizzard_m_run_anim_f3.png");
     }
 
-    /**
-     * Empfaengt die Startposition im Level
-     * @param level uebergibt der Klasse das aktuelle Level
-     */
-    public void setLevel(Level level) {
-        currentLevel = level;
-        position = level.getStartTile().getCoordinate().toPoint();
+
+
+    @Override
+    public Animation getActiveAnimation() {
+        return idleAnimation;
     }
 
     @Override
     public void update() {
-        Point newPosition = new Point(this.position);
-        float movementSpeed = 0.1f;
+        Point newPosition = new Point(getPosition());
+        float movementSpeed = 0.1f+ SpeedPotion.SpeedIncrease;
+        time++;
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             newPosition.y += movementSpeed;
@@ -92,19 +104,61 @@ public class MyHero extends Animatable {
                 key="d";
             }
         }
-        if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
-            this.position = newPosition;
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.L)){
+            if(hand instanceof Potion){
+                ((Potion) hand).usePotion();
+            }
+            else if(MyHero.hand instanceof Recipe){
+                ((Recipe) MyHero.hand).lesen();
+            }
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.T)){
+            if(hand!=null){
+                hand=null;
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            for (Items ele:itemInventar.inventar){
+                if(ele instanceof Projektil){
+                    Projektil ele1 =(Projektil)ele;
+                        ele1.schiessen(EProjektile.OST);
+
+
+                }
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            for (Items ele:itemInventar.inventar){
+                if(ele instanceof Projektil){
+                    Projektil ele1 =(Projektil)ele;
+                        ele1.schiessen(EProjektile.WEST);
+
+
+                }
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            for (Items ele:itemInventar.inventar){
+                if(ele instanceof Projektil){
+                    Projektil ele1 =(Projektil)ele;
+                        ele1.schiessen(EProjektile.NORD);
+
+
+                }
+            }
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            for (Items ele:itemInventar.inventar){
+                if(ele instanceof Projektil){
+                    Projektil ele1 =(Projektil)ele;
+                        ele1.schiessen(EProjektile.SUED);
+
+                }
+            }
+        }
+        if (getLevel().getTileAt(newPosition.toCoordinate()).isAccessible()) {
+            setPosition(newPosition);
         }
     }
-
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public Animation getActiveAnimation() {
-        return idleAnimation;
-    }
 }
-
