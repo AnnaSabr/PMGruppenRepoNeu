@@ -40,6 +40,7 @@ public class MyGame extends MainController {
     static int geld=0;
     Kontostand k;
     Shop shop;
+    ShopUI shopUI;
 
     @Override
     protected void setup() {
@@ -105,6 +106,17 @@ public class MyGame extends MainController {
         double shopX = Math.round((shop.getPosition().x * 100) / 100);
         double shopY = Math.round((shop.getPosition().y * 100) / 100);
         if(shopX == heroX && shopY == heroY && Gdx.input.isKeyJustPressed(Input.Keys.R)){
+            shopUI=new ShopUI(hudPainter,hudBatch,this.shop);
+            hudController.add(shopUI);
+            hudController.add(shopUI.slot1);
+            hudController.add(shopUI.slot2);
+            hudController.add(shopUI.slot3);
+            hudController.add(shopUI.slot4);
+            hudController.add(shopUI.slot5);
+            hudController.add(shopUI.slot6);
+            hudController.add(shopUI.slot7);
+            hudController.add(shopUI.slot8);
+            hudController.add(shopUI.slot9);
             System.out.println("Shop offen");
         }
         for (Items item: it){

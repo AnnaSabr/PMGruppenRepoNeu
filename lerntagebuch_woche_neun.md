@@ -1,6 +1,6 @@
 
 ---
-title: "Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben "Schatzkisten" und "Taschen"
+title: "Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben "Dialogsystem" und "Shop"
 author:
 -   "Anna Heim (anna_sabrina.heim@fh-bielefeld.de)"
 -   "Leonie Terlutter (leonie.terlutter@fh-bielefeld.de)"
@@ -37,6 +37,9 @@ einbetten (etwa UML-Diagramme), denken Sie daran, diese auch abzugeben!
 Dialogsystem: Es sollte ein Dialogsystem entworfen werden, welches mit Regulaeren Ausdruecken arbeitet.  
 Der Spieler soll in der Lage sein Texte einzugeben. Diese sollen auf Regeulaere Ausdruecke geprueft werden und dann je nach Art, auf sie reagiert werden.
 Zusaetzlich sollte ein Raetsel im Spiel implementiert werden.
+
+Shop: Items sollen gekauft und verkauft werden können. Das Verhandeln wird über RegEx gelöst. Items gibt es nur begrenzt. Die Preise für das Kaufen sind größer als die 
+Preise für das Verkaufen. Der Shop muss graphisch dargestellt werden.
 <!--
 Bitte hier die zu lösende Aufgabe kurz in eigenen Worten beschreiben.
 -->
@@ -57,6 +60,7 @@ Damit das nicht mit den bisherigen Funktionen der NPCs kollidiert wird dies nur 
 Da die individuellen NPCs von NPC erben, kann ein Grossteil in der Oberklasse implementiert werden und nur 
 die individuellen Antworten in den einzelnen NPCS.
 
+Shop: Die Interaktion mit dem Shop soll über das Dialogsystem erfolgen. Für die Darstellung können die Texturen der Slots aus dem InventarUI verwendet werden. Die Items im Shop werden über HUDElemente dargestellt.
 # Umsetzung
 
 <!--
