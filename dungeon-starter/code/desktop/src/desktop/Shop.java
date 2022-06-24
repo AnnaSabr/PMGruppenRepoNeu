@@ -78,6 +78,9 @@ public class Shop extends Entity {
         position = level.getRandomRoom().getRandomFloorTile().getCoordinate().toPoint();
     }
 
+    /**
+     * Interaktion mit dem Shop
+     */
     public void handel(){
         logger.setUseParentHandlers(false);
         ConsoleHandler handler = new ConsoleHandler();
@@ -118,10 +121,14 @@ public class Shop extends Entity {
             }
             if (ausgewaehlt.equals(DialogAntwortArt.RATEN)) {
                 logger.info("Was bietest du mir an?\n");
+                this.verkauf();
             }
         }
     }
 
+    /**
+     * auswählen was verkauft wird
+     */
     public void verkauf(){
         String angebot = this.sprachEingabe();
         Pattern anbieten = Pattern.compile(".*(Axt|Hammer|Kraut|Schlüssel|Topf|Geschwindigkeitstrank|Langsamkeitstrank|Wein|Tasche|Schwertrezept|Trankrezept).*",Pattern.CASE_INSENSITIVE);

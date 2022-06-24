@@ -87,3 +87,4 @@ kritisch zurück:
 Dialogsystem: Auch wenn die Aufgabe 5 Punkte gibt, war sie relativ einfach und in verhaeltnissmaessig geringer Zeit zu loesen. 
 
 Shop: Die Visualisierung des Shops und das Geld konnten ohne Probleme implementiert werden. Die Anwendung des Dialogsystems auf den Shop ist nur begrenzt möglich, weil über den Shop verhandelt werden soll, was im Dialog mit den NPCs nicht notwendig ist. Diese Probleme hätten durch eine andere Arbeitsteilung, bei der eine Person für den Shop und das Dialogsystem verantwortlich ist, oder die Implementierung mehrerer Dialogsysteme vermieden werden können.
+Ein Problem, das nicht gelöst werden konnte, tritt auf, wenn mit dem Shop interagiert werden soll. Der Shop wird dann nicht mehr visualisiert.
