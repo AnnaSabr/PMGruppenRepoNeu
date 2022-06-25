@@ -136,9 +136,9 @@ public class Shop extends Entity {
             Pattern p=Pattern.compile(".*(Axt)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof Axe){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof Axe){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -147,9 +147,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Hammer)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof Hammer){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof Hammer){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -158,9 +158,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Kraut)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof Kraut){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof Kraut){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -169,9 +169,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Schlüssel)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof Key){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof Key){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -180,9 +180,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Topf)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof Kochtopf){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof Kochtopf){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -191,9 +191,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Geschwindigkeitstrank)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof SpeedPotionRecipe){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof SpeedPotionRecipe){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -202,9 +202,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Langsamkeitstrank)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof SpeedDecreasePotion){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof SpeedDecreasePotion){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -213,9 +213,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Trankrezept)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof SpeedPotionRecipe){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof SpeedPotionRecipe){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -224,9 +224,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Schwert)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof Sword){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof Sword){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -235,9 +235,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Schwertrezept)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof SwordRecipe){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof SwordRecipe){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -246,9 +246,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Tasche)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof Tasche<?>){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof Tasche<?>){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -257,9 +257,9 @@ public class Shop extends Entity {
             p=Pattern.compile(".*(Wein)");
             if(p.matcher(angebot).find()){
                 for (int a =0; a<MyHero.itemInventar.getSize(); a++){
-                    if(this.ware[a] instanceof Wein){
+                    if(MyHero.itemInventar.inventar.get(a) instanceof Wein){
                         if(this.feilschen(false,MyHero.itemInventar.inventar.get(a))){
-                            this.ware[a]=null;
+                            MyHero.itemInventar.inventar.remove(MyHero.itemInventar.inventar.get(a));
                         }
                         return;
                     }
@@ -273,8 +273,9 @@ public class Shop extends Entity {
      * auswählen was gekauft werden soll
      */
     public void kauf(){
+        //TODO umstrukturieren, Zahl der Zelle angeben, nicht unbedingt Namen nennen
         String angebot = this.sprachEingabe();
-        Pattern anbieten = Pattern.compile(".*(Axt|Hammer|Kraut|Schlüssel|Topf|Geschwindigkeitstrank|Langsamkeitstrank|Wein|Tasche|Schwertrezept|Trankrezept).*",Pattern.CASE_INSENSITIVE);
+        Pattern anbieten = Pattern.compile(".*(Axt|Hammer|Kraut|Schlüssel|Topf|Geschwindigkeitstrank|Langsamkeitstrank|Wein|Tasche|Schwertrezept|Trankrezept|Schwert).*",Pattern.CASE_INSENSITIVE);
         if(anbieten.matcher(angebot).find()){
             Pattern p=Pattern.compile(".*(Axt).*");
             if(p.matcher(angebot).find()){
@@ -286,6 +287,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Hammer).*");
             if(p.matcher(angebot).find()){
@@ -297,6 +300,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Kraut).*");
             if(p.matcher(angebot).find()){
@@ -308,6 +313,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Schlüssel).*");
             if(p.matcher(angebot).find()){
@@ -319,6 +326,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Topf).*");
             if(p.matcher(angebot).find()){
@@ -330,6 +339,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Geschwindigkeitstrank).*");
             if(p.matcher(angebot).find()){
@@ -341,6 +352,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Langsamkeitstrank).*");
             if(p.matcher(angebot).find()){
@@ -352,6 +365,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Trankrezept).*");
             if(p.matcher(angebot).find()){
@@ -363,6 +378,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Schwert).*");
             if(p.matcher(angebot).find()){
@@ -374,6 +391,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Schwertrezept).*");
             if(p.matcher(angebot).find()){
@@ -385,6 +404,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Tasche).*");
             if(p.matcher(angebot).find()){
@@ -396,6 +417,8 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
             p=Pattern.compile(".*(Wein).*");
             if(p.matcher(angebot).find()){
@@ -407,9 +430,12 @@ public class Shop extends Entity {
                         return;
                     }
                 }
+                logger.info("Das hab ich nicht\n");
+                return;
             }
-            logger.info("Sowas hab ich nicht.\n");
-    }}
+        }
+        logger.info("Sowas hab ich nicht.\n");
+    }
 
     /**
      * über Preise verhandeln
@@ -420,48 +446,71 @@ public class Shop extends Entity {
     public boolean feilschen(boolean kaufen, Items items){
         int zufall;
         if(kaufen){
-            zufall=(int) (Math.random()*10)+10;
+            zufall=(int) (Math.random()*5)+1;
         }
         else{
             zufall=(int) (Math.random()*10)+1;
         }
-        Pattern p = Pattern.compile("/d+");
+        //oder einfach annehmen TODO
+        Pattern p = Pattern.compile("\\d+");
         boolean handeln = true;
         while(handeln){
+            if(kaufen){
+                logger.info("Das kostet " + items.preis + "\n");
+            }
             String eingabe=this.sprachEingabe();
+            if(kaufen){
+                Pattern annehmen = Pattern.compile(".*(ja|ok).*");
+                if(MyGame.geld>=items.preis && MyHero.itemInventar.hinzufuegen(items)){
+                    MyGame.geld=MyGame.geld-items.preis;
+                    return true;
+                }if(MyGame.geld<items.preis)
+                {
+                    logger.info("Hast du etwa kein Geld?\n");
+                    return false;
+                }else{
+                    logger.info("Hast du denn noch Platz im Inventar?\n");
+                    return false;
+                }
+            }
             if(p.matcher(eingabe).find()){
                 try{
-                    int angebot = Integer.getInteger(eingabe);
+                    int angebot = Integer.parseInt(eingabe);
                     if(kaufen){
-                        if(angebot>zufall){
-                            logger.info("Okay.");
+                        if(angebot>items.preis-zufall){
+                            logger.info("Okay.\n");
                             if(MyGame.geld<angebot){
-                                logger.info("Hast du etwa kein Geld??");
+                                logger.info("Hast du etwa kein Geld??\n");
                                 return false;
                             }
                             else if(MyHero.itemInventar.hinzufuegen(items)){
                                 MyGame.geld=MyGame.geld-angebot;
                                 return true;
                             }else{
-                                logger.info("Das kannst du ja garnicht tragen.");
+                                logger.info("Das kannst du ja garnicht tragen.\n");
                                 return false;
                             }
+                        }else{
+                            logger.info("Nein\n");
                         }
                     }
-                    else{
+                    if(!kaufen){
                         if(angebot<zufall){
-                            logger.info("Okay");
+                            logger.info("Okay\n");
                             MyHero.itemInventar.inventar.remove(items);
                             MyGame.geld=MyGame.geld+angebot;
                             return true;
                         }
+                        else{
+                            logger.info("Nein\n");
+                        }
                     }
                 }catch (Exception e){
-                    logger.info("Wie viel Geld??");
+                    logger.info("Wie viel Geld?\n");
                 }
             }
             else{
-                logger.info("Erklär mir nochmal was du willst.");
+                logger.info("Erklär mir nochmal was du willst.\n");
                 handeln=false;
                 return false;
             }
@@ -493,7 +542,7 @@ public class Shop extends Entity {
         Pattern verabschiedung=Pattern.compile(".*(tschau|tschüss|bye|bis.*dann|auf.*wiedersehen).*",Pattern.CASE_INSENSITIVE);
         Pattern kompliment=Pattern.compile(".*du+.*(schön|schlau|groß|breit|hübsch)|(schön|schlau|groß|breit|hübsch).*du+.*",Pattern.CASE_INSENSITIVE);
         Pattern flirten=Pattern.compile(".*du+.*(heiß|sexy|hot)|(heiß|sexy|hot).*du+.*",Pattern.CASE_INSENSITIVE);
-        Pattern kaufen=Pattern.compile(".*(haben|gib|will|kaufen|biete).*",Pattern.CASE_INSENSITIVE);
+        Pattern kaufen=Pattern.compile(".*(haben|gib|will|kaufen).*",Pattern.CASE_INSENSITIVE);
         Pattern verkaufen=Pattern.compile(".*(gebe|verkaufe|biete an).*",Pattern.CASE_INSENSITIVE);
 
         if (eingabe.equals("")){
@@ -521,6 +570,7 @@ public class Shop extends Entity {
             gematched.add(DialogAntwortArt.RATEN);
         }
 
+        //TODO raten Dialogantwort
         if (gematched.size()!=0){
             if (gematched.contains(DialogAntwortArt.VERABSCHIEDUNG)){
                 return DialogAntwortArt.VERABSCHIEDUNG;

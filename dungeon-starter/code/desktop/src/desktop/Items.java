@@ -11,6 +11,7 @@ public abstract class Items extends Entity {
     private Level currentLevel;
 
     String nameTyp;
+    int preis=(int) (Math.random()*10)+10;
     boolean taken;
     /**
      * A object that can be controlled by the <code>EntityController

@@ -117,7 +117,7 @@ public class MyGame extends MainController {
             hudController.add(shopUI.slot7);
             hudController.add(shopUI.slot8);
             hudController.add(shopUI.slot9);
-            this.shop.handel();
+            //this.shop.handel();
             /*hudController.remove(shopUI.slot9);
             hudController.remove(shopUI.slot8);
             hudController.remove(shopUI.slot7);
@@ -128,6 +128,19 @@ public class MyGame extends MainController {
             hudController.remove(shopUI.slot2);
             hudController.remove(shopUI.slot1);
             hudController.remove(shopUI);*/
+        }
+        if(shopX == heroX && shopY == heroY && Gdx.input.isKeyJustPressed(Input.Keys.U)){
+            this.shop.handel();
+            hudController.remove(shopUI.slot9);
+            hudController.remove(shopUI.slot8);
+            hudController.remove(shopUI.slot7);
+            hudController.remove(shopUI.slot6);
+            hudController.remove(shopUI.slot5);
+            hudController.remove(shopUI.slot4);
+            hudController.remove(shopUI.slot3);
+            hudController.remove(shopUI.slot2);
+            hudController.remove(shopUI.slot1);
+            hudController.remove(shopUI);
         }
         for (Items item: it){
             double itX=Math.round((item.getPosition().x));
