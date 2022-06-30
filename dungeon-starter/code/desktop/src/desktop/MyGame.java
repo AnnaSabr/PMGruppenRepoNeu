@@ -48,8 +48,10 @@ public class MyGame extends MainController {
      * Starttet das Spiel bei Game over neu und reseted alle wichtigen Werte
      */
     public void neustart(){
+        entityController.remove(shop);
         entityController.clear();
         hudController.clear();
+
 
         time=0;
         levelCounter=0;
@@ -114,9 +116,7 @@ public class MyGame extends MainController {
         if(geld>99){
             hudController.add(k.z3);
         }
-        shop=new Shop(painter,batch);
-        shop.setLevel(levelAPI.getCurrentLevel());
-        entityController.add(shop);
+
         camera.follow(hero);
         entityController.add(item);
         hudController.add(new Icon(hudPainter, hudBatch, new Point(0f,0f)));
