@@ -141,6 +141,25 @@ public class MyGame extends MainController {
             hudController.remove(shopUI.slot2);
             hudController.remove(shopUI.slot1);
             hudController.remove(shopUI);
+
+            hudController.remove(k);
+            hudController.remove(k.z1);
+            if(geld>9){
+                hudController.remove(k.z2);
+            }
+            if(geld>99){
+                hudController.remove(k.z3);
+            }
+            geld++;
+            k=new Kontostand(hudPainter,hudBatch);
+            hudController.add(k);
+            hudController.add(k.z1);
+            if(geld>9){
+                hudController.add(k.z2);
+            }
+            if(geld>99){
+                hudController.add(k.z3);
+            }
         }
         for (Items item: it){
             double itX=Math.round((item.getPosition().x));

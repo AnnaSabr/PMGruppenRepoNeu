@@ -131,7 +131,7 @@ public class Shop extends Entity {
      */
     public void verkauf(){
         String angebot = this.sprachEingabe();
-        Pattern anbieten = Pattern.compile(".*(Axt|Hammer|Kraut|Schlüssel|Topf|Geschwindigkeitstrank|Langsamkeitstrank|Wein|Tasche|Schwertrezept|Trankrezept).*",Pattern.CASE_INSENSITIVE);
+        Pattern anbieten = Pattern.compile(".*(Axt|Hammer|Kraut|Schlüssel|Topf|Geschwindigkeitstrank|Langsamkeitstrank|Wein|Tasche|Schwertrezept|Trankrezept|Schwert).*",Pattern.CASE_INSENSITIVE);
         if(anbieten.matcher(angebot).find()){
             Pattern p=Pattern.compile(".*(Axt)");
             if(p.matcher(angebot).find()){
@@ -273,7 +273,6 @@ public class Shop extends Entity {
      * auswählen was gekauft werden soll
      */
     public void kauf(){
-        //TODO umstrukturieren, Zahl der Zelle angeben, nicht unbedingt Namen nennen
         String angebot = this.sprachEingabe();
         Pattern anbieten = Pattern.compile(".*(Axt|Hammer|Kraut|Schlüssel|Topf|Geschwindigkeitstrank|Langsamkeitstrank|Wein|Tasche|Schwertrezept|Trankrezept|Schwert).*",Pattern.CASE_INSENSITIVE);
         if(anbieten.matcher(angebot).find()){
@@ -446,30 +445,40 @@ public class Shop extends Entity {
     public boolean feilschen(boolean kaufen, Items items){
         int zufall;
         if(kaufen){
+            //wird vom Preis abgezogen
             zufall=(int) (Math.random()*5)+1;
         }
         else{
+            //maximaler Preis
             zufall=(int) (Math.random()*10)+1;
         }
-        //oder einfach annehmen TODO
         Pattern p = Pattern.compile("\\d+");
+        Pattern nichtVerkaufen = Pattern.compile(".*(nein|dann nicht).*");
         boolean handeln = true;
         while(handeln){
             if(kaufen){
                 logger.info("Das kostet " + items.preis + "\n");
+            }else{
+                logger.info("Was willst du dafür?\n");
             }
             String eingabe=this.sprachEingabe();
             if(kaufen){
+                Pattern ablehnen = Pattern.compile(".*(nein|will nicht)",Pattern.CASE_INSENSITIVE);
                 Pattern annehmen = Pattern.compile(".*(ja|ok).*");
-                if(MyGame.geld>=items.preis && MyHero.itemInventar.hinzufuegen(items)){
-                    MyGame.geld=MyGame.geld-items.preis;
-                    return true;
-                }if(MyGame.geld<items.preis)
-                {
-                    logger.info("Hast du etwa kein Geld?\n");
-                    return false;
-                }else{
-                    logger.info("Hast du denn noch Platz im Inventar?\n");
+                if(annehmen.matcher(eingabe).find()){
+                    if(MyGame.geld>=items.preis && MyHero.itemInventar.hinzufuegen(items)){
+                        MyGame.geld=MyGame.geld-items.preis;
+                        return true;
+                    }if(MyGame.geld<items.preis)
+                    {
+                        logger.info("Hast du etwa kein Geld?\n");
+                        return false;
+                    }else{
+                        logger.info("Hast du denn noch Platz im Inventar?\n");
+                        return false;
+                    }
+                } else if (ablehnen.matcher(eingabe).find()) {
+                    logger.info("Dann eben nicht\n");
                     return false;
                 }
             }
@@ -497,7 +506,6 @@ public class Shop extends Entity {
                     if(!kaufen){
                         if(angebot<zufall){
                             logger.info("Okay\n");
-                            MyHero.itemInventar.inventar.remove(items);
                             MyGame.geld=MyGame.geld+angebot;
                             return true;
                         }
@@ -508,6 +516,10 @@ public class Shop extends Entity {
                 }catch (Exception e){
                     logger.info("Wie viel Geld?\n");
                 }
+            }
+            else if(nichtVerkaufen.matcher(eingabe).find() && !kaufen){
+                logger.info("Dann eben nicht.\n");
+                return false;
             }
             else{
                 logger.info("Erklär mir nochmal was du willst.\n");
@@ -570,7 +582,6 @@ public class Shop extends Entity {
             gematched.add(DialogAntwortArt.RATEN);
         }
 
-        //TODO raten Dialogantwort
         if (gematched.size()!=0){
             if (gematched.contains(DialogAntwortArt.VERABSCHIEDUNG)){
                 return DialogAntwortArt.VERABSCHIEDUNG;
@@ -595,6 +606,9 @@ public class Shop extends Entity {
             }
             if (gematched.contains(DialogAntwortArt.STUMM)){
                 return DialogAntwortArt.STUMM;
+            }
+            if (gematched.contains(DialogAntwortArt.RATEN)) {
+                return DialogAntwortArt.RATEN;
             }
         }
         return DialogAntwortArt.QUATSCH;
