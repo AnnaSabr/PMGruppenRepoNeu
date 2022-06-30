@@ -161,4 +161,5 @@ public class MyHero extends Figuren {
             setPosition(newPosition);
         }
     }
+
 }

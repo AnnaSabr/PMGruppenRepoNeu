@@ -126,9 +126,15 @@ public abstract class Figuren extends Animatable {
         this.lebenspunkte=lebenspunkte-abzug;
     }
 
+    /**
+     *
+     * @param leben das man zu beginn hat
+     */
     public void setLebenspunkteStart(int leben){
         this.lebenspunkte=leben;
     }
+
+
     @Override
     public boolean removable(){
        dead=false;
@@ -235,4 +241,6 @@ public abstract class Figuren extends Animatable {
     public int getGesamtesLeben(){
         return gesamtesLeben;
     }
+
+
 }

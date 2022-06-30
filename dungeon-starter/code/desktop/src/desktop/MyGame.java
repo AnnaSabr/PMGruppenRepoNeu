@@ -13,6 +13,7 @@ import tools.Point;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
@@ -41,6 +42,49 @@ public class MyGame extends MainController {
     Kontostand k;
     Shop shop;
     ShopUI shopUI;
+
+
+    /**
+     * Starttet das Spiel bei Game over neu und reseted alle wichtigen Werte
+     */
+    public void neustart(){
+        entityController.clear();
+        hudController.clear();
+
+        time=0;
+        levelCounter=0;
+
+        hero= new MyHero(50,5,0.1f, painter, batch);
+        heroposition = hero.getPosition();
+
+        item = new SpeedPotion(painter, batch);
+
+        monster.clear();
+        fallen.clear();
+        monsterEntfernen.clear();
+        it.clear();
+
+        try {
+            levelAPI.loadLevel();
+        } catch (NoSolutionException e) {
+            System.out.println(
+                "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
+            Gdx.app.exit();
+        }
+
+
+        geld=0;
+        k=new Kontostand(hudPainter,hudBatch);
+        hudController.add(k);
+        hudController.add(k.z1);
+
+        shop=new Shop(painter,batch);
+        shop.setLevel(levelAPI.getCurrentLevel());
+        entityController.add(shop);
+        camera.follow(hero);
+        entityController.add(item);
+        hudController.add(new Icon(hudPainter, hudBatch, new Point(0f,0f)));
+    }
 
     @Override
     protected void setup() {
@@ -363,7 +407,19 @@ public class MyGame extends MainController {
             }
             monsterEntfernen= new ArrayList<>();
         }
-
+        if (hero.isDead()){
+            logger.info("GAME OVER DU NOOB");
+            logger.info("Druecke + um das Spiel neu zu starten oder irgendwas anderes um es zu beenden.");
+            Scanner sc = new Scanner(System.in);
+            String eingabe=sc.next();
+            if (eingabe.equals("+")){
+                neustart();
+            }
+            else {
+                Gdx.app.exit();
+                System.out.println("beendet");
+            }
+        }
     }
 
     @Override
@@ -642,6 +698,8 @@ public class MyGame extends MainController {
             }
         }
     }
+
+
 
     /**
      * ruft die dialog Funktion auf
