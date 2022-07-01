@@ -1,11 +1,10 @@
 ---
-title: "Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben "Dungeon", "Texturen" und Animationen"
+title: "Lerntagebuch zur Bearbeitung der Dungeon-Aufgaben "Items"
 author:
--   "Anna Heim (anna_sabrina.heim@fh-bielefeld.de)"
 -   "Leonie Terlutter (leonie.terlutter@fh-bielefeld.de)"
--   "Waldemar Schäfer (waldemar.schaefer@fh-bielefeld.de)"
 hidden: true
 ---
+
 
 <!--
 Führen Sie zu jeder Woche zur Bearbeitung der Dungeon-Aufhaben ein
@@ -34,9 +33,7 @@ einbetten (etwa UML-Diagramme), denken Sie daran, diese auch abzugeben!
 
 
 # Aufgabe
-Dungeon: Der Dungeon sollte lauffahig gemacht werden un der erste Held implementiert werden.
-Texturen: Es sollten weitere Texturen in dem entsprechenden Ordner hinzugefuegt werden, fuer Items, Helden und Monster.
-Animationen: Die Animation des Helden sollte je nach Laufrichtung individuell angepasst werden.
+Sechs verschiedene Items, die der Held einsammeln und verwenden kann, sollen erzeugt und in der Dungeon verteilt werden.
 <!--
 Bitte hier die zu lösende Aufgabe kurz in eigenen Worten beschreiben.
 -->
@@ -53,9 +50,9 @@ Bitte hier den Lösungsansatz kurz beschreiben:
 -   Worauf müssen Sie konkret achten?
 -->
 
-Dungeon: In der Theorie nur Repo clonen und in IDE oeffnen. Anschließend mit Gradle ausfuehren.
-Texturen: Beliebige Texturen aus dem Internet klauen und in den richtigen Ordner packen.
-Animationen: Die idleAnimation anpassen, je nach Laufrichtung ueber die permanent laufende update Funktion.
+Den Items soll eine zufällige Koordinate zugewiesen werden, damit sie an einem zufälligen Ort erstellt werden. Wenn sich der Held auf der gleichen Koordinate befindet, wie das Item, soll das 
+Item eingesammelt werden. Das Item wird dann nicht mehr grafisch dargestellt. Der Held kann die Items abhängig von ihrem Nutzen verwenden. Die Items sollen in drei Arten 
+unterteilt werden. Das heißt, dass eine Oberklasse Items durch 3 Klassen (z.B. Tränke, Rüstungen und Waffen) erweitert wird. Diese Klassen werden durch die konkreten Items erweitert.
 
 
 # Umsetzung
@@ -68,13 +65,8 @@ Bitte hier die Umsetzung der Lösung kurz beschreiben:
 -   was war das Ergebnis?
 -->
 
-Dungeon: es gab zum Teil Probleme mit dem Import in die jeweilige IDE. 
-Probleme durch falsche Javaversionen bei Gradle oder bei der IDE mussten behoben werden.
-Texturen: Bilder wurden gedownloaded, mussten allerdings je nach vorgesehener Animation noch manuell gespiegelt werden.
-Animation: Da sie update Funktion 30 mal die Sekunde ausgefuert wird, war es zu Beginn ein Problem,
-dass die aktuell geforderte Animation nicht bei jedem neuen Aufruf von vorne beginnt.
-So war sie naemlich nicht sichtbar. ein Problem was noch nicht behoben werden konnte ist,
-dass die Animation bei Stillstand nicht zurueck in die IdleAnimation geschaltet wird. 
+Eine neue Klasse für das neue Item wurde angelegt. In dieser wurden Position und Textur des Items festgelegt. Die Position des Items kann noch nicht
+zufällig gewählt werden. Wenn der Held und das Item sich auf einer ähnlichen Koordinate befinden, wird das Item mit "removable" entfernt. Das Item wird dargestellt, kann aber noch nicht benutzt werden.
 
 # Postmortem
 
@@ -86,6 +78,5 @@ kritisch zurück:
 -   Wie haben Sie die Probleme letztlich gelöst?
 -->
 
-Insgesamt lief es relativ erfolgreich, die kleinen aufgetretenen Probleme konnten mit Hilfe schnell beseitigt werden.
-Der Fehler, dass die Idle Animation noch nicht wieder abgespielt wird, wurde primaer aufgrund mangelnder Zeit nicht mehr behoben. In dem Fall wäre 
-ein besseres Zeitmanagement und Absprachen von Vorteil.
+Während der Implementierung traten viele Fehler auf, die die Arbeit verzögerten. In Zukunft sollte mehr Zeit für die Programmierung eingeplant werden. Wegen Zeitmangel
+konnte die Aufgabe nicht fertiggestellt werden.
